@@ -1,0 +1,7 @@
+taskmanager (0.14.2-0) unstable; urgency=low
+
+  * released.
+  * Git: pkgs/t/taskmanager
+  * Tag: taskmanager_0.14.2-0
+
+ -- jeesun Kim <iamjs.kim@samsung.com>  Fri, 17 Feb 2012 11:00:00 +0900

@@ -1,0 +1,58 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-11-23 18:20+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: _genlist.c:153
+#, c-format
+msgid "IDS_TASKMGR_WARNNING_TERMINATE_ALL_TASKS"
+msgstr ""
+
+#: _genlist.c:170
+#, c-format
+msgid "IDS_TASKMGR_ASK_DELETE_ALL_HISTORY"
+msgstr ""
+
+#: _genlist.c:186
+#, c-format
+msgid "IDS_TASKMGR_ASK_TERMINATE_TASK"
+msgstr ""
+
+#: _genlist.c:203
+#, c-format
+msgid "IDS_TASKMGR_ASK_CLEAR_HISTORY"
+msgstr ""
+
+#: _genlist.c:264
+msgid "IDS_TASKMGR_CANNOT_LAUNCH_APPLICATION"
+msgstr ""
+
+#: _info.c:122
+msgid "IDS_TASKMGR_INFO_MESSAGE"
+msgstr ""
+
+#: _logic.c:150
+msgid "IDS_TASKMGR_HEADER_TASK_SWITCHER"
+msgstr ""
+
+#: _util_efl.c:181
+msgid "Warning!"
+msgstr ""
+
+#: _util_efl.c:184
+msgid "IDS_COM_POP_CANCEL"
+msgstr ""

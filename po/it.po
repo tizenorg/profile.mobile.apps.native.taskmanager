@@ -1,0 +1,95 @@
+msgid "IDS_TASKMGR_BODY_APPLICATION"
+msgstr "Applicazioni"
+
+msgid "IDS_TASKMGR_BUTTON_CLEAR_ALL"
+msgstr "Cancella tutto"
+
+msgid "IDS_TASKMGR_HEADER_TASK_SWITCHER"
+msgstr "Cambia attività"
+
+msgid "IDS_TASKMGR_POP_CLEARING_HISTORY_ING"
+msgstr "Cancellazione cronologia in corso..."
+
+msgid "IDS_TASKMGR_POP_EXITING_APPLICATIONS_ING"
+msgstr "Chiusura delle applicazioni in corso..."
+
+msgid "IDS_TASKMGR_POP_EXITING_APPLICATION_ING"
+msgstr "Chiusura dell'applicazione in corso..."
+
+msgid "IDS_TASKMGR_POP_EXIT_ALL_APPLICATIONS_Q"
+msgstr "Uscire da tutte le applicazioni?"
+
+msgid "IDS_TASKMGR_POP_EXIT_APPLICATION_Q"
+msgstr "Uscire dall'applicazione?"
+
+msgid "IDS_TASKMGR_POP_NO_APPLICATIONS_RUNNING"
+msgstr "Nessuna applicazione in esecuzione"
+
+msgid "IDS_TASKMGR_POP_NO_HISTORY_TO_CLEAR"
+msgstr "Nessuna cronologia da cancellare"
+
+msgid "IDS_COM_BODY_END"
+msgstr "Fine"
+
+msgid "IDS_COM_OPT_DELETE"
+msgstr "Elimina"
+
+msgid "IDS_COM_POP_CANCEL"
+msgstr "Annulla"
+
+msgid "IDS_COM_SK3_END_ALL_APPLICATIONS"
+msgstr "Chiudi tutto"
+
+msgid "IDS_BMG_POP_NO_TASKS"
+msgstr "Nessuna attività"
+
+msgid "IDS_ST_BODY_IN_USE"
+msgstr "Spazio utilizzato"
+
+msgid "IDS_MUSIC_OPT_HISTORY"
+msgstr "Cronologia"
+
+msgid "IDS_TASKMGR_NO_RUNNING_TASK"
+msgstr "No running task"
+
+msgid "IDS_TASKMGR_NO_TASK_HISTORY"
+msgstr "No task history"
+
+msgid "IDS_TASKMGR_CANNOT_LAUNCH_APPLICATION"
+msgstr "Cannot launch application"
+
+msgid "IDS_TASKMGR_END_ALL_TASKS"
+msgstr "End all tasks"
+
+msgid "IDS_TASKMGR_DELETE_ALL_HISTORY"
+msgstr "Delete all history"
+
+msgid "IDS_TASKMGR_INFO_MESSAGE"
+msgstr "Select a task which you wish to return to from a task list."
+
+msgid "IDS_TASKMGR_WARNNING_TERMINATE_ALL_TASKS"
+msgstr "Terminate all tasks?<br><br>This may cause data loss!"
+
+msgid "IDS_TASKMGR_ASK_TERMINATE_TASK"
+msgstr "Are you sure to terminate<br> %s task?<br><br>This may cause data loss!"
+
+msgid "IDS_TASKMGR_ASK_CLEAR_HISTORY"
+msgstr "Are you sure to clear<br> %s history?"
+
+msgid "IDS_TASKMGR_DELETING_HISTORY"
+msgstr "Deleting history!"
+
+msgid "IDS_TASKMGR_ASK_DELETE_ALL_HISTORY"
+msgstr "Delete all task history?"
+
+msgid "IDS_TASKMGR_TERMINATING_TASK"
+msgstr "Terminating task!"
+
+msgid "IDS_TASKMGR_TERMINATING_ALL_TASKS"
+msgstr "Terminating all tasks!"
+
+msgid "IDS_TASKMGR_NO_TASK_TO_TERMINATE"
+msgstr "No task to terminate!"
+
+msgid "IDS_TASKMGR_NO_TASK"
+msgstr "No task"

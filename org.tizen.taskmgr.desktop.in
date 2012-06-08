@@ -1,0 +1,11 @@
+Name=taskmgr
+Exec=@BINDIR@/@PROJECT_NAME@
+Icon=@PKGNAME@.png
+Type=Application
+Comment=taskmgr
+Version=0.1.0
+NoDisplay=true
+X-TIZEN-TaskManage=false
+X-TIZEN-Removable=false
+X-TIZEN-Multiple=false
+

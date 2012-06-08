@@ -1,0 +1,10 @@
+# List of source files containing translatable strings.
+taskmanager.c
+_eina.c
+_genlist.c
+_info.c
+_logic.c
+_mem.c
+_progressbar.c
+_util_efl.c
+
