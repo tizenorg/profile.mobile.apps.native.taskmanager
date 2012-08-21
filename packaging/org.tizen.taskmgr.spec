@@ -1,9 +1,9 @@
-Name:		org.tizen.taskmgr 
+Name:       org.tizen.taskmgr
 Summary:    Task Manager
-Version:    0.14.1
+Version: 0.14.2
 Release:    1
 Group:      devel
-License:    Flora Software License
+License:    Samsung Proprietary License
 Source0:    %{name}-%{version}.tar.gz
 BuildRequires:  pkgconfig(appcore-efl)
 BuildRequires:  pkgconfig(elementary)
@@ -34,9 +34,14 @@ cmake . -DCMAKE_INSTALL_PREFIX=%{PREFIX}
 make %{?jobs:-j%jobs}
 
 %install
+rm -rf %{buildroot}
 %make_install
 
 %files
+%defattr(-,root,root,-)
 /opt/apps/org.tizen.taskmgr/bin/*
 /opt/apps/org.tizen.taskmgr/res/*
-/opt/share/applications/*
+%attr(-,inhouse,inhouse)
+/opt/apps/org.tizen.taskmgr/data
+/opt/share/packages/*
+/opt/share/icons/default/small/org.tizen.taskmgr.png

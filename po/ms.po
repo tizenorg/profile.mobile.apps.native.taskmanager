@@ -1,0 +1,36 @@
+msgid "IDS_TASKMGR_BUTTON_CLEAR_HISTORY_ABB"
+msgstr "Padam sejarah"
+
+msgid "IDS_TASKMGR_BUTTON_CLOSE_ALL_APPLICATIONS"
+msgstr "Tutup semua aplikasi"
+
+msgid "IDS_TASKMGR_HEADER_RUNNING"
+msgstr "Sedang dijalankan"
+
+msgid "IDS_TASKMGR_MBODY_NO_APPS_OPEN"
+msgstr "Tiada aplikasi yng dibuka"
+
+msgid "IDS_TASKMGR_MBODY_NO_RECENTLY_USED_APPS"
+msgstr "Tiada aplikasi diguna baru-baru ini"
+
+msgid "IDS_TASKMGR_MBODY_RECENTLY_USED"
+msgstr "Diguna baru-baru ini"
+
+msgid "IDS_TASKMGR_POP_CLEAR_ALL_APP_HISTORY_Q"
+msgstr "Kosongkan semua sejarah aplikasi?"
+
+msgid "IDS_TASKMGR_POP_CLEAR_PS_HISTORY_Q"
+msgstr "Padam sejarah %s?"
+
+msgid "IDS_TASKMGR_POP_CLOSE_ALL_APPS_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
+msgstr "Tutup semua aplikasi? Ini akan menyebabkan data hilang"
+
+msgid "IDS_TASKMGR_POP_CLOSE_PS_APP_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
+msgstr "Tutup aplikasi %s? Ini akan menyebabkan data hilang"
+
+msgid "IDS_TASKMGR_POP_UNABLE_TO_OPEN_APPLICATION"
+msgstr "Tidak dapat membuka aplikasi"
+
+msgid "IDS_TASKMGR_HEADER_TASK_SWITCHER"
+msgstr "Penukar tugasan"
+

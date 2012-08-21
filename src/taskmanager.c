@@ -1,18 +1,20 @@
- /*
-  * Copyright 2012  Samsung Electronics Co., Ltd
-  *
-  * Licensed under the Flora License, Version 1.0 (the License);
-  * you may not use this file except in compliance with the License.
-  * You may obtain a copy of the License at
-  *
-  *     http://www.tizenopensource.org/license
-  *
-  * Unless required by applicable law or agreed to in writing, software
-  * distributed under the License is distributed on an AS IS BASIS,
-  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  * See the License for the specific language governing permissions and
-  * limitations under the License.
-  */
+/*
+ * Copyright 2012  Samsung Electronics Co., Ltd
+ * 
+ * Licensed under the Flora License, Version 1.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     http://www.tizenopensource.org/license
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
 
 
 #include <stdio.h>
@@ -100,6 +102,9 @@ static int rotate(enum appcore_rm m, void *data)
 
 Eina_Bool _exit_cb(void *data)
 {
+	struct appdata *ad = (struct appdata *)data;
+
+	ad->exit_timer = NULL;
 	elm_exit();
 	return ECORE_CALLBACK_CANCEL;
 }
@@ -209,7 +214,9 @@ static int app_terminate(void *data)
 {
 _D("func\n");
 	struct appdata *ad = data;
-	evas_object_del(ad->win);
+//	sleep(1);
+//	ecore_timer_add(0.2, _exit_cb, NULL);
+
 	return 0;
 }
 
@@ -217,14 +224,19 @@ static int app_pause(void *data)
 {
 _D("func\n");
 	_fini_pthread();
-	elm_exit();
 	return 0;
 }
 
 static int app_resume(void *data)
 {
 _D("func\n");
-//	elm_exit();
+	struct appdata *ad = data;
+
+	if (ad->exit_timer) {
+		ecore_timer_del(ad->exit_timer);
+		ad->exit_timer = NULL;
+	}
+
 	return 0;
 }
 

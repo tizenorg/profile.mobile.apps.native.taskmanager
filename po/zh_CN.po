@@ -1,95 +1,36 @@
-msgid "IDS_TASKMGR_BODY_APPLICATION"
-msgstr "软件"
+msgid "IDS_TASKMGR_BUTTON_CLEAR_HISTORY_ABB"
+msgstr "清除历史"
 
-msgid "IDS_TASKMGR_BUTTON_CLEAR_ALL"
-msgstr "全部清除"
+msgid "IDS_TASKMGR_BUTTON_CLOSE_ALL_APPLICATIONS"
+msgstr "关闭所有应用程序"
+
+msgid "IDS_TASKMGR_HEADER_RUNNING"
+msgstr "正在运行"
+
+msgid "IDS_TASKMGR_MBODY_NO_APPS_OPEN"
+msgstr "无开启应用程序"
+
+msgid "IDS_TASKMGR_MBODY_NO_RECENTLY_USED_APPS"
+msgstr "无最近使用的应用程序"
+
+msgid "IDS_TASKMGR_MBODY_RECENTLY_USED"
+msgstr "最近使用"
+
+msgid "IDS_TASKMGR_POP_CLEAR_ALL_APP_HISTORY_Q"
+msgstr "是否清除所有应用程序历史？"
+
+msgid "IDS_TASKMGR_POP_CLEAR_PS_HISTORY_Q"
+msgstr "是否清除 %s 历史？"
+
+msgid "IDS_TASKMGR_POP_CLOSE_ALL_APPS_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
+msgstr "是否关闭所有应用程序？这可能导致数据丢失"
+
+msgid "IDS_TASKMGR_POP_CLOSE_PS_APP_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
+msgstr "是否关闭 %s 应用程序？这可能导致数据丢失"
+
+msgid "IDS_TASKMGR_POP_UNABLE_TO_OPEN_APPLICATION"
+msgstr "无法打开应用程序"
 
 msgid "IDS_TASKMGR_HEADER_TASK_SWITCHER"
 msgstr "任务切换器"
 
-msgid "IDS_TASKMGR_POP_CLEARING_HISTORY_ING"
-msgstr "正在清除历史记录…"
-
-msgid "IDS_TASKMGR_POP_EXITING_APPLICATIONS_ING"
-msgstr "正在退出应用程序？"
-
-msgid "IDS_TASKMGR_POP_EXITING_APPLICATION_ING"
-msgstr "正在退出应用程序？"
-
-msgid "IDS_TASKMGR_POP_EXIT_ALL_APPLICATIONS_Q"
-msgstr "退出全部应用程序？"
-
-msgid "IDS_TASKMGR_POP_EXIT_APPLICATION_Q"
-msgstr "退出应用程序？"
-
-msgid "IDS_TASKMGR_POP_NO_APPLICATIONS_RUNNING"
-msgstr "没有运行中应用程序"
-
-msgid "IDS_TASKMGR_POP_NO_HISTORY_TO_CLEAR"
-msgstr "没有可清除的历史记录"
-
-msgid "IDS_COM_BODY_END"
-msgstr "结束"
-
-msgid "IDS_COM_OPT_DELETE"
-msgstr "删除"
-
-msgid "IDS_COM_POP_CANCEL"
-msgstr "取消"
-
-msgid "IDS_COM_SK3_END_ALL_APPLICATIONS"
-msgstr "结束所有的程序"
-
-msgid "IDS_BMG_POP_NO_TASKS"
-msgstr "没有任务"
-
-msgid "IDS_ST_BODY_IN_USE"
-msgstr "使用中"
-
-msgid "IDS_MUSIC_OPT_HISTORY"
-msgstr "历史记录"
-
-msgid "IDS_TASKMGR_NO_RUNNING_TASK"
-msgstr "No running task"
-
-msgid "IDS_TASKMGR_NO_TASK_HISTORY"
-msgstr "No task history"
-
-msgid "IDS_TASKMGR_CANNOT_LAUNCH_APPLICATION"
-msgstr "Cannot launch application"
-
-msgid "IDS_TASKMGR_END_ALL_TASKS"
-msgstr "End all tasks"
-
-msgid "IDS_TASKMGR_DELETE_ALL_HISTORY"
-msgstr "Delete all history"
-
-msgid "IDS_TASKMGR_INFO_MESSAGE"
-msgstr "Select a task which you wish to return to from a task list."
-
-msgid "IDS_TASKMGR_WARNNING_TERMINATE_ALL_TASKS"
-msgstr "Terminate all tasks?<br><br>This may cause data loss!"
-
-msgid "IDS_TASKMGR_ASK_TERMINATE_TASK"
-msgstr "Are you sure to terminate<br> %s task?<br><br>This may cause data loss!"
-
-msgid "IDS_TASKMGR_ASK_CLEAR_HISTORY"
-msgstr "Are you sure to clear<br> %s history?"
-
-msgid "IDS_TASKMGR_DELETING_HISTORY"
-msgstr "Deleting history!"
-
-msgid "IDS_TASKMGR_ASK_DELETE_ALL_HISTORY"
-msgstr "Delete all task history?"
-
-msgid "IDS_TASKMGR_TERMINATING_TASK"
-msgstr "Terminating task!"
-
-msgid "IDS_TASKMGR_TERMINATING_ALL_TASKS"
-msgstr "Terminating all tasks!"
-
-msgid "IDS_TASKMGR_NO_TASK_TO_TERMINATE"
-msgstr "No task to terminate!"
-
-msgid "IDS_TASKMGR_NO_TASK"
-msgstr "No task"

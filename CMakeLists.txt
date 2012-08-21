@@ -8,10 +8,11 @@ SET(SRCS
 	src/_logic.c
 	src/_cpu.c
 	src/_eina.c
+#	src/_info.c
 	src/_progressbar.c
 )
 
-SET(VENDOR "tizen")
+SET(VENDOR tizen)
 SET(PACKAGE ${PROJECT_NAME})
 SET(PKGNAME "org.${VENDOR}.${PACKAGE}")
 SET(PREFIX ${CMAKE_INSTALL_PREFIX})
@@ -19,7 +20,7 @@ SET(BINDIR "${PREFIX}/bin")
 SET(RESDIR "${PREFIX}/res")
 SET(DATADIR "${PREFIX}/data")
 SET(LOCALEDIR "${RESDIR}/locale")
-SET(ICONDIR "${RESDIR}/icons/default/small")
+SET(ICONDIR "/opt/share/icons/default/small")
 SET(IMAGEDIR "${RESDIR}/images/${PACKAGE}")
 SET(EDJDIR "${RESDIR}/edje/${PACKAGE}")
 
@@ -89,8 +90,8 @@ TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${pkgs_LDFLAGS} "-pie")
 INSTALL(TARGETS ${PROJECT_NAME} DESTINATION ${BINDIR})
 
 # install desktop file & icon
-CONFIGURE_FILE(${PKGNAME}.desktop.in ${CMAKE_BINARY_DIR}/${PKGNAME}.desktop)
-INSTALL(FILES ${CMAKE_BINARY_DIR}/${PKGNAME}.desktop DESTINATION /opt/share/applications)
+#CONFIGURE_FILE(${PKGNAME}.desktop.in ${CMAKE_BINARY_DIR}/${PKGNAME}.desktop)
+INSTALL(FILES ${CMAKE_BINARY_DIR}/${PKGNAME}.xml DESTINATION /opt/share/packages)
 INSTALL(FILES ${CMAKE_SOURCE_DIR}/${PKGNAME}.png DESTINATION ${ICONDIR})
 
 #install application HOME directory

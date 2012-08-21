@@ -1,18 +1,20 @@
- /*
-  * Copyright 2012  Samsung Electronics Co., Ltd
-  *
-  * Licensed under the Flora License, Version 1.0 (the License);
-  * you may not use this file except in compliance with the License.
-  * You may obtain a copy of the License at
-  *
-  *     http://www.tizenopensource.org/license
-  *
-  * Unless required by applicable law or agreed to in writing, software
-  * distributed under the License is distributed on an AS IS BASIS,
-  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  * See the License for the specific language governing permissions and
-  * limitations under the License.
-  */
+/*
+ * Copyright 2012  Samsung Electronics Co., Ltd
+ * 
+ * Licensed under the Flora License, Version 1.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     http://www.tizenopensource.org/license
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
 
 
 #include <stdio.h>
@@ -54,8 +56,8 @@ static Elm_Genlist_Item_Class itc_separator4;
 static Elm_Genlist_Item_Class itc_separator2;
 
 static char *button_text[TS_MAX] = {
-	"IDS_COM_SK3_END_ALL_APPLICATIONS",
-	"IDS_TASKMGR_DELETE_ALL_HISTORY"
+	"IDS_TASKMGR_BUTTON_CLOSE_ALL_APPLICATIONS",
+	"IDS_TASKMGR_BUTTON_CLEAR_HISTORY_ABB"
 };
 
 static void end_all_inuse_cb(void *data, Evas_Object *obj, void *event_info);
@@ -64,24 +66,19 @@ static void delete_all_history_cb(void *data, Evas_Object *obj,
 void (*func_del[TS_MAX]) (void *data, Evas_Object *obj, void *event_info) = {
 &end_all_inuse_cb, &delete_all_history_cb};
 
-static char *icon_text[TS_MAX] = {
-	"IDS_COM_BODY_END",
-	"IDS_COM_OPT_DELETE"
-};
-
 static void end_inuse_cb(void *data, Evas_Object *obj, void *event_info);
 static void delete_history_cb(void *data, Evas_Object *obj, void *event_info);
 void (*func_end[TS_MAX]) (void *data, Evas_Object *obj, void *event_info) = {
 &end_inuse_cb, &delete_history_cb};
 
 static char *group_name[TS_MAX] = {
-	"IDS_ST_BODY_IN_USE",
-	"IDS_MUSIC_OPT_HISTORY"
+	"IDS_TASKMGR_HEADER_RUNNING",
+	"IDS_TASKMGR_MBODY_RECENTLY_USED"
 };
 
 static char *nolist_text[TS_MAX] = {
-	"IDS_TASKMGR_NO_RUNNING_TASK",
-	"IDS_TASKMGR_NO_TASK_HISTORY"
+	"IDS_TASKMGR_MBODY_NO_APPS_OPEN",
+	"IDS_TASKMGR_MBODY_NO_RECENTLY_USED_APPS"
 };
 
 void taskmanager_free_info(struct _task_info *info);
@@ -146,7 +143,7 @@ static void end_all_inuse_cb(void *data, Evas_Object *obj, void *event_info)
 	char buf[_BUF_MAX] = { 0, };
 
 	ad->mode = MODE_END_ALL_INUSE;
-	snprintf(buf, sizeof(buf), _("IDS_TASKMGR_WARNNING_TERMINATE_ALL_TASKS"));
+	snprintf(buf, sizeof(buf), T_("IDS_TASKMGR_POP_CLOSE_ALL_APPS_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"));
 	if (ad->popup_ask) {
 		evas_object_del(ad->popup_ask);
 		ad->popup_ask = NULL;
@@ -166,7 +163,7 @@ _D("func\n");
 //	refresh_app_info(ad);
 
 	ad->mode = MODE_DEL_ALL_HISTORY;
-	snprintf(buf, sizeof(buf), _("IDS_TASKMGR_ASK_DELETE_ALL_HISTORY"));
+	snprintf(buf, sizeof(buf), T_("IDS_TASKMGR_POP_CLEAR_ALL_APP_HISTORY_Q"));
 	if (ad->popup_ask) {
 		evas_object_del(ad->popup_ask);
 		ad->popup_ask = NULL;
@@ -183,7 +180,7 @@ static void end_inuse_cb(void *data, Evas_Object *obj, void *event_info)
 	char buf[_BUF_MAX] = { 0, };
 
 	ad->mode = MODE_END_INUSE;
-	snprintf(buf, _BUF_MAX, _("IDS_TASKMGR_ASK_TERMINATE_TASK"), info_ev->app_name);
+	snprintf(buf, _BUF_MAX, T_("IDS_TASKMGR_POP_CLOSE_PS_APP_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"), info_ev->app_name);
 	if (ad->popup_ask) {
 		evas_object_del(ad->popup_ask);
 		ad->popup_ask = NULL;
@@ -203,7 +200,7 @@ static void delete_history_cb(void *data, Evas_Object *obj, void *event_info)
 
 	ad->mode = MODE_DEL_HISTORY;
 
-	snprintf(buf, _BUF_MAX, _("IDS_TASKMGR_ASK_CLEAR_HISTORY"), info_ev->app_name);
+	snprintf(buf, _BUF_MAX, T_("IDS_TASKMGR_POP_CLEAR_PS_HISTORY_Q"), info_ev->app_name);
 	if (ad->popup_ask) {
 		evas_object_del(ad->popup_ask);
 		ad->popup_ask = NULL;
@@ -226,7 +223,7 @@ static char *nl_text_get(void *data, Evas_Object *obj, const char *part)
 	char buf[_BUF_MAX] = { 0, };
 
 	if (!strcmp(part, "elm.text")) {
-		snprintf(buf, sizeof(buf), "%s", _(nolist_text[(int)data]));
+		snprintf(buf, sizeof(buf), "%s", T_(nolist_text[(int)data]));
 
 		return strdup(buf);
 	}
@@ -241,6 +238,9 @@ _D("func\n");
 	struct _task_info *info;
 	/* parameter to block double click */
 	static int selected = 0;
+	Elm_Object_Item *it = (Elm_Object_Item *) event_info;
+
+	elm_genlist_item_selected_set(it, EINA_FALSE);
 
 	retm_if(ad == NULL, "Invalid argument: appdata is NULL\n");
 
@@ -270,14 +270,13 @@ _D("func\n");
 	if (info->pid) {
 		/* when application is alive */
 		aul_resume_pid(info->pid);
-		elm_exit();
-
+		selected = 0;
 	} else {
 		/* when application is dead */
 		if (info->pkg_name == NULL) {
 			util_show_popup_with_message(info->ad->win,
 					3.0,
-					_("IDS_TASKMGR_CANNOT_LAUNCH_APPLICATION"));
+					T_("IDS_TASKMGR_POP_UNABLE_TO_OPEN_APPLICATION"));
 			selected = 0;
 
 		} else {
@@ -288,10 +287,10 @@ _D("func\n");
 				 * since being unifyed dialer, voice call and video call
 				 */
 				aul_launch_app(info->pkg_name, NULL);
-
+				selected = 0;
 			} else {
 				aul_launch_app(info->pkg_name, info->b);
-
+				selected = 0;
 			}
 		}
 	}
@@ -345,7 +344,7 @@ static Evas_Object *_gl_content_get_app(void *data, Evas_Object *obj,
 
 	} else if (!strcmp(part, "elm.icon.2")) {
 		btn = elm_button_add(obj);
-		elm_object_text_set(btn, _("IDS_COM_BODY_END"));
+		elm_object_text_set(btn, S_("IDS_COM_BODY_END"));
 		elm_object_style_set(btn, "default");
 
 		evas_object_smart_callback_add(btn, "clicked",
@@ -406,7 +405,7 @@ _D("func\n");
 static char *_bl_text_get(void *data, Evas_Object *obj, const char *part)
 {
 	if (!strcmp(part, "elm.text")) {
-		return strdup(_(button_text[(int)data]));
+		return strdup(T_(button_text[(int)data]));
 
 	}
 	return NULL;
@@ -423,7 +422,7 @@ static Evas_Object *_bl_content_get(void *data, Evas_Object *obj,
 		btn = elm_button_add(obj);
 		elm_object_style_set(btn, "default");
 
-		elm_object_text_set(btn, _(button_text[(int)data]));
+		elm_object_text_set(btn, T_(button_text[(int)data]));
 		evas_object_smart_callback_add(btn, "clicked",
 					       func_del[(int)data], ad);
 		elm_object_focus_set(btn, EINA_FALSE);
@@ -446,8 +445,8 @@ static char *_gl_text_get_title(void *data, Evas_Object *obj, const char *part)
 	char buf[_BUF_MAX];
 
 	if (!strcmp(part, "elm.text")) {
-		snprintf(buf, sizeof(buf), "%s (%d)", _(group_name[(int)data]),
-			 _get_grp_cnt((int)data));
+		snprintf(buf, sizeof(buf), "%s (%d)",
+				T_(group_name[(int)data]), _get_grp_cnt((int)data));
 		return strdup(buf);
 	}
 	return NULL;
@@ -513,7 +512,7 @@ static Evas_Object *_gl_content_get_his(void *data, Evas_Object *obj,
 
 	} else if (!strcmp(part, "elm.icon.2")) {
 		btn = elm_button_add(obj);
-		elm_object_text_set(btn, _("IDS_COM_OPT_DELETE"));
+		elm_object_text_set(btn, S_("IDS_COM_OPT_DELETE"));
 		elm_object_style_set(btn, "default");
 
 		evas_object_smart_callback_add(btn, "clicked",
@@ -633,6 +632,7 @@ _D("func\n");
 						(void *)i, git,
 						ELM_GENLIST_ITEM_NONE,
 						nl_sel, NULL);
+			elm_genlist_item_select_mode_set(item, ELM_OBJECT_SELECT_MODE_DISPLAY_ONLY);
 		}
 	}
 	return 0;
@@ -705,17 +705,17 @@ _D("func\n");
 void _set_genlist(struct appdata *ad)
 {
 _D("func\n");
-	int ret;
 	retm_if(ad == NULL, "Invalid argument: appdata is NULL\n");
+	int ret = AUL_R_ERROR;
 
 	_init_grp_cnt();
 
-	aul_app_get_running_app_info(runapp_info_get, ad);
+	while (ret != AUL_R_OK)
+		ret = aul_app_get_running_app_info(runapp_info_get, ad);
+
 	taskmanager_get_history_app_info(ad);
-	ret = _set_genlist_from_eina(ad);
-	if (ret < 0) {
-		elm_exit();
-	}
+	_set_genlist_from_eina(ad);
+
 }
 
 void _init_pthread(void)
@@ -799,6 +799,7 @@ _D("func\n");
 	retvm_if(ad == NULL, -1, "Invalid argument: appdata is NULL\n");
 
 	ad->ending = EINA_TRUE;
+//	egi = evas_object_data_get(ad->popup_ask, "selected_egi");
 
 	EINA_LIST_FOREACH_SAFE(ad->applist[TS_INUSE], l, l_next, info) {
 		if (info->it == g_egi) {
@@ -871,6 +872,7 @@ int response_del_history(struct appdata *ad)
 	retvm_if(ad == NULL, -1, "Invalid argument: appdata is NULL\n");
 
 	_show_progressbar(ad);
+//	egi = evas_object_data_get(ad->popup_ask, "selected_egi");
 	EINA_LIST_FOREACH_SAFE(ad->applist[TS_HISTORY], l, l_next, info) {
 		if (info->it == g_egi) {
 
@@ -949,6 +951,7 @@ int response_kill_inuse(struct appdata *ad)
 	retvm_if(ad == NULL, -1, "Invalid argument: appdata is NULL\n");
 
 	_show_progressbar(ad);
+//	egi = evas_object_data_get(ad->popup_ask, "selected_egi");
 
 	EINA_LIST_FOREACH_SAFE(ad->applist[TS_INUSE], l, l_next, info) {
 		if (info->it == g_egi) {

@@ -1,18 +1,20 @@
- /*
-  * Copyright 2012  Samsung Electronics Co., Ltd
-  *
-  * Licensed under the Flora License, Version 1.0 (the License);
-  * you may not use this file except in compliance with the License.
-  * You may obtain a copy of the License at
-  *
-  *     http://www.tizenopensource.org/license
-  *
-  * Unless required by applicable law or agreed to in writing, software
-  * distributed under the License is distributed on an AS IS BASIS,
-  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  * See the License for the specific language governing permissions and
-  * limitations under the License.
-  */
+/*
+ * Copyright 2012  Samsung Electronics Co., Ltd
+ * 
+ * Licensed under the Flora License, Version 1.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     http://www.tizenopensource.org/license
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
 
 
 #include <appcore-efl.h>
@@ -169,17 +171,17 @@ Evas_Object *_add_popup_ask(Evas_Object *parent, char *text, void *data)
 	pu = elm_popup_add(parent);
 	retvm_if(pu == NULL, NULL, "Falied to add popup\n");
 	evas_object_size_hint_weight_set(pu, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
-	elm_object_part_text_set(pu, "title,text", D_("IDS_COM_POP_WARNING"));
+	elm_object_part_text_set(pu, "title,text", S_("IDS_COM_POP_WARNING"));
 	elm_object_text_set(pu, text);
 	evas_object_show(pu);
 
 	bt1 = elm_button_add(pu);
-	elm_object_text_set(bt1, D_("IDS_COM_SK_OK"));
+	elm_object_text_set(bt1, S_("IDS_COM_SK_OK"));
 	elm_object_part_content_set(pu, "button1", bt1);
 	evas_object_smart_callback_add(bt1, "clicked", _ok_response_cb, data);
 
 	bt2 = elm_button_add(pu);
-	elm_object_text_set(bt2, _("IDS_COM_POP_CANCEL"));
+	elm_object_text_set(bt2, S_("IDS_COM_POP_CANCEL"));
 	elm_object_part_content_set(pu, "button2", bt2);
 	evas_object_smart_callback_add(bt2, "clicked", _cancel_response_cb, data);
 

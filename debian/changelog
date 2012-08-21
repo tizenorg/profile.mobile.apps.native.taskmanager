@@ -1,7 +1,8 @@
-taskmanager (0.14.2-0) unstable; urgency=low
+taskmanager (0.14.2-1) oneiric; urgency=low
 
-  * released.
-  * Git: pkgs/t/taskmanager
-  * Tag: taskmanager_0.14.2-0
+  * Apply open code
+  * Git : apps/home/taskmanager
+  * Tag : taskmanager_0.14.2-1
 
- -- jeesun Kim <iamjs.kim@samsung.com>  Fri, 17 Feb 2012 11:00:00 +0900
+ -- Hong Kwon <hhh.kwon@samsung.com>  Mon, 13 Aug 2012 19:47:16 +0900
+

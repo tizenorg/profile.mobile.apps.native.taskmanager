@@ -1,18 +1,20 @@
- /*
-  * Copyright 2012  Samsung Electronics Co., Ltd
-  *
-  * Licensed under the Flora License, Version 1.0 (the License);
-  * you may not use this file except in compliance with the License.
-  * You may obtain a copy of the License at
-  *
-  *     http://www.tizenopensource.org/license
-  *
-  * Unless required by applicable law or agreed to in writing, software
-  * distributed under the License is distributed on an AS IS BASIS,
-  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  * See the License for the specific language governing permissions and
-  * limitations under the License.
-  */
+/*
+ * Copyright 2012  Samsung Electronics Co., Ltd
+ * 
+ * Licensed under the Flora License, Version 1.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     http://www.tizenopensource.org/license
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
 
 
 #include <appcore-common.h>
@@ -27,7 +29,6 @@
 #include "_eina.h"
 #include "_progressbar.h"
 #include "_info.h"
-
 
 int _dead_cb(int pid, void *data)
 {
@@ -148,7 +149,6 @@ int _app_create(struct appdata *ad)
 
 	nv = _add_naviframe(ly);
 	retvm_if(nv == NULL, -1, "Failed to add naviframe\n");
-	evas_object_show(nv);
 	ad->nv = nv;
 
 	ly = _add_layout(ad->nv, EDJ_NAME, GRP_TM);
@@ -166,7 +166,6 @@ int _app_create(struct appdata *ad)
 	evas_object_smart_callback_add(gl, "scroll,anim,start", _anim_start_cb, ad);
 	evas_object_smart_callback_add(gl, "scroll,anim,stop", _anim_stop_cb, ad);
 //	evas_object_smart_callback_add(gl, "edge,bottom", _moved_cb, ad);
-	evas_object_show(gl);
 	ad->gl = gl;
 
 	bt = elm_button_add(nv);
@@ -208,11 +207,12 @@ static Eina_Bool __climsg_cb(void *data, int type, void *event)
 	static Atom a_deact;
 	pid_t pid_a, pid_d;
 
+	struct appdata *ad = (struct appdata *)data;
 	Ecore_X_Event_Client_Message *ev = event;
 
 	if(ev == NULL) {
 		_E("Invalid argument: event is NULL\n");
-		ecore_timer_add(1.5, _exit_cb, NULL);
+		ecore_timer_add(0.3, _exit_cb, NULL);
 		return ECORE_CALLBACK_CANCEL;
 	}
 
@@ -227,7 +227,7 @@ static Eina_Bool __climsg_cb(void *data, int type, void *event)
 
 	if (ev->message_type == a_deact) {
 		_D("exit after 1.0 sec\n");
-		ecore_timer_add(1.5, _exit_cb, NULL);
+		ad->exit_timer = ecore_timer_add(0.3, _exit_cb, ad);
 		return ECORE_CALLBACK_CANCEL;
 	} else {
 		_D("messagre is act\n");
@@ -246,18 +246,6 @@ static Eina_Bool _ask_kill_process(void *data)
 	ad->mode *= 2;
 	/* why? check enum in taskmgr.h */
 
-	switch (ad->mode) {
-		case MODE_KILL_INUSE:
-			_D("kill all inuse\n");
-			response_kill_inuse(ad);
-			break;
-
-		case MODE_KILL_ALL_INUSE:
-			_D("kill all inuse\n");
-			response_kill_all_inuse(ad);
-			break;
-	}
-/*
 	if (ad->popup_ask) {
 		evas_object_del(ad->popup_ask);
 		ad->popup_ask = NULL;
@@ -265,7 +253,7 @@ static Eina_Bool _ask_kill_process(void *data)
 	ad->popup_ask = _add_popup_ask(ad->win,
 			"It might be an invalid process. Do you want to kill this proceess anyway?",
 			ad);
-*/
+
 	return ECORE_CALLBACK_CANCEL;
 }
 
@@ -352,7 +340,7 @@ Eina_Bool _create_idler_cb(void *data)
 	_init_pthread();
 	_get_win_geometry(ad);
 	_set_vconf_noti(ad);
-	ecore_event_handler_add(ECORE_X_EVENT_CLIENT_MESSAGE, __climsg_cb, NULL);
+	ecore_event_handler_add(ECORE_X_EVENT_CLIENT_MESSAGE, __climsg_cb, ad);
 
 	return ECORE_CALLBACK_CANCEL;
 }

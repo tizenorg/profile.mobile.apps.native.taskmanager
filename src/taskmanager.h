@@ -1,18 +1,20 @@
- /*
-  * Copyright 2012  Samsung Electronics Co., Ltd
-  *
-  * Licensed under the Flora License, Version 1.0 (the License);
-  * you may not use this file except in compliance with the License.
-  * You may obtain a copy of the License at
-  *
-  *     http://www.tizenopensource.org/license
-  *
-  * Unless required by applicable law or agreed to in writing, software
-  * distributed under the License is distributed on an AS IS BASIS,
-  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  * See the License for the specific language governing permissions and
-  * limitations under the License.
-  */
+/*
+ * Copyright 2012  Samsung Electronics Co., Ltd
+ * 
+ * Licensed under the Flora License, Version 1.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     http://www.tizenopensource.org/license
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
 
 
 #ifndef __TASKMANAGER_H__
@@ -51,7 +53,9 @@
 #define EDJ_THEME EDJDIR"/theme_taskmanager.edj"
 #define GRP_TM "task_manager"
 
-#define D_(str) dgettext("sys_string", str)
+#define S_(str) dgettext("sys_string", str)
+#define T_(str) dgettext(PACKAGE, str)
+
 #define _BUF_MAX	256
 #define _EDJ(x)	elm_layout_edje_get(x)
 
@@ -72,6 +76,7 @@ struct appdata {
 	Evas_Object *popup_progressbar;
 
 	Ecore_Timer *update_timer;
+	Ecore_Timer *exit_timer;
 
 	double mem_total;
 

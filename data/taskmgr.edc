@@ -1,18 +1,18 @@
- /*
-  * Copyright 2012  Samsung Electronics Co., Ltd
-  *
-  * Licensed under the Flora License, Version 1.0 (the "License");
-  * you may not use this file except in compliance with the License.
-  * You may obtain a copy of the License at
-  *
-  *     http://www.tizenopensource.org/license
-  *
-  * Unless required by applicable law or agreed to in writing, software
-  * distributed under the License is distributed on an "AS IS" BASIS,
-  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  * See the License for the specific language governing permissions and
-  * limitations under the License.
-  */
+/*
+ * Copyright 2012  Samsung Electronics Co., Ltd
+ * 
+ * Licensed under the Flora License, Version 1.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     http://www.tizenopensource.org/license
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 #define BTN_H 76
 #define GENLIST_BG 246 245 237
@@ -91,7 +91,7 @@ collections {
 			}
 		}
 	}
-
+	
 	group {
 		name: "info";
 		parts {
@@ -162,7 +162,7 @@ collections {
 					rel2 { relative: 1.0 1.0; to: "bg"; }
 				}
 			}
-
+			
 			part {
 				name: "swallow";
 				type: SWALLOW;
@@ -170,13 +170,13 @@ collections {
 				description {
 					state: "default" 0.0;
 					min: 1 1;
-					rel1 {
-						relative: 1.0 1.0;
+					rel1 { 
+						relative: 1.0 1.0; 
 						to_x: "padding/l";
 						to_y: "padding/t";
 					}
-					rel2 {
-						relative: 0.0 0.0;
+					rel2 { 
+						relative: 0.0 0.0; 
 						to_x: "padding/r";
 						to_y: "padding/b";
 					}
