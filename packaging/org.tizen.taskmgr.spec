@@ -3,7 +3,7 @@ Summary:    Task Manager
 Version: 0.14.2
 Release:    1
 Group:      devel
-License:    Samsung Proprietary License
+License:    Flora Software License
 Source0:    %{name}-%{version}.tar.gz
 BuildRequires:  pkgconfig(appcore-efl)
 BuildRequires:  pkgconfig(elementary)
