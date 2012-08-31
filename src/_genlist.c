@@ -538,7 +538,7 @@ void _set_itc(void)
 	itc_gl.item_style = "grouptitle";
 	itc_gl.func.text_get = _gl_text_get_title;
 
-	itc_dl.item_style = "2text.2icon.4";
+	itc_dl.item_style = "2text.2icon.7";
 	itc_dl.func.text_get = _gl_text_get_app;
 	itc_dl.func.content_get = _gl_content_get_app;
 
