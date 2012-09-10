@@ -37,14 +37,18 @@ _D("func\n");
 	struct appdata *ad = (struct appdata *)data;
 	retvm_if(ad == NULL, -1, "Invalid argument: appdata is NULL\n");
 
+	int ret = -1;
+
 	_fini_pthread();
 	if (ad->update_timer) {
 		ecore_timer_del(ad->update_timer);
 		ad->update_timer = NULL;
 	}
-	_subt_einalist_item(ad, pid);
 
-	_D("mode(%d) count(%d)\n", ad->mode, ad->endcnt);
+	ret = _subt_einalist_item(ad, pid);
+	_D("mode(%d) count(%d) pid(%d) \n", ad->mode, ad->endcnt, pid);
+
+	if (ret != -1) {
 	switch (ad->mode) {
 	default:
 	case MODE_END_INUSE:
@@ -73,6 +77,7 @@ _D("func\n");
 		}
 		break;
 	}
+}
 }
 
 static void _back_cb(void *data, Evas_Object *obj, void *event_info)
@@ -165,7 +170,6 @@ int _app_create(struct appdata *ad)
 	evas_object_smart_callback_add(gl, "scroll,drag,stop", _drag_stop_cb, ad);
 	evas_object_smart_callback_add(gl, "scroll,anim,start", _anim_start_cb, ad);
 	evas_object_smart_callback_add(gl, "scroll,anim,stop", _anim_stop_cb, ad);
-//	evas_object_smart_callback_add(gl, "edge,bottom", _moved_cb, ad);
 	ad->gl = gl;
 
 	bt = elm_button_add(nv);

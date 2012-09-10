@@ -160,8 +160,6 @@ _D("func\n");
 	struct appdata *ad = data;
 	char buf[_BUF_MAX] = { 0, };
 
-//	refresh_app_info(ad);
-
 	ad->mode = MODE_DEL_ALL_HISTORY;
 	snprintf(buf, sizeof(buf), T_("IDS_TASKMGR_POP_CLEAR_ALL_APP_HISTORY_Q"));
 	if (ad->popup_ask) {
@@ -187,7 +185,6 @@ static void end_inuse_cb(void *data, Evas_Object *obj, void *event_info)
 	}
 	ad->popup_ask = _add_popup_ask(ad->win, buf, ad);
 	g_egi = (void *)info_ev->it;
-//	evas_object_data_set(ad->popup_ask, "selected_egi", (void *)info_ev->it);
 }
 
 static void delete_history_cb(void *data, Evas_Object *obj, void *event_info)
@@ -207,7 +204,6 @@ static void delete_history_cb(void *data, Evas_Object *obj, void *event_info)
 	}
 	ad->popup_ask = _add_popup_ask(ad->win, buf, ad);
 	g_egi = (void *)info_ev->it;
-//	evas_object_data_set(ad->popup_ask, "selected_egi", (void *)info_ev->it);
 }
 
 static void nl_sel(void *data, Evas_Object *obj, void *event_info)
@@ -332,10 +328,6 @@ static Evas_Object *_gl_content_get_app(void *data, Evas_Object *obj,
 
 		evas_object_color_set(rt, 0, 0, 0, 0);
 		evas_object_size_hint_min_set(rt, 50, 50);
-//		evas_object_size_hint_min_set(rt, (int)(50.0 * scale),
-//					      (int)(50.0 * scale));
-//		evas_object_size_hint_max_set(rt, (int)(50.0 * scale),
-//					      (int)(50.0 * scale));
 		elm_object_part_content_set(icon, "icon_ly", rt);
 
 		elm_object_part_content_set(icon, "icon", icon_ly);
@@ -350,12 +342,6 @@ static Evas_Object *_gl_content_get_app(void *data, Evas_Object *obj,
 		evas_object_smart_callback_add(btn, "clicked",
 					       func_end[info->category], info);
 		elm_object_focus_set(btn, EINA_FALSE);
-
-//		evas_object_size_hint_min_set(btn, (int)(90.0 * scale),
-//					      (int)(47.0 * scale));
-//		evas_object_size_hint_max_set(btn, (int)(90.0 * scale),
-//					      (int)(47.0 * scale));
-
 		evas_object_propagate_events_set(btn, EINA_FALSE);
 
 		return btn;
@@ -429,9 +415,6 @@ static Evas_Object *_bl_content_get(void *data, Evas_Object *obj,
 
 		evas_object_size_hint_min_set(btn, 0, 50);
 		evas_object_size_hint_max_set(btn, 0, 50);
-//		evas_object_size_hint_min_set(btn, 0, (int)(47.0 * scale));
-//		evas_object_size_hint_max_set(btn, 0, (int)(47.0 * scale));
-
 		evas_object_propagate_events_set(btn, EINA_FALSE);
 
 		return btn;
@@ -500,10 +483,6 @@ static Evas_Object *_gl_content_get_his(void *data, Evas_Object *obj,
 
 		evas_object_color_set(rt, 0, 0, 0, 0);
 		evas_object_size_hint_min_set(rt, 50, 50);
-//		evas_object_size_hint_min_set(rt, (int)(50.0 * scale),
-//					      (int)(50.0 * scale));
-//		evas_object_size_hint_max_set(rt, (int)(50.0 * scale),
-//					      (int)(50.0 * scale));
 		elm_object_part_content_set(icon, "icon_ly", rt);
 
 		elm_object_part_content_set(icon, "icon", icon_ly);
@@ -518,12 +497,6 @@ static Evas_Object *_gl_content_get_his(void *data, Evas_Object *obj,
 		evas_object_smart_callback_add(btn, "clicked",
 					       func_end[info->category], info);
 		elm_object_focus_set(btn, EINA_FALSE);
-
-	//	evas_object_size_hint_min_set(btn, (int)(90.0 * scale),
-	//				      (int)(47.0 * scale));
-	//	evas_object_size_hint_max_set(btn, (int)(90.0 * scale),
-	//				      (int)(47.0 * scale));
-
 		evas_object_propagate_events_set(btn, EINA_FALSE);
 
 		return btn;
@@ -550,7 +523,6 @@ void _set_itc(void)
 	itc_separator2.item_style = "dialogue/seperator.2";
 
 	itc_bl.item_style = "dialogue/bg/1icon";
-//	itc_bl.item_style = "1icon";
 	itc_bl.func.content_get = _bl_content_get;
 
 	itc_nl.item_style = "1text";
@@ -799,16 +771,15 @@ _D("func\n");
 	retvm_if(ad == NULL, -1, "Invalid argument: appdata is NULL\n");
 
 	ad->ending = EINA_TRUE;
-//	egi = evas_object_data_get(ad->popup_ask, "selected_egi");
 
 	EINA_LIST_FOREACH_SAFE(ad->applist[TS_INUSE], l, l_next, info) {
+		_D("applist pid : %d", info->pid);
 		if (info->it == g_egi) {
+			_D("matched applist pid : %d", info->pid);
 			if (info->pid > 0) {
 				if (aul_terminate_pid(info->pid) < 0) {
 					kill(info->pid, SIGKILL);
 				}
-//				ad->applist[TS_INUSE] =
-//					eina_list_remove_list(ad->applist[TS_INUSE], l);
 			}
 			break;
 		}
@@ -849,13 +820,12 @@ int response_end_all_inuse(struct appdata *ad)
 
 	EINA_LIST_FOREACH(ad->applist[TS_INUSE], l, info) {
 		if (info != NULL) {
+			_D("applist pid : %d", info->pid);
 			if (info->pid > 0) {
 				if (aul_terminate_pid(info->pid) < 0) {
 					kill(info->pid, SIGKILL);
 				}
 				_D("terminated\n");
-//				ad->applist[TS_INUSE] =
-//					eina_list_remove_list(ad->applist[TS_INUSE], l);
 			}
 		}
 	}
@@ -872,8 +842,8 @@ int response_del_history(struct appdata *ad)
 	retvm_if(ad == NULL, -1, "Invalid argument: appdata is NULL\n");
 
 	_show_progressbar(ad);
-//	egi = evas_object_data_get(ad->popup_ask, "selected_egi");
 	EINA_LIST_FOREACH_SAFE(ad->applist[TS_HISTORY], l, l_next, info) {
+		_D("history applist pid : %d", info->pid);
 		if (info->it == g_egi) {
 
 			if (rua_init() == -1) {
@@ -951,9 +921,9 @@ int response_kill_inuse(struct appdata *ad)
 	retvm_if(ad == NULL, -1, "Invalid argument: appdata is NULL\n");
 
 	_show_progressbar(ad);
-//	egi = evas_object_data_get(ad->popup_ask, "selected_egi");
 
 	EINA_LIST_FOREACH_SAFE(ad->applist[TS_INUSE], l, l_next, info) {
+		_D("kill applist pid : %d", info->pid);
 		if (info->it == g_egi) {
 			if (info->pid > 0) {
 				kill(info->pid, SIGKILL);
@@ -981,6 +951,7 @@ int response_kill_all_inuse(struct appdata *ad)
 	_show_progressbar(ad);
 
 	EINA_LIST_FOREACH(ad->applist[TS_INUSE], l, info) {
+		_D("kill all applist pid : %d", info->pid);
 		if (info != NULL) {
 			if (info->pid > 0) {
 				kill(info->pid, SIGKILL);
