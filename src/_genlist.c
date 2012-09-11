@@ -679,13 +679,21 @@ void _set_genlist(struct appdata *ad)
 _D("func\n");
 	retm_if(ad == NULL, "Invalid argument: appdata is NULL\n");
 	int ret = AUL_R_ERROR;
+	int retry_cnt = 0;
+	int sleep_value = 1000;
 
 	_init_grp_cnt();
 
-	ret = aul_app_get_running_app_info(runapp_info_get, ad);
+	while (ret != AUL_R_OK && retry_cnt < 5) {
+		usleep(sleep_value);
+		ret = aul_app_get_running_app_info(runapp_info_get, ad);
 
-	if (ret != AUL_R_OK) {
-		_D("Fail to get running app information from ail");
+		if (ret != AUL_R_OK) {
+			_D("Fail to get running app information from ail");
+		}
+
+		retry_cnt++;
+		sleep_value *= 2;
 	}
 
 	taskmanager_get_history_app_info(ad);
