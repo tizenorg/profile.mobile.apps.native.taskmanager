@@ -682,8 +682,11 @@ _D("func\n");
 
 	_init_grp_cnt();
 
-	while (ret != AUL_R_OK)
-		ret = aul_app_get_running_app_info(runapp_info_get, ad);
+	ret = aul_app_get_running_app_info(runapp_info_get, ad);
+
+	if (ret != AUL_R_OK) {
+		_D("Fail to get running app information from ail");
+	}
 
 	taskmanager_get_history_app_info(ad);
 	_set_genlist_from_eina(ad);
