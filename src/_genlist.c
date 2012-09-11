@@ -327,7 +327,9 @@ static Evas_Object *_gl_content_get_app(void *data, Evas_Object *obj,
 		retvm_if(rt == NULL, NULL, "Failed to add rectangle\n");
 
 		evas_object_color_set(rt, 0, 0, 0, 0);
-		evas_object_size_hint_min_set(rt, 50, 50);
+		evas_object_size_hint_min_set(rt, 
+					(int)72 * elm_scale_get(), 
+					(int)72 * elm_scale_get());
 		elm_object_part_content_set(icon, "icon_ly", rt);
 
 		elm_object_part_content_set(icon, "icon", icon_ly);
@@ -482,7 +484,9 @@ static Evas_Object *_gl_content_get_his(void *data, Evas_Object *obj,
 		retvm_if (rt == NULL, NULL, "Failed to add rectangle\n");
 
 		evas_object_color_set(rt, 0, 0, 0, 0);
-		evas_object_size_hint_min_set(rt, 50, 50);
+		evas_object_size_hint_min_set(rt, 
+					(int)72 * elm_scale_get(), 
+					(int)72 * elm_scale_get());
 		elm_object_part_content_set(icon, "icon_ly", rt);
 
 		elm_object_part_content_set(icon, "icon", icon_ly);
@@ -515,7 +519,7 @@ void _set_itc(void)
 	itc_dl.func.text_get = _gl_text_get_app;
 	itc_dl.func.content_get = _gl_content_get_app;
 
-	itc_hl.item_style = "1text.2icon.4";
+	itc_hl.item_style = "1text.2icon.1";
 	itc_hl.func.text_get = _gl_text_get_his;
 	itc_hl.func.content_get = _gl_content_get_his;
 
