@@ -625,6 +625,8 @@ _D("func\n");
 
 	if(ad->applist[TS_INUSE] == NULL) {
 		_D("inuse is NULL\n");
+		pthread_mutex_unlock(&mutex_for_graph_update);
+		ad->update_timer = NULL;
 		return ECORE_CALLBACK_CANCEL;
 	}
 	ad->applist[TS_INUSE] = eina_list_nth_list(ad->applist[TS_INUSE], 0);
