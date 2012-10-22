@@ -519,7 +519,7 @@ void _set_itc(void)
 	itc_dl.func.text_get = _gl_text_get_app;
 	itc_dl.func.content_get = _gl_content_get_app;
 
-	itc_hl.item_style = "1text.2icon.1";
+	itc_hl.item_style = "1text.2icon.4";
 	itc_hl.func.text_get = _gl_text_get_his;
 	itc_hl.func.content_get = _gl_content_get_his;
 
@@ -571,7 +571,7 @@ _D("func\n");
 						 ELM_GENLIST_ITEM_NONE,
 					      NULL, NULL);
 		retvm_if(git == NULL, -1, "Failed append item\n");
-		elm_genlist_item_select_mode_set(git, EINA_TRUE);
+		elm_genlist_item_select_mode_set(git, ELM_OBJECT_SELECT_MODE_NONE);
 
 		if (eina_list_count(ad->applist[i]) > 0) {
 
