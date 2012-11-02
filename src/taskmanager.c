@@ -43,7 +43,7 @@ static struct text_part main_txt[] = {
 
 static void update_ts(Evas_Object *eo, struct text_part *tp, int size)
 {
-	int i;
+	int i = 0;
 
 	if (eo == NULL || tp == NULL || size < 0)
 		return;
