@@ -3,7 +3,7 @@
 	<label>taskmgr</label>
 	<author email="hhh.kwon@samsung.com" href="www.samsung.com">Hong Kwon</author>
 	<description>Task Manager</description>
-	<ui-application appid="org.tizen.taskmgr" exec="/opt/apps/org.tizen.taskmgr/bin/taskmgr" nodisplay="true" multiple="false" type="capp" taskmanage="false">
+	<ui-application appid="org.tizen.taskmgr" exec="/usr/apps/org.tizen.taskmgr/bin/taskmgr" nodisplay="true" multiple="false" type="capp" taskmanage="false">
 		<label>taskmgr</label>
 	</ui-application>
 </manifest>

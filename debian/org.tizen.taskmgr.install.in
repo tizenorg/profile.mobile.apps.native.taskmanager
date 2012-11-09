@@ -1,3 +1,3 @@
 @PREFIX@/*
-/opt/share/applications/*
-/opt/share/icons/default/small/org.tizen.taskmgr.png
+/usr/share/applications/*
+/usr/share/icons/default/small/org.tizen.taskmgr.png

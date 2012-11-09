@@ -30,7 +30,7 @@
 #endif
 
 #ifndef PREFIX
-#define PREFIX "/opt/apps/org.tizen."PACKAGE
+#define PREFIX "/usr/apps/org.tizen."PACKAGE
 #endif
 
 #if !defined(RESDIR)

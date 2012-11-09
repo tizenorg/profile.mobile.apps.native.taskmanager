@@ -6,6 +6,6 @@
 		<domain name="taskmgr"/>
 	</request>
 	<assign>
-		<filesystem path="/opt/apps/org.tizen.taskmgr/bin/taskmgr" exec_label="taskmgr"/>
+		<filesystem path="/usr/apps/org.tizen.taskmgr/bin/taskmgr" exec_label="taskmgr"/>
 	</assign>
 </manifest>

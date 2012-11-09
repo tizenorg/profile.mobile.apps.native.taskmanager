@@ -18,9 +18,9 @@ SET(PKGNAME "org.${VENDOR}.${PACKAGE}")
 SET(PREFIX ${CMAKE_INSTALL_PREFIX})
 SET(BINDIR "${PREFIX}/bin")
 SET(RESDIR "${PREFIX}/res")
-SET(DATADIR "${PREFIX}/data")
+SET(DATADIR "/opt/usr/apps/org.${VENDOR}.${PACKAGE}/data")
 SET(LOCALEDIR "${RESDIR}/locale")
-SET(ICONDIR "/opt/share/icons/default/small")
+SET(ICONDIR "/usr/share/icons/default/small")
 SET(IMAGEDIR "${RESDIR}/images/${PACKAGE}")
 SET(EDJDIR "${RESDIR}/edje/${PACKAGE}")
 
@@ -91,7 +91,7 @@ INSTALL(TARGETS ${PROJECT_NAME} DESTINATION ${BINDIR})
 
 # install desktop file & icon
 #CONFIGURE_FILE(${PKGNAME}.desktop.in ${CMAKE_BINARY_DIR}/${PKGNAME}.desktop)
-INSTALL(FILES ${CMAKE_BINARY_DIR}/${PKGNAME}.xml DESTINATION /opt/share/packages)
+INSTALL(FILES ${CMAKE_BINARY_DIR}/${PKGNAME}.xml DESTINATION /usr/share/packages)
 INSTALL(FILES ${CMAKE_SOURCE_DIR}/${PKGNAME}.png DESTINATION ${ICONDIR})
 
 #install application HOME directory

@@ -25,9 +25,9 @@ Task Manager.
 %setup -q
 
 %build
-%define PREFIX    "/opt/apps/org.tizen.taskmgr"
-%define RESDIR    "/opt/apps/org.tizen.taskmgr/res"
-%define DATADIR    "/opt/apps/org.tizen.taskmgr/data"
+%define PREFIX    "/usr/apps/org.tizen.taskmgr"
+%define RESDIR    "/usr/apps/org.tizen.taskmgr/res"
+%define DATADIR    "/opt/usr/apps/org.tizen.taskmgr/data"
 
 cmake . -DCMAKE_INSTALL_PREFIX=%{PREFIX}
 
@@ -40,9 +40,9 @@ rm -rf %{buildroot}
 %files
 %manifest taskmgr.manifest
 %defattr(-,root,root,-)
-/opt/apps/org.tizen.taskmgr/bin/*
-/opt/apps/org.tizen.taskmgr/res/*
+/usr/apps/org.tizen.taskmgr/bin/*
+/usr/apps/org.tizen.taskmgr/res/*
 %attr(-,inhouse,inhouse)
-/opt/apps/org.tizen.taskmgr/data
-/opt/share/packages/*
-/opt/share/icons/default/small/org.tizen.taskmgr.png
+/opt/usr/apps/org.tizen.taskmgr/data
+/usr/share/packages/*
+/usr/share/icons/default/small/org.tizen.taskmgr.png
