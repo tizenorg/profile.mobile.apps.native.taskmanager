@@ -1,12 +1,12 @@
 /*
  * Copyright 2012  Samsung Electronics Co., Ltd
- * 
+ *
  * Licensed under the Flora License, Version 1.0 (the License);
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.tizenopensource.org/license
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an AS IS BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -327,8 +327,8 @@ static Evas_Object *_gl_content_get_app(void *data, Evas_Object *obj,
 		retvm_if(rt == NULL, NULL, "Failed to add rectangle\n");
 
 		evas_object_color_set(rt, 0, 0, 0, 0);
-		evas_object_size_hint_min_set(rt, 
-					(int)72 * elm_scale_get(), 
+		evas_object_size_hint_min_set(rt,
+					(int)72 * elm_scale_get(),
 					(int)72 * elm_scale_get());
 		elm_object_part_content_set(icon, "icon_ly", rt);
 
@@ -484,8 +484,8 @@ static Evas_Object *_gl_content_get_his(void *data, Evas_Object *obj,
 		retvm_if (rt == NULL, NULL, "Failed to add rectangle\n");
 
 		evas_object_color_set(rt, 0, 0, 0, 0);
-		evas_object_size_hint_min_set(rt, 
-					(int)72 * elm_scale_get(), 
+		evas_object_size_hint_min_set(rt,
+					(int)72 * elm_scale_get(),
 					(int)72 * elm_scale_get());
 		elm_object_part_content_set(icon, "icon_ly", rt);
 

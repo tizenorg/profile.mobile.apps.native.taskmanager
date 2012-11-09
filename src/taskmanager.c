@@ -1,12 +1,12 @@
 /*
  * Copyright 2012  Samsung Electronics Co., Ltd
- * 
+ *
  * Licensed under the Flora License, Version 1.0 (the License);
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.tizenopensource.org/license
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an AS IS BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -43,7 +43,7 @@ static struct text_part main_txt[] = {
 
 static void update_ts(Evas_Object *eo, struct text_part *tp, int size)
 {
-	int i = 0;
+	int i;
 
 	if (eo == NULL || tp == NULL || size < 0)
 		return;
