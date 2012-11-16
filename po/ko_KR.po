@@ -1,36 +1,18 @@
-msgid "IDS_TASKMGR_BUTTON_CLEAR_HISTORY_ABB"
-msgstr "기록 삭제"
+msgid "IDS_COM_BODY_HIGH_VOLUMES_MAY_HARM_YOUR_HEARING_IF_YOU_LISTEN_FOR_A_LONG_TIME"
+msgstr "오랫동안 큰 소리로 음악을 들으면 청각이 손상될 수 있습니다"
 
-msgid "IDS_TASKMGR_BUTTON_CLOSE_ALL_APPLICATIONS"
-msgstr "모든 애플리케이션을 종료합니다"
+msgid "IDS_COM_BODY_ANDROID"
+msgstr "안드로이드"
 
-msgid "IDS_TASKMGR_HEADER_RUNNING"
-msgstr "실행"
+msgid "IDS_COM_BODY_JAVA"
+msgstr "Java"
 
-msgid "IDS_TASKMGR_MBODY_NO_APPS_OPEN"
-msgstr "실행 중인 애플리케이션이 없습니다"
+msgid "IDS_COM_BODY_WARNING"
+msgstr "경고"
 
-msgid "IDS_TASKMGR_MBODY_NO_RECENTLY_USED_APPS"
-msgstr "최근 사용된 애플리케이션이 없습니다"
+msgid "IDS_COM_BODY_MEDIA"
+msgstr "미디어"
 
-msgid "IDS_TASKMGR_MBODY_RECENTLY_USED"
-msgstr "최근 사용"
-
-msgid "IDS_TASKMGR_POP_CLEAR_ALL_APP_HISTORY_Q"
-msgstr "애플리케이션 기록을 모두 삭제할까요?"
-
-msgid "IDS_TASKMGR_POP_CLEAR_PS_HISTORY_Q"
-msgstr "%s 기록을 삭제할까요?"
-
-msgid "IDS_TASKMGR_POP_CLOSE_ALL_APPS_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
-msgstr "애플리케이션을 모두 종료할까요? 데이터가 손실될 수 있습니다"
-
-msgid "IDS_TASKMGR_POP_CLOSE_PS_APP_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
-msgstr "%s 애플리케이션을 종료할까요? 데이터가 손실될 수 있습니다"
-
-msgid "IDS_TASKMGR_POP_UNABLE_TO_OPEN_APPLICATION"
-msgstr "애플리케이션을 실행하지 못하였습니다"
-
-msgid "IDS_TASKMGR_HEADER_TASK_SWITCHER"
-msgstr "작업 전환기"
+msgid "IDS_COM_OPT_HEADPHONES_ABB"
+msgstr "헤드폰"
 

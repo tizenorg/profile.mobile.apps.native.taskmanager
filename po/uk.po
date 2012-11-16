@@ -1,36 +1,18 @@
-msgid "IDS_TASKMGR_BUTTON_CLEAR_HISTORY_ABB"
-msgstr "Очищення історії"
+msgid "IDS_COM_BODY_HIGH_VOLUMES_MAY_HARM_YOUR_HEARING_IF_YOU_LISTEN_FOR_A_LONG_TIME"
+msgstr "Тривале прослуховування за високого рівня гучності може призвести до погіршення слуху"
 
-msgid "IDS_TASKMGR_BUTTON_CLOSE_ALL_APPLICATIONS"
-msgstr "Закрити всі програми"
+msgid "IDS_COM_BODY_ANDROID"
+msgstr "Android"
 
-msgid "IDS_TASKMGR_HEADER_RUNNING"
-msgstr "Виконується"
+msgid "IDS_COM_BODY_JAVA"
+msgstr "Java"
 
-msgid "IDS_TASKMGR_MBODY_NO_APPS_OPEN"
-msgstr "Немає відкритих програм"
+msgid "IDS_COM_BODY_WARNING"
+msgstr "Попередження"
 
-msgid "IDS_TASKMGR_MBODY_NO_RECENTLY_USED_APPS"
-msgstr "Немає нещод. вик. програм"
+msgid "IDS_COM_BODY_MEDIA"
+msgstr "Медіадані"
 
-msgid "IDS_TASKMGR_MBODY_RECENTLY_USED"
-msgstr "Нещодавно використані"
-
-msgid "IDS_TASKMGR_POP_CLEAR_ALL_APP_HISTORY_Q"
-msgstr "Очистити всю історію програм?"
-
-msgid "IDS_TASKMGR_POP_CLEAR_PS_HISTORY_Q"
-msgstr "Очистити історію %s?"
-
-msgid "IDS_TASKMGR_POP_CLOSE_ALL_APPS_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
-msgstr "Закрити усі програми? Це може спричинити втрату даних"
-
-msgid "IDS_TASKMGR_POP_CLOSE_PS_APP_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
-msgstr "Закрити програму %s? Це може спричинити втрату даних"
-
-msgid "IDS_TASKMGR_POP_UNABLE_TO_OPEN_APPLICATION"
-msgstr "Неможливо відкрити програму"
-
-msgid "IDS_TASKMGR_HEADER_TASK_SWITCHER"
-msgstr "Диспетчер задач"
+msgid "IDS_COM_OPT_HEADPHONES_ABB"
+msgstr "Навушники"
 

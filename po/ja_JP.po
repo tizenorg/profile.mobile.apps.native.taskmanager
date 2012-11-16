@@ -1,36 +1,18 @@
-msgid "IDS_TASKMGR_BUTTON_CLEAR_HISTORY_ABB"
-msgstr "履歴を​消去"
+msgid "IDS_COM_BODY_HIGH_VOLUMES_MAY_HARM_YOUR_HEARING_IF_YOU_LISTEN_FOR_A_LONG_TIME"
+msgstr " ​長時間​​大音量​​で​​聴き​​続ける​​と、​​聴力​​を​​損傷​​する​​可能性​​が​​あります"
 
-msgid "IDS_TASKMGR_BUTTON_CLOSE_ALL_APPLICATIONS"
-msgstr "全​アプリを​終了します。"
+msgid "IDS_COM_BODY_ANDROID"
+msgstr "Android"
 
-msgid "IDS_TASKMGR_HEADER_RUNNING"
-msgstr "実行中"
+msgid "IDS_COM_BODY_JAVA"
+msgstr "Java"
 
-msgid "IDS_TASKMGR_MBODY_NO_APPS_OPEN"
-msgstr "起動アプリはありません。"
+msgid "IDS_COM_BODY_WARNING"
+msgstr "警告"
 
-msgid "IDS_TASKMGR_MBODY_NO_RECENTLY_USED_APPS"
-msgstr "最近​使った​アプリは​ありません。"
+msgid "IDS_COM_BODY_MEDIA"
+msgstr "メディア"
 
-msgid "IDS_TASKMGR_MBODY_RECENTLY_USED"
-msgstr "最近​使用​された​言語"
-
-msgid "IDS_TASKMGR_POP_CLEAR_ALL_APP_HISTORY_Q"
-msgstr "全ての​アプリの​履歴を​消去​しますか？"
-
-msgid "IDS_TASKMGR_POP_CLEAR_PS_HISTORY_Q"
-msgstr "%sの​履歴を​消去​しますか？"
-
-msgid "IDS_TASKMGR_POP_CLOSE_ALL_APPS_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
-msgstr "全ての​アプリを​終了​しますか？​この操作で、​データが​失われる​可能性が​あります。"
-
-msgid "IDS_TASKMGR_POP_CLOSE_PS_APP_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
-msgstr "%sアプリを​終了​しますか？​この操作で、​データが​失われる​可能性が​あります。"
-
-msgid "IDS_TASKMGR_POP_UNABLE_TO_OPEN_APPLICATION"
-msgstr "アプリケーションを​起動​できません。"
-
-msgid "IDS_TASKMGR_HEADER_TASK_SWITCHER"
-msgstr "タスク切替"
+msgid "IDS_COM_OPT_HEADPHONES_ABB"
+msgstr "ヘッドホン"
 

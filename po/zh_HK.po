@@ -1,36 +1,18 @@
-msgid "IDS_TASKMGR_BUTTON_CLEAR_HISTORY_ABB"
-msgstr "清除記錄"
+msgid "IDS_COM_BODY_HIGH_VOLUMES_MAY_HARM_YOUR_HEARING_IF_YOU_LISTEN_FOR_A_LONG_TIME"
+msgstr "長期聆聽高音量會損害您的聽力"
 
-msgid "IDS_TASKMGR_BUTTON_CLOSE_ALL_APPLICATIONS"
-msgstr "關閉所有應用程式"
+msgid "IDS_COM_BODY_ANDROID"
+msgstr "Android"
 
-msgid "IDS_TASKMGR_HEADER_RUNNING"
-msgstr "執行"
+msgid "IDS_COM_BODY_JAVA"
+msgstr "Java"
 
-msgid "IDS_TASKMGR_MBODY_NO_APPS_OPEN"
-msgstr "無開啟的應用程式"
+msgid "IDS_COM_BODY_WARNING"
+msgstr "警告"
 
-msgid "IDS_TASKMGR_MBODY_NO_RECENTLY_USED_APPS"
-msgstr "無最近使用的應用程式"
+msgid "IDS_COM_BODY_MEDIA"
+msgstr "媒體"
 
-msgid "IDS_TASKMGR_MBODY_RECENTLY_USED"
-msgstr "最近使用"
-
-msgid "IDS_TASKMGR_POP_CLEAR_ALL_APP_HISTORY_Q"
-msgstr "清除所有應用程式記錄嗎？"
-
-msgid "IDS_TASKMGR_POP_CLEAR_PS_HISTORY_Q"
-msgstr "清除 %s 記錄嗎？"
-
-msgid "IDS_TASKMGR_POP_CLOSE_ALL_APPS_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
-msgstr "關閉所有應用程式嗎？這可能會導致數據遺失"
-
-msgid "IDS_TASKMGR_POP_CLOSE_PS_APP_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
-msgstr "關閉 %s 應用程式嗎？這可能會導致數據遺失"
-
-msgid "IDS_TASKMGR_POP_UNABLE_TO_OPEN_APPLICATION"
-msgstr "無法開啟應用程式"
-
-msgid "IDS_TASKMGR_HEADER_TASK_SWITCHER"
-msgstr "工作切換器"
+msgid "IDS_COM_OPT_HEADPHONES_ABB"
+msgstr "耳機"
 

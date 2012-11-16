@@ -1,36 +1,18 @@
-msgid "IDS_TASKMGR_BUTTON_CLEAR_HISTORY_ABB"
-msgstr "Limpar histórico"
+msgid "IDS_COM_BODY_HIGH_VOLUMES_MAY_HARM_YOUR_HEARING_IF_YOU_LISTEN_FOR_A_LONG_TIME"
+msgstr "O volume de som elevado pode prejudicar a sua audição se a expuser a este durante muito tempo"
 
-msgid "IDS_TASKMGR_BUTTON_CLOSE_ALL_APPLICATIONS"
-msgstr "Fechar todas as aplicações"
+msgid "IDS_COM_BODY_ANDROID"
+msgstr "Android"
 
-msgid "IDS_TASKMGR_HEADER_RUNNING"
-msgstr "A ser executado"
+msgid "IDS_COM_BODY_JAVA"
+msgstr "Java"
 
-msgid "IDS_TASKMGR_MBODY_NO_APPS_OPEN"
-msgstr "Sem aplicações abertas"
+msgid "IDS_COM_BODY_WARNING"
+msgstr "Aviso"
 
-msgid "IDS_TASKMGR_MBODY_NO_RECENTLY_USED_APPS"
-msgstr "Sem aplics. util. recent."
+msgid "IDS_COM_BODY_MEDIA"
+msgstr "Multimédia"
 
-msgid "IDS_TASKMGR_MBODY_RECENTLY_USED"
-msgstr "Utilizado recentemente"
-
-msgid "IDS_TASKMGR_POP_CLEAR_ALL_APP_HISTORY_Q"
-msgstr "Limpar o histórico de todas as aplicações?"
-
-msgid "IDS_TASKMGR_POP_CLEAR_PS_HISTORY_Q"
-msgstr "Limpar histórico de %s?"
-
-msgid "IDS_TASKMGR_POP_CLOSE_ALL_APPS_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
-msgstr "Fechar todas as aplicações? Isto pode causar a perda de dados"
-
-msgid "IDS_TASKMGR_POP_CLOSE_PS_APP_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
-msgstr "Fechar %s aplicações? Isto pode causar a perda de dados"
-
-msgid "IDS_TASKMGR_POP_UNABLE_TO_OPEN_APPLICATION"
-msgstr "Impossível abrir aplicação"
-
-msgid "IDS_TASKMGR_HEADER_TASK_SWITCHER"
-msgstr "Comutador de tarefas"
+msgid "IDS_COM_OPT_HEADPHONES_ABB"
+msgstr "Auscultadores"
 

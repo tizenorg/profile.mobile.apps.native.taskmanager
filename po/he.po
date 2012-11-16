@@ -1,36 +1,18 @@
-msgid "IDS_TASKMGR_BUTTON_CLEAR_HISTORY_ABB"
-msgstr "נקה את ההיסטוריה"
+msgid "IDS_COM_BODY_HIGH_VOLUMES_MAY_HARM_YOUR_HEARING_IF_YOU_LISTEN_FOR_A_LONG_TIME"
+msgstr "עוצמות קול גבוהות עלולות לפגוע בשמיעה אם מאזינים להן למשך זמן רב"
 
-msgid "IDS_TASKMGR_BUTTON_CLOSE_ALL_APPLICATIONS"
-msgstr "סגור את כל היישומים"
+msgid "IDS_COM_BODY_ANDROID"
+msgstr "Android"
 
-msgid "IDS_TASKMGR_HEADER_RUNNING"
-msgstr "הפעלה"
+msgid "IDS_COM_BODY_JAVA"
+msgstr "Java"
 
-msgid "IDS_TASKMGR_MBODY_NO_APPS_OPEN"
-msgstr "אין יישומים פתוחים"
+msgid "IDS_COM_BODY_WARNING"
+msgstr "אזהרה"
 
-msgid "IDS_TASKMGR_MBODY_NO_RECENTLY_USED_APPS"
-msgstr "אין יישומים אחרונים"
+msgid "IDS_COM_BODY_MEDIA"
+msgstr "מדיה"
 
-msgid "IDS_TASKMGR_MBODY_RECENTLY_USED"
-msgstr "בוצע שימוש לאחרונה"
-
-msgid "IDS_TASKMGR_POP_CLEAR_ALL_APP_HISTORY_Q"
-msgstr "לנקות את כל היסטוריית היישומים?"
-
-msgid "IDS_TASKMGR_POP_CLEAR_PS_HISTORY_Q"
-msgstr "לנקות את ההיסטוריה של %s?"
-
-msgid "IDS_TASKMGR_POP_CLOSE_ALL_APPS_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
-msgstr "לסגור את כל היישומים? פעולה זו עשויה לגרום לאובדן נתונים"
-
-msgid "IDS_TASKMGR_POP_CLOSE_PS_APP_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
-msgstr "לסגור את היישום %s? פעולה זו עשויה לגרום לאובדן נתונים"
-
-msgid "IDS_TASKMGR_POP_UNABLE_TO_OPEN_APPLICATION"
-msgstr "לא ניתן לפתוח יישום"
-
-msgid "IDS_TASKMGR_HEADER_TASK_SWITCHER"
-msgstr "מחליף משימות"
+msgid "IDS_COM_OPT_HEADPHONES_ABB"
+msgstr "אוזניות"
 

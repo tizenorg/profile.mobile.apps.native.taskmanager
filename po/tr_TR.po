@@ -1,36 +1,18 @@
-msgid "IDS_TASKMGR_BUTTON_CLEAR_HISTORY_ABB"
-msgstr "Geçmişi sil"
+msgid "IDS_COM_BODY_HIGH_VOLUMES_MAY_HARM_YOUR_HEARING_IF_YOU_LISTEN_FOR_A_LONG_TIME"
+msgstr "Yüksek ses düzeyi, uzun süre dinlemeniz durumunda işitme duyunuza zarar verebilir"
 
-msgid "IDS_TASKMGR_BUTTON_CLOSE_ALL_APPLICATIONS"
-msgstr "Tüm uygulamaları kapat"
+msgid "IDS_COM_BODY_ANDROID"
+msgstr "Android"
 
-msgid "IDS_TASKMGR_HEADER_RUNNING"
-msgstr "Çalışıyor"
+msgid "IDS_COM_BODY_JAVA"
+msgstr "Java"
 
-msgid "IDS_TASKMGR_MBODY_NO_APPS_OPEN"
-msgstr "Açık uygulama yok"
+msgid "IDS_COM_BODY_WARNING"
+msgstr "Uyarı"
 
-msgid "IDS_TASKMGR_MBODY_NO_RECENTLY_USED_APPS"
-msgstr "Son kullanılan uyg yok"
+msgid "IDS_COM_BODY_MEDIA"
+msgstr "Medya"
 
-msgid "IDS_TASKMGR_MBODY_RECENTLY_USED"
-msgstr "Son kullanılanlar"
-
-msgid "IDS_TASKMGR_POP_CLEAR_ALL_APP_HISTORY_Q"
-msgstr "Tüm uygulama geçmişi silinsin mi?"
-
-msgid "IDS_TASKMGR_POP_CLEAR_PS_HISTORY_Q"
-msgstr "%s geçmişi silinsin mi?"
-
-msgid "IDS_TASKMGR_POP_CLOSE_ALL_APPS_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
-msgstr "Tüm uygulamalar kapatılsın mı? Bu veri kaybına neden olabilir"
-
-msgid "IDS_TASKMGR_POP_CLOSE_PS_APP_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
-msgstr "%s uygulaması kapatılsın mı? Bu veri kaybına neden olabilir"
-
-msgid "IDS_TASKMGR_POP_UNABLE_TO_OPEN_APPLICATION"
-msgstr "Uygulama açılamıyor"
-
-msgid "IDS_TASKMGR_HEADER_TASK_SWITCHER"
-msgstr "Görev değiştirici"
+msgid "IDS_COM_OPT_HEADPHONES_ABB"
+msgstr "Kulaklıklar"
 
