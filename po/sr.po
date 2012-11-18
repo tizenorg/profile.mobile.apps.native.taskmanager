@@ -1,18 +1,36 @@
-msgid "IDS_COM_BODY_HIGH_VOLUMES_MAY_HARM_YOUR_HEARING_IF_YOU_LISTEN_FOR_A_LONG_TIME"
-msgstr "Velika jačina zvuka može da ošteti sluh ukoliko tako slušate duže vreme"
+msgid "IDS_TASKMGR_BUTTON_CLEAR_HISTORY_ABB"
+msgstr "Obriši istoriju"
 
-msgid "IDS_COM_BODY_ANDROID"
-msgstr "Android"
+msgid "IDS_TASKMGR_BUTTON_CLOSE_ALL_APPLICATIONS"
+msgstr "Zatvori sve aplikacije"
 
-msgid "IDS_COM_BODY_JAVA"
-msgstr "Java"
+msgid "IDS_TASKMGR_HEADER_RUNNING"
+msgstr "Izvršavanje"
 
-msgid "IDS_COM_BODY_WARNING"
-msgstr "Upozorenje"
+msgid "IDS_TASKMGR_MBODY_NO_APPS_OPEN"
+msgstr "Nema otvorenih aplikacija"
 
-msgid "IDS_COM_BODY_MEDIA"
-msgstr "Mediji"
+msgid "IDS_TASKMGR_MBODY_NO_RECENTLY_USED_APPS"
+msgstr "Aplik. nisu skoro korišć."
 
-msgid "IDS_COM_OPT_HEADPHONES_ABB"
-msgstr "Slušalice"
+msgid "IDS_TASKMGR_MBODY_RECENTLY_USED"
+msgstr "Nedavno korišćeno"
+
+msgid "IDS_TASKMGR_POP_CLEAR_ALL_APP_HISTORY_Q"
+msgstr "Obrisati istoriju za sve aplikacije?"
+
+msgid "IDS_TASKMGR_POP_CLEAR_PS_HISTORY_Q"
+msgstr "Obrisati %s istoriju?"
+
+msgid "IDS_TASKMGR_POP_CLOSE_ALL_APPS_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
+msgstr "Zatvoriti sve aplikacije? To može dovesti do gubitka podataka"
+
+msgid "IDS_TASKMGR_POP_CLOSE_PS_APP_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
+msgstr "Zatvoriti %s aplikaciju? To može dovesti do gubitka podataka"
+
+msgid "IDS_TASKMGR_POP_UNABLE_TO_OPEN_APPLICATION"
+msgstr "Nije moguće otvoriti aplikaciju"
+
+msgid "IDS_TASKMGR_HEADER_TASK_SWITCHER"
+msgstr "Planer zadataka"
 

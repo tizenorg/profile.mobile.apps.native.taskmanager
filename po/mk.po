@@ -1,18 +1,36 @@
-msgid "IDS_COM_BODY_HIGH_VOLUMES_MAY_HARM_YOUR_HEARING_IF_YOU_LISTEN_FOR_A_LONG_TIME"
-msgstr "Големи јачини може да ви го оштетат слухот ако слушате долго време"
+msgid "IDS_TASKMGR_BUTTON_CLEAR_HISTORY_ABB"
+msgstr "Бриши историја"
 
-msgid "IDS_COM_BODY_MEDIA"
-msgstr "Медиум"
+msgid "IDS_TASKMGR_BUTTON_CLOSE_ALL_APPLICATIONS"
+msgstr "Затвори ги сите апликации"
 
-msgid "IDS_COM_BODY_ANDROID"
-msgstr "Андроид"
+msgid "IDS_TASKMGR_HEADER_RUNNING"
+msgstr "Активни"
 
-msgid "IDS_COM_BODY_JAVA"
-msgstr "Java"
+msgid "IDS_TASKMGR_MBODY_NO_APPS_OPEN"
+msgstr "Нема отворени апликации"
 
-msgid "IDS_COM_BODY_WARNING"
-msgstr "Предупредување"
+msgid "IDS_TASKMGR_MBODY_NO_RECENTLY_USED_APPS"
+msgstr "Нема последни апликации"
 
-msgid "IDS_COM_OPT_HEADPHONES_ABB"
-msgstr "Слушалки"
+msgid "IDS_TASKMGR_MBODY_RECENTLY_USED"
+msgstr "Последни користени"
+
+msgid "IDS_TASKMGR_POP_CLEAR_ALL_APP_HISTORY_Q"
+msgstr "Да се избрише целата историја на апликацијата?"
+
+msgid "IDS_TASKMGR_POP_CLEAR_PS_HISTORY_Q"
+msgstr "Да се избрише историјата на %s?"
+
+msgid "IDS_TASKMGR_POP_CLOSE_ALL_APPS_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
+msgstr "Да се затворат сите апликации? Тоа може да предизвика да се изгубат податоци"
+
+msgid "IDS_TASKMGR_POP_CLOSE_PS_APP_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
+msgstr "Да се затвори апликацијата %s? Тоа може да предизвика да се изгубат податоци"
+
+msgid "IDS_TASKMGR_POP_UNABLE_TO_OPEN_APPLICATION"
+msgstr "Не може да се отвори апликацијата"
+
+msgid "IDS_TASKMGR_HEADER_TASK_SWITCHER"
+msgstr "Менувач на задачи"
 

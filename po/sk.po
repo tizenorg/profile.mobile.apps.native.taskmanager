@@ -1,18 +1,36 @@
-msgid "IDS_COM_BODY_HIGH_VOLUMES_MAY_HARM_YOUR_HEARING_IF_YOU_LISTEN_FOR_A_LONG_TIME"
-msgstr "Vysoká hlasitosť môže pri dlhodobom počúvaní poškodiť sluch"
+msgid "IDS_TASKMGR_BUTTON_CLEAR_HISTORY_ABB"
+msgstr "Vymazať históriu"
 
-msgid "IDS_COM_BODY_ANDROID"
-msgstr "Android"
+msgid "IDS_TASKMGR_BUTTON_CLOSE_ALL_APPLICATIONS"
+msgstr "Ukončite všetky aplikácie"
 
-msgid "IDS_COM_BODY_JAVA"
-msgstr "Java"
+msgid "IDS_TASKMGR_HEADER_RUNNING"
+msgstr "Spustené"
 
-msgid "IDS_COM_BODY_WARNING"
-msgstr "Varovanie"
+msgid "IDS_TASKMGR_MBODY_NO_APPS_OPEN"
+msgstr "Žiadne otvorené aplikácie"
 
-msgid "IDS_COM_BODY_MEDIA"
-msgstr "Médium"
+msgid "IDS_TASKMGR_MBODY_NO_RECENTLY_USED_APPS"
+msgstr "Žiadne nap. použ. aplik."
 
-msgid "IDS_COM_OPT_HEADPHONES_ABB"
-msgstr "Slúchadlá"
+msgid "IDS_TASKMGR_MBODY_RECENTLY_USED"
+msgstr "Nedávno použité"
+
+msgid "IDS_TASKMGR_POP_CLEAR_ALL_APP_HISTORY_Q"
+msgstr "Vymazať celú históriu aplikácií?"
+
+msgid "IDS_TASKMGR_POP_CLEAR_PS_HISTORY_Q"
+msgstr "Vymazať históriu aplikácie %s?"
+
+msgid "IDS_TASKMGR_POP_CLOSE_ALL_APPS_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
+msgstr "Ukončiť všetky aplikácie? Môže to spôsobiť stratu údajov"
+
+msgid "IDS_TASKMGR_POP_CLOSE_PS_APP_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
+msgstr "Ukončiť aplikáciu %s? Môže to spôsobiť stratu údajov"
+
+msgid "IDS_TASKMGR_POP_UNABLE_TO_OPEN_APPLICATION"
+msgstr "Aplikácia sa nedá otvoriť"
+
+msgid "IDS_TASKMGR_HEADER_TASK_SWITCHER"
+msgstr "Prepínanie úloh"
 
