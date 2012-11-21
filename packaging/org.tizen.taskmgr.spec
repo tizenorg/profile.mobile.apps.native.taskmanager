@@ -38,7 +38,7 @@ rm -rf %{buildroot}
 %make_install
 
 %files
-%manifest taskmgr.manifest
+%manifest org.tizen.taskmgr.manifest
 %defattr(-,root,root,-)
 /usr/apps/org.tizen.taskmgr/bin/*
 /usr/apps/org.tizen.taskmgr/res/*
