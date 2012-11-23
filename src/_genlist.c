@@ -235,6 +235,7 @@ _D("func\n");
 	/* parameter to block double click */
 	static int selected = 0;
 	Elm_Object_Item *it = (Elm_Object_Item *) event_info;
+	int ret = -1;
 
 	elm_genlist_item_selected_set(it, EINA_FALSE);
 
@@ -265,7 +266,7 @@ _D("func\n");
 
 	if (info->pid) {
 		/* when application is alive */
-		aul_resume_pid(info->pid);
+		ret = aul_resume_pid(info->pid);
 		selected = 0;
 	} else {
 		/* when application is dead */
@@ -282,13 +283,17 @@ _D("func\n");
 				/* exception : Because dialer doesn't need bundle
 				 * since being unifyed dialer, voice call and video call
 				 */
-				aul_launch_app(info->pkg_name, NULL);
+				ret = aul_launch_app(info->pkg_name, NULL);
 				selected = 0;
 			} else {
-				aul_launch_app(info->pkg_name, info->b);
+				ret = aul_launch_app(info->pkg_name, info->b);
 				selected = 0;
 			}
 		}
+	}
+	if(ret == 0) {
+		_D("exit after 1.0 sec\n");
+		ad->exit_timer = ecore_timer_add(0.3, _exit_cb, ad);
 	}
 }
 
