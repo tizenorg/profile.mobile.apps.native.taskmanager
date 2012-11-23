@@ -38,6 +38,12 @@ struct text_part {
 	char *msgid;
 };
 
+enum {
+	IDLELOCK_OFF = 0x0,
+	IDLELOCK_ON,
+	IDLELOCK_MAX,
+};
+
 static struct text_part main_txt[] = {
 };
 
@@ -100,12 +106,30 @@ static int rotate(enum appcore_rm m, void *data)
 	return 0;
 }
 
+int _get_vconf_idlelock(void)
+{
+	int ret = -1;
+	int lock = IDLELOCK_OFF;
+
+	ret = vconf_get_int(VCONFKEY_IDLE_LOCK_STATE, &lock);
+	retvm_if(ret < 0, -1, "Failed to get vconf %s\n",
+		 VCONFKEY_IDLE_LOCK_STATE);
+	_D("idlelock vconf:%d\n", lock);
+
+	return lock == VCONFKEY_IDLE_LOCK ? IDLELOCK_ON : IDLELOCK_OFF;
+}
+
 Eina_Bool _exit_cb(void *data)
 {
 	struct appdata *ad = (struct appdata *)data;
 
 	ad->exit_timer = NULL;
-	elm_exit();
+	if(_get_vconf_idlelock() == IDLELOCK_ON){
+		elm_exit();
+	}
+	else{
+		_D("IDLELOCK is set, taskmnager doesn't exit\n");
+	}
 	return ECORE_CALLBACK_CANCEL;
 }
 
@@ -187,6 +211,12 @@ int app_create(void *data)
 	_set_launch_effect(win);
 //	_set_notification_level(win, UTILX_NOTIFICATION_LEVEL_NORMAL);
 
+	/* init internationalization */
+	r = appcore_set_i18n(PACKAGE, LOCALEDIR);
+	retvm_if(r < 0, -1, "Failed to set i18n\n");
+	_lang_changed(ad);
+
+
 	elm_theme_extension_add(NULL, EDJ_THEME);
 
 	_app_create(ad);
@@ -195,11 +225,6 @@ int app_create(void *data)
 
 	/* set dead signal listener */
 	aul_listen_app_dead_signal(_dead_cb, ad);
-
-	/* init internationalization */
-	r = appcore_set_i18n(PACKAGE, LOCALEDIR);
-	retvm_if(r < 0, -1, "Failed to set i18n\n");
-	_lang_changed(ad);
 
 	appcore_set_event_callback(APPCORE_EVENT_LANG_CHANGE,
 			_lang_changed, ad);
@@ -232,6 +257,7 @@ static int app_resume(void *data)
 _D("func\n");
 	struct appdata *ad = data;
 
+	refresh_app_info(ad);
 	if (ad->exit_timer) {
 		ecore_timer_del(ad->exit_timer);
 		ad->exit_timer = NULL;

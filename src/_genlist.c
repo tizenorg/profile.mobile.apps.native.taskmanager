@@ -297,6 +297,7 @@ _D("func\n");
 	}
 }
 
+
 static Evas_Object *_gl_content_get_app(void *data, Evas_Object *obj,
 				     const char *part)
 {
@@ -531,7 +532,7 @@ void _set_itc(void)
 	itc_separator4.item_style = "dialogue/seperator.4";
 	itc_separator2.item_style = "dialogue/seperator.2";
 
-	itc_bl.item_style = "dialogue/bg/1icon";
+	itc_bl.item_style = "1icon";
 	itc_bl.func.content_get = _bl_content_get;
 
 	itc_nl.item_style = "1text";

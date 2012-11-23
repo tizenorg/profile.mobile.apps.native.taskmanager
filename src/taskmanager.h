@@ -54,7 +54,7 @@
 #define GRP_TM "task_manager"
 
 #define S_(str) dgettext("sys_string", str)
-#define T_(str) dgettext(PACKAGE, str)
+#define T_(str) gettext(str)
 
 #define _BUF_MAX	256
 #define _EDJ(x)	elm_layout_edje_get(x)

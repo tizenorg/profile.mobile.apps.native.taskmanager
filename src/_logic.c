@@ -178,7 +178,7 @@ int _app_create(struct appdata *ad)
 	evas_object_smart_callback_add(bt, "clicked", _back_cb, ad);
 
 	elm_naviframe_item_push(nv,
-			_("IDS_TASKMGR_HEADER_TASK_SWITCHER"),
+			T_("IDS_TASKMGR_HEADER_TASK_SWITCHER"),
 			bt, NULL, ly, NULL);
 
 	return 0;
@@ -192,17 +192,6 @@ static void _get_win_geometry(struct appdata *ad)
 	focus_win = ecore_x_window_focus_get();
 	root_win = ecore_x_window_root_get(focus_win);
 	ecore_x_window_size_get(root_win, &ad->root_w, &ad->root_h);
-}
-
-static void _vconf_noti_cb(keynode_t *node, void *data)
-{
-	elm_exit();
-}
-
-static void _set_vconf_noti(void *data)
-{
-	vconf_notify_key_changed(VCONFKEY_IDLE_LOCK_STATE,
-			_vconf_noti_cb, NULL);
 }
 
 /* this func is to exit taskmanager after launching application */
@@ -230,33 +219,13 @@ static Eina_Bool __climsg_cb(void *data, int type, void *event)
 	}
 
 	if (ev->message_type == a_deact) {
-		_D("exit after 1.0 sec\n");
+		_D("exit after 0.3 sec\n");
 		ad->exit_timer = ecore_timer_add(0.3, _exit_cb, ad);
 		return ECORE_CALLBACK_CANCEL;
 	} else {
 		_D("messagre is act\n");
 
 	}
-
-	return ECORE_CALLBACK_CANCEL;
-}
-
-static Eina_Bool _ask_kill_process(void *data)
-{
-	struct appdata *ad = data;
-
-	_del_progressbar(ad);
-
-	ad->mode *= 2;
-	/* why? check enum in taskmgr.h */
-
-	if (ad->popup_ask) {
-		evas_object_del(ad->popup_ask);
-		ad->popup_ask = NULL;
-	}
-	ad->popup_ask = _add_popup_ask(ad->win,
-			"It might be an invalid process. Do you want to kill this proceess anyway?",
-			ad);
 
 	return ECORE_CALLBACK_CANCEL;
 }
@@ -275,7 +244,6 @@ void _ok_response_cb(void *data, Evas_Object *obj, void *event_info)
 		case MODE_END_INUSE:
 			_D("end inuse\n");
 			_del_popup_timer(ad);
-			ad->popup_timer = ecore_timer_add(7.0, _ask_kill_process, ad);
 			_show_progressbar(ad);
 			response_end_inuse(ad);
 			_restart_pthread(ad);
@@ -284,7 +252,6 @@ void _ok_response_cb(void *data, Evas_Object *obj, void *event_info)
 		case MODE_END_ALL_INUSE:
 			_D("end all inuse\n");
 			_del_popup_timer(ad);
-			ad->popup_timer = ecore_timer_add(7.0, _ask_kill_process, ad);
 			_show_progressbar(ad);
 			response_end_all_inuse(ad);
 			break;
@@ -292,14 +259,12 @@ void _ok_response_cb(void *data, Evas_Object *obj, void *event_info)
 		case MODE_DEL_HISTORY:
 			_D("del inuse\n");
 			_del_popup_timer(ad);
-			ad->popup_timer = ecore_timer_add(5.0, _ask_kill_process, ad);
 			response_del_history(ad);
 			break;
 
 		case MODE_DEL_ALL_HISTORY:
 			_D("del all inuse\n");
 			_del_popup_timer(ad);
-			ad->popup_timer = ecore_timer_add(5.0, _ask_kill_process, ad);
 			response_del_all_history(ad);
 			break;
 
@@ -343,7 +308,6 @@ Eina_Bool _create_idler_cb(void *data)
 
 	_init_pthread();
 	_get_win_geometry(ad);
-	_set_vconf_noti(ad);
 	ecore_event_handler_add(ECORE_X_EVENT_CLIENT_MESSAGE, __climsg_cb, ad);
 
 	return ECORE_CALLBACK_CANCEL;
