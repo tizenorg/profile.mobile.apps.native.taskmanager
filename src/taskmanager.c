@@ -116,7 +116,7 @@ int _get_vconf_idlelock(void)
 		 VCONFKEY_IDLE_LOCK_STATE);
 	_D("idlelock vconf:%d\n", lock);
 
-	return lock == VCONFKEY_IDLE_LOCK ? IDLELOCK_ON : IDLELOCK_OFF;
+	return lock == (VCONFKEY_IDLE_LOCK ? IDLELOCK_ON : IDLELOCK_OFF);
 }
 
 Eina_Bool _exit_cb(void *data)
@@ -124,7 +124,7 @@ Eina_Bool _exit_cb(void *data)
 	struct appdata *ad = (struct appdata *)data;
 
 	ad->exit_timer = NULL;
-	if(_get_vconf_idlelock() == IDLELOCK_ON){
+	if(_get_vconf_idlelock() == IDLELOCK_OFF){
 		elm_exit();
 	}
 	else{
