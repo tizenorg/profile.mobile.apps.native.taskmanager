@@ -17,6 +17,7 @@ BuildRequires:  cmake
 BuildRequires:  edje-bin
 BuildRequires:  embryo-bin
 BuildRequires:  gettext-devel
+Requires: org.tizen.smartsearch
 
 %description
 Task Manager.
