@@ -790,6 +790,7 @@ _D("func\n");
 	Eina_List *l, *l_next;
 	struct _task_info *info;
 	Elm_Object_Item *egi;
+	Eina_Bool dead = EINA_FALSE;
 
 	retvm_if(ad == NULL, -1, "Invalid argument: appdata is NULL\n");
 
@@ -802,12 +803,18 @@ _D("func\n");
 			if (info->pid > 0) {
 				if (aul_terminate_pid(info->pid) < 0) {
 					kill(info->pid, SIGKILL);
+					dead = EINA_TRUE;
 				}
 			}
 			break;
 		}
 	}
 	ad->ending = EINA_FALSE;
+
+	if(!dead){
+		_D("matched applist is nothing\n");
+		_del_progressbar(ad);
+	}
 
 	return 0;
 }

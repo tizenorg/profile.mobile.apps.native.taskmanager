@@ -23,6 +23,7 @@
 
 void _del_progressbar(void *data)
 {
+	_D("%s\n", __func__);
 	struct appdata *ad = (struct appdata *)data;
 	retm_if(ad == NULL, "Invalid argument: appdata is NULL\n");
 
@@ -35,6 +36,7 @@ void _del_progressbar(void *data)
 
 void _show_progressbar(void *data)
 {
+	_D("%s\n", __func__);
 	struct appdata *ad = (struct appdata *)data;
 	retm_if(ad == NULL, "Invalid argument: appdata is NULL\n");
 
