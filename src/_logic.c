@@ -219,8 +219,7 @@ static Eina_Bool __climsg_cb(void *data, int type, void *event)
 	}
 
 	if (ev->message_type == a_deact) {
-		_D("exit after 0.3 sec\n");
-		ad->exit_timer = ecore_timer_add(0.3, _exit_cb, ad);
+		_exit_cb(ad);
 		return ECORE_CALLBACK_CANCEL;
 	} else {
 		_D("messagre is act\n");

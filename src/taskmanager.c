@@ -123,6 +123,9 @@ Eina_Bool _exit_cb(void *data)
 {
 	struct appdata *ad = (struct appdata *)data;
 
+	if(ad->exit_timer == NULL)
+		return ECORE_CALLBACK_CANCEL;
+
 	ad->exit_timer = NULL;
 	if(_get_vconf_idlelock() == IDLELOCK_OFF){
 		elm_exit();

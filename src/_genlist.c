@@ -279,7 +279,7 @@ _D("func\n");
 		} else {
 			_unset_notification_level(info->ad->win);
 
-			if (!strcmp(info->pkg_name, "org.tizen.phone")) {
+			if (!strcmp(info->pkg_name, "org.samsung.phone")) {
 				/* exception : Because dialer doesn't need bundle
 				 * since being unifyed dialer, voice call and video call
 				 */
@@ -292,7 +292,7 @@ _D("func\n");
 		}
 	}
 	if(ret == 0) {
-		_D("exit after 1.0 sec\n");
+		_D("exit after 0.3 sec\n");
 		ad->exit_timer = ecore_timer_add(0.3, _exit_cb, ad);
 	}
 }
