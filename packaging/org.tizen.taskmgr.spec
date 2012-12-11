@@ -18,6 +18,7 @@ BuildRequires:  edje-bin
 BuildRequires:  embryo-bin
 BuildRequires:  gettext-devel
 Requires: org.tizen.smartsearch
+Requires: org.tizen.music-player
 
 %description
 Task Manager.
