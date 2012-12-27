@@ -119,21 +119,19 @@ int _get_vconf_idlelock(void)
 	return lock == (VCONFKEY_IDLE_LOCK ? IDLELOCK_ON : IDLELOCK_OFF);
 }
 
-Eina_Bool _exit_cb(void *data)
+void _exit_cb(void *data)
 {
 	struct appdata *ad = (struct appdata *)data;
+	int lock = IDLELOCK_ON;
+	lock = _get_vconf_idlelock();
 
-	if(ad->exit_timer == NULL)
-		return ECORE_CALLBACK_CANCEL;
-
-	ad->exit_timer = NULL;
-	if(_get_vconf_idlelock() == IDLELOCK_OFF){
+	_D("lock(%d)\n", lock);
+	if(lock == IDLELOCK_OFF){
 		elm_exit();
 	}
 	else{
 		_D("IDLELOCK is set, taskmnager doesn't exit\n");
 	}
-	return ECORE_CALLBACK_CANCEL;
 }
 
 void _key_grab(struct appdata *ad)

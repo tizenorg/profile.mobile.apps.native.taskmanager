@@ -279,7 +279,7 @@ _D("func\n");
 		} else {
 			_unset_notification_level(info->ad->win);
 
-			if (!strcmp(info->pkg_name, "org.samsung.phone")) {
+			if (!strcmp(info->pkg_name, "org.tizen.phone")) {
 				/* exception : Because dialer doesn't need bundle
 				 * since being unifyed dialer, voice call and video call
 				 */

@@ -122,7 +122,7 @@ enum task_status {
 Evas_Object *load_edj(Evas_Object *parent, const char *file, const char *group);
 int _unset_notification_level(Evas_Object *win);
 int _set_notification_level(Evas_Object *win, Utilx_Notification_Level level);
-Eina_Bool _exit_cb(void *data);
+void _exit_cb(void *data);
 
 #endif
 /* __TASKMANAGER_H___ */

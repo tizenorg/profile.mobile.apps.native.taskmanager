@@ -205,7 +205,7 @@ static Eina_Bool __climsg_cb(void *data, int type, void *event)
 
 	if(ev == NULL) {
 		_E("Invalid argument: event is NULL\n");
-		ecore_timer_add(0.3, _exit_cb, NULL);
+		_exit_cb(ad);
 		return ECORE_CALLBACK_CANCEL;
 	}
 
