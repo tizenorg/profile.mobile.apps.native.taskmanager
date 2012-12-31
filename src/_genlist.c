@@ -639,8 +639,7 @@ _D("func\n");
 	_D("%d\n", eina_list_count(ad->applist[TS_INUSE]));
 
 	EINA_LIST_FOREACH_SAFE(ad->applist[TS_INUSE], l, l_next, info) {
-		elm_genlist_item_update(info->it);
-
+		elm_genlist_item_fields_update(info->it, "elm.text*", ELM_GENLIST_ITEM_FIELD_TEXT);
 	}
 	pthread_mutex_unlock(&mutex_for_graph_update);
 	return ECORE_CALLBACK_RENEW;
