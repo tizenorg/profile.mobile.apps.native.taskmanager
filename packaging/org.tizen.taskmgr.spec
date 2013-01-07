@@ -17,8 +17,19 @@ BuildRequires:  cmake
 BuildRequires:  edje-bin
 BuildRequires:  embryo-bin
 BuildRequires:  gettext-devel
-Requires: org.tizen.smartsearch
+Requires: org.tizen.browser
+Requires: org.tizen.calculator
+Requires: org.tizen.camera-app
+Requires: org.tizen.clock
+Requires: org.tizen.contacts
+Requires: org.tizen.email
+Requires: org.tizen.gallery
+Requires: org.tizen.memo
+Requires: org.tizen.message
 Requires: org.tizen.music-player
+Requires: org.tizen.phone
+Requires: org.tizen.smartsearch
+Requires: org.tizen.setting
 
 %description
 Task Manager.

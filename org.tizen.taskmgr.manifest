@@ -11,7 +11,6 @@
                         <smack request="dbus" type="w"/>
                         <smack request="org.tizen.browser" type="rwx"/>
                         <smack request="org.tizen.calculator" type="rwx"/>
-                        <smack request="org.tizen.calendar" type="rwx"/>
                         <smack request="org.tizen.camera-app" type="rwx"/>
                         <smack request="org.tizen.clock" type="rwx"/>
                         <smack request="org.tizen.contacts" type="rwx"/>
