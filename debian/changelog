@@ -1,3 +1,9 @@
+taskmanager (0.14.3-1) oneiric; urgency=low
+
+  * Fix N_SE-17797 : Running Apps are blinking.
+
+ -- minho07.kim <minho07.kim@samsung.com>  Mon, 07 Jan 2013 15:26:49 +0900
+
 taskmanager (0.14.2-1) oneiric; urgency=low
 
   * Apply open code

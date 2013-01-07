@@ -116,7 +116,7 @@ int _get_vconf_idlelock(void)
 		 VCONFKEY_IDLE_LOCK_STATE);
 	_D("idlelock vconf:%d\n", lock);
 
-	return lock == (VCONFKEY_IDLE_LOCK ? IDLELOCK_ON : IDLELOCK_OFF);
+	return lock == VCONFKEY_IDLE_LOCK ? IDLELOCK_ON : IDLELOCK_OFF;
 }
 
 void _exit_cb(void *data)
@@ -127,6 +127,7 @@ void _exit_cb(void *data)
 
 	_D("lock(%d)\n", lock);
 	if(lock == IDLELOCK_OFF){
+		_D("normal case\n");
 		elm_exit();
 	}
 	else{

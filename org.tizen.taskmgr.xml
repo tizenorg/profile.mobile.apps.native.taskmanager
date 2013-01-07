@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns="http://tizen.org/ns/packages" package="org.tizen.taskmgr" version="0.14.2" install-location="internal-only">
+<manifest xmlns="http://tizen.org/ns/packages" package="org.tizen.taskmgr" version="0.14.3" install-location="internal-only">
 	<label>taskmgr</label>
 	<author email="hhh.kwon@samsung.com" href="www.samsung.com">Hong Kwon</author>
 	<description>Task Manager</description>
