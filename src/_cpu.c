@@ -38,6 +38,7 @@ int _get_stat_info(pid_t pid, unsigned int *ut, unsigned int *st)
 	char buf[128] = {0, };
 	unsigned long cutime, cstime;
 	int i;
+	int ret = -1;
 
 	snprintf(buf, sizeof(buf), "/proc/%d/stat", (int)pid);
 
@@ -46,8 +47,9 @@ int _get_stat_info(pid_t pid, unsigned int *ut, unsigned int *st)
 	fp = fopen(buf, "r");
 	if (fp) {
 		retvm_if(fp == NULL, -1, "Failed to open %s\n", buf);
-		fscanf(fp, "%*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %lu %lu %ld %ld",
+		ret = fscanf(fp, "%*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %lu %lu %ld %ld",
 				ut, st, &cutime, &cstime);
+		retvm_if(ret < 0, -1, "Failed to fscanf() \n");
 		*ut += cutime;
 		*st += cstime;
 		fclose(fp);

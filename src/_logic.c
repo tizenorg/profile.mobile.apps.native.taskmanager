@@ -49,35 +49,37 @@ _D("func\n");
 	_D("mode(%d) count(%d) pid(%d) \n", ad->mode, ad->endcnt, pid);
 
 	if (ret != -1) {
-	switch (ad->mode) {
-	default:
-	case MODE_END_INUSE:
-	case MODE_DEL_HISTORY:
-	case MODE_DEL_ALL_HISTORY:
-	case MODE_KILL_INUSE:
-		_D("aa\n");
-		_del_popup_timer(ad);
-		_del_progressbar(ad);
-		refresh_app_info(ad);
-		_restart_pthread(ad);
-		break;
-
-	case MODE_END_ALL_INUSE:
-	case MODE_KILL_ALL_INUSE:
-		_D("bb\n");
-		if (ad->endcnt <= 1) {
-			_D("count set 0\n");
+		switch (ad->mode) {
+		default:
+		case MODE_END_INUSE:
+		case MODE_DEL_HISTORY:
+		case MODE_DEL_ALL_HISTORY:
+		case MODE_KILL_INUSE:
+			_D("aa\n");
 			_del_popup_timer(ad);
 			_del_progressbar(ad);
 			refresh_app_info(ad);
 			_restart_pthread(ad);
+			break;
 
-		} else {
-			ad->endcnt--;
+		case MODE_END_ALL_INUSE:
+		case MODE_KILL_ALL_INUSE:
+			_D("bb\n");
+			if (ad->endcnt <= 1) {
+				_D("count set 0\n");
+				_del_popup_timer(ad);
+				_del_progressbar(ad);
+				refresh_app_info(ad);
+				_restart_pthread(ad);
+
+			} else {
+				ad->endcnt--;
+			}
+			break;
 		}
-		break;
 	}
-}
+
+	return ret;
 }
 
 static void _back_cb(void *data, Evas_Object *obj, void *event_info)
