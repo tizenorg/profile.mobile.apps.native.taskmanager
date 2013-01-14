@@ -529,8 +529,8 @@ void _set_itc(void)
 	itc_hl.func.text_get = _gl_text_get_his;
 	itc_hl.func.content_get = _gl_content_get_his;
 
-	itc_separator4.item_style = "dialogue/seperator.4";
-	itc_separator2.item_style = "dialogue/seperator.2";
+	itc_separator4.item_style = "dialogue/seperator";
+	itc_separator2.item_style = "dialogue/seperator";
 
 	itc_bl.item_style = "1icon";
 	itc_bl.func.content_get = _bl_content_get;
@@ -577,18 +577,18 @@ _D("func\n");
 						 ELM_GENLIST_ITEM_NONE,
 					      NULL, NULL);
 		retvm_if(git == NULL, -1, "Failed append item\n");
-		elm_genlist_item_select_mode_set(git, ELM_OBJECT_SELECT_MODE_NONE);
+		elm_genlist_item_select_mode_set(git, ELM_OBJECT_SELECT_MODE_DISPLAY_ONLY);
 
 		if (eina_list_count(ad->applist[i]) > 0) {
 
 			item = elm_genlist_item_append(ad->gl, &itc_separator4,
-						NULL, git,
+						NULL, NULL,
 						ELM_GENLIST_ITEM_NONE,
 						NULL, NULL);
 			elm_genlist_item_select_mode_set(item, ELM_OBJECT_SELECT_MODE_DISPLAY_ONLY);
 
 			item = elm_genlist_item_append(ad->gl, &itc_separator2,
-						NULL, git,
+						NULL, NULL,
 						ELM_GENLIST_ITEM_NONE,
 						NULL, NULL);
 			elm_genlist_item_select_mode_set(item, ELM_OBJECT_SELECT_MODE_DISPLAY_ONLY);
@@ -598,14 +598,14 @@ _D("func\n");
 				if (info != NULL) {
 					info->it = elm_genlist_item_append(ad->gl,
 								    (i == TS_INUSE) ? &itc_dl : &itc_hl,
-								    (void *)info, git,
+								    (void *)info, NULL,
 								    ELM_GENLIST_ITEM_NONE,
 								    _gl_sel_app, ad);
 				}
 			}
 		} else {
 			item = elm_genlist_item_append(ad->gl, &itc_nl,
-						(void *)i, git,
+						(void *)i, NULL,
 						ELM_GENLIST_ITEM_NONE,
 						nl_sel, NULL);
 			elm_genlist_item_select_mode_set(item, ELM_OBJECT_SELECT_MODE_DISPLAY_ONLY);
