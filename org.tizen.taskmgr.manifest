@@ -9,19 +9,6 @@
                         <smack request="system::vconf" type="arwxt"/>
                         <smack request="rua::db" type="rw"/>
                         <smack request="dbus" type="w"/>
-                        <smack request="org.tizen.browser" type="rwx"/>
-                        <smack request="org.tizen.calculator" type="rwx"/>
-                        <smack request="org.tizen.camera-app" type="rwx"/>
-                        <smack request="org.tizen.clock" type="rwx"/>
-                        <smack request="org.tizen.contacts" type="rwx"/>
-                        <smack request="org.tizen.email" type="rwx"/>
-                        <smack request="org.tizen.gallery" type="rwx"/>
-                        <smack request="org.tizen.memo" type="rwx"/>
-                        <smack request="org.tizen.message" type="rwx"/>
-                        <smack request="org.tizen.music-player" type="rwx"/>
-                        <smack request="org.tizen.phone" type="rwx"/>
-                        <smack request="org.tizen.setting" type="rwx"/>
-                        <smack request="org.tizen.smartsearch" type="rwx"/>
                 </request>
         </define>
         <request>
