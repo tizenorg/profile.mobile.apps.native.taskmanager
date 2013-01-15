@@ -335,8 +335,8 @@ static Evas_Object *_gl_content_get_app(void *data, Evas_Object *obj,
 
 		evas_object_color_set(rt, 0, 0, 0, 0);
 		evas_object_size_hint_min_set(rt,
-					(int)72 * elm_scale_get(),
-					(int)72 * elm_scale_get());
+					(int)72 * elm_config_scale_get(),
+					(int)72 * elm_config_scale_get());
 		elm_object_part_content_set(icon, "icon_ly", rt);
 
 		elm_object_part_content_set(icon, "icon", icon_ly);
@@ -492,8 +492,8 @@ static Evas_Object *_gl_content_get_his(void *data, Evas_Object *obj,
 
 		evas_object_color_set(rt, 0, 0, 0, 0);
 		evas_object_size_hint_min_set(rt,
-					(int)72 * elm_scale_get(),
-					(int)72 * elm_scale_get());
+					(int)72 * elm_config_scale_get(),
+					(int)72 * elm_config_scale_get());
 		elm_object_part_content_set(icon, "icon_ly", rt);
 
 		elm_object_part_content_set(icon, "icon", icon_ly);
