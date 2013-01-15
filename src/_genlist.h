@@ -1,5 +1,6 @@
 /*
- * Copyright 2012  Samsung Electronics Co., Ltd
+ * org.tizen.taskmgr
+ * Copyright (c) 2012 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Flora License, Version 1.0 (the License);
  * you may not use this file except in compliance with the License.
