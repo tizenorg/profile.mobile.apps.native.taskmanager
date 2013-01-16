@@ -47,7 +47,12 @@ int _get_stat_info(pid_t pid, unsigned int *ut, unsigned int *st)
 		retvm_if(fp == NULL, -1, "Failed to open %s\n", buf);
 		ret = fscanf(fp, "%*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %lu %lu %ld %ld",
 				ut, st, &cutime, &cstime);
-		retvm_if(ret < 0, -1, "Failed to fscanf() \n");
+		if(ret < 0)
+		{
+			_E("Failed to fscanf() \n");
+			fclose(fp);
+			return -1;
+		}
 		*ut += cutime;
 		*st += cstime;
 		fclose(fp);
