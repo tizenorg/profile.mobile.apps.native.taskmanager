@@ -588,6 +588,11 @@ _D("func\n");
 						NULL, NULL);
 			elm_genlist_item_select_mode_set(item, ELM_OBJECT_SELECT_MODE_DISPLAY_ONLY);
 
+			elm_genlist_item_append(ad->gl, &itc_bl,
+						(void *)i, NULL,
+						ELM_GENLIST_ITEM_NONE,
+						_bl_sel, (void *)i);
+
 			item = elm_genlist_item_append(ad->gl, &itc_separator2,
 						NULL, NULL,
 						ELM_GENLIST_ITEM_NONE,
@@ -648,6 +653,9 @@ _D("func\n");
 	int ncpu;
 	Eina_List *l, *l_next;
 	struct _task_info *info;
+	int old_cancel_state;
+
+	pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, &old_cancel_state);
 
 	while(1) {
 
