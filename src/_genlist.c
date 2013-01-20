@@ -24,6 +24,7 @@
 #include <vconf.h>
 #include <utilX.h>
 #include <aul.h>
+#include <rua.h>
 #include <Ecore_X.h>
 #include <Eina.h>
 #include <unistd.h>
@@ -41,10 +42,6 @@
 #include "_info.h"
 #include "_progressbar.h"
 
-pthread_t pt;
-pthread_cond_t	pc;
-pthread_mutex_t	pm;
-pthread_mutex_t mutex_for_graph_update = PTHREAD_MUTEX_INITIALIZER;
 static Elm_Object_Item *g_egi;
 
 /* group list:gl, data list:dl, button list:bl, no list: nl */
@@ -242,7 +239,6 @@ _D("func\n");
 
 	retm_if(ad == NULL, "Invalid argument: appdata is NULL\n");
 
-	_fini_pthread();
 	if (ad->update_timer) {
 		ecore_timer_del(ad->update_timer);
 		ad->update_timer = NULL;
@@ -324,7 +320,7 @@ static Evas_Object *_gl_content_get_app(void *data, Evas_Object *obj,
 
 		} else {
 			icon_ly = elm_icon_add(obj);
-			elm_icon_file_set(icon_ly, buf, NULL);
+			elm_image_file_set(icon_ly, buf, NULL);
 		}
 
 		icon = _add_layout(obj, EDJ_NAME, "icon");
@@ -363,26 +359,14 @@ static char *_gl_text_get_app(void *data, Evas_Object *obj, const char *part)
 {
 	struct _task_info *info = (struct _task_info *)data;
 	char buf[_BUF_MAX] = { 0, };
-	Evas_Object *eo;
 
 	retvm_if(data == NULL, NULL, "Invalid argument: task info is NULL\n");
 	retvm_if(part == NULL, NULL, "Invalid argument: part is NULL\n");
 
-	if (!strcmp(part, "elm.text.1")) {
+	if (!strcmp(part, "elm.text")) {
 		snprintf(buf, _BUF_MAX, "%s", info->app_name);
 		return strdup(buf);
 
-	} else if (!strcmp(part, "elm.text.2")) {
-		if (info->category == TS_INUSE) {
-			snprintf(buf, _BUF_MAX, "CPU: %.1f%%", info->cpu);
-			return strdup(buf);
-
-		} else {
-			if (info->it) {
-				elm_object_signal_emit(info->it, "prog.hide.mem","taskmanager");
-			}
-			return NULL;
-		}
 	}
 	return NULL;
 }
@@ -390,20 +374,8 @@ static char *_gl_text_get_app(void *data, Evas_Object *obj, const char *part)
 static void _bl_sel(void *data, Evas_Object *obj, void *event_info)
 {
 _D("func\n");
-	int mode = (int)data;
-	struct appdata *ad;
 	Elm_Object_Item *item = (Elm_Object_Item *) event_info;
-
 	elm_genlist_item_selected_set(item, EINA_FALSE);
-}
-
-static char *_bl_text_get(void *data, Evas_Object *obj, const char *part)
-{
-	if (!strcmp(part, "elm.text")) {
-		return strdup(T_(button_text[(int)data]));
-
-	}
-	return NULL;
 }
 
 static Evas_Object *_bl_content_get(void *data, Evas_Object *obj,
@@ -448,7 +420,6 @@ static char *_gl_text_get_his(void *data, Evas_Object *obj, const char *part)
 {
 	struct _task_info *info = (struct _task_info *)data;
 	char buf[_BUF_MAX] = { 0, };
-	Evas_Object *eo;
 
 	if (!strcmp(part, "elm.text")) {
 		snprintf(buf, _BUF_MAX, "%s", info->app_name);
@@ -466,7 +437,6 @@ static Evas_Object *_gl_content_get_his(void *data, Evas_Object *obj,
 	Evas_Object *icon = NULL;
 	Evas_Object *btn = NULL;
 
-	Evas_Object *rt, *icon_ly = NULL;
 	retvm_if(data == NULL, NULL, "Invalid argument: task info is NULL\n");
 
 	if (!strcmp(part, "elm.icon.1")) {
@@ -476,27 +446,13 @@ static Evas_Object *_gl_content_get_his(void *data, Evas_Object *obj,
 			snprintf((char *)buf, (size_t) sizeof(buf),
 				 (const char *)IMAGEDIR "/icon_taskmgr.png");
 
-		if (!strncmp(&buf[strlen(buf) - 3], "edj", 3)) {
-			icon_ly = _add_layout(obj, buf, "icon");
+		icon = elm_icon_add(obj);
+		elm_image_file_set(icon, buf, NULL);
+		elm_image_preload_disabled_set(icon, EINA_TRUE);
 
-		} else {
-			icon_ly = elm_icon_add(obj);
-			elm_icon_file_set(icon_ly, buf, NULL);
-		}
-
-		icon = _add_layout(obj, EDJ_NAME, "icon");
-		retvm_if (icon == NULL, NULL, "Cannot add layout: icon\n");
-
-		rt = evas_object_rectangle_add(evas_object_evas_get(obj));
-		retvm_if (rt == NULL, NULL, "Failed to add rectangle\n");
-
-		evas_object_color_set(rt, 0, 0, 0, 0);
-		evas_object_size_hint_min_set(rt,
+		evas_object_size_hint_min_set(icon,
 					(int)72 * elm_config_scale_get(),
 					(int)72 * elm_config_scale_get());
-		elm_object_part_content_set(icon, "icon_ly", rt);
-
-		elm_object_part_content_set(icon, "icon", icon_ly);
 
 		return icon;
 
@@ -522,7 +478,8 @@ void _set_itc(void)
 	itc_gl.item_style = "grouptitle";
 	itc_gl.func.text_get = _gl_text_get_title;
 
-	itc_dl.item_style = "2text.2icon.7";
+	//itc_dl.item_style = "2text.2icon.7";
+	itc_dl.item_style = "1text.2icon.4";
 	itc_dl.func.text_get = _gl_text_get_app;
 	itc_dl.func.content_get = _gl_content_get_app;
 
@@ -545,7 +502,6 @@ int check_genlist(struct appdata *ad)
 {
 	Elm_Object_Item *egi;
 	struct _task_info *info;
-	int i = 1;
 
 	egi = elm_genlist_first_item_get(ad->gl);
 	while(egi) {
@@ -620,74 +576,6 @@ _D("func\n");
 	return 0;
 }
 
-Eina_Bool _update_list(void *data)
-{
-_D("func\n");
-	struct appdata *ad = data;
-	Eina_List *l, *l_next;
-	struct _task_info *info;
-
-	pthread_mutex_lock(&mutex_for_graph_update);
-
-	if(ad->applist[TS_INUSE] == NULL) {
-		_D("inuse is NULL\n");
-		pthread_mutex_unlock(&mutex_for_graph_update);
-		ad->update_timer = NULL;
-		return ECORE_CALLBACK_CANCEL;
-	}
-	ad->applist[TS_INUSE] = eina_list_nth_list(ad->applist[TS_INUSE], 0);
-	_D("%d\n", eina_list_count(ad->applist[TS_INUSE]));
-
-	EINA_LIST_FOREACH_SAFE(ad->applist[TS_INUSE], l, l_next, info) {
-		elm_genlist_item_fields_update(info->it, "elm.text*", ELM_GENLIST_ITEM_FIELD_TEXT);
-	}
-	pthread_mutex_unlock(&mutex_for_graph_update);
-	return ECORE_CALLBACK_RENEW;
-}
-
-void *_update_pthread_cb(void *data)
-{
-_D("func\n");
-	struct appdata *ad = data;
-	long tick;
-	int ncpu;
-	Eina_List *l, *l_next;
-	struct _task_info *info;
-	int old_cancel_state;
-
-	pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, &old_cancel_state);
-
-	while(1) {
-
-		if (ad->ending == EINA_FALSE) {
-			if(ad->applist[TS_INUSE] == NULL) {
-				_D("in use list is NULL\n");
-				return ECORE_CALLBACK_CANCEL;
-			}
-
-			_get_sysconf(&ncpu, &tick);
-
-			ad->applist[TS_INUSE] = eina_list_nth_list(ad->applist[TS_INUSE], 0);
-			if (eina_list_count(ad->applist[TS_INUSE]) < 1) {
-				_D("list count is 0\n");
-				return NULL;
-			}
-
-			EINA_LIST_FOREACH_SAFE(ad->applist[TS_INUSE], l, l_next, info) {
-				if (info) {
-					info->cpu = _get_cpu_ratio(info, ncpu, tick);
-					_D("%d / %lf\n", info->pid, info->cpu);
-				}
-
-			}
-			sleep(2);
-		}
-	}
-
-	return NULL;
-
-}
-
 void _set_genlist(struct appdata *ad)
 {
 _D("func\n");
@@ -713,20 +601,6 @@ _D("func\n");
 	taskmanager_get_history_app_info(ad);
 	_set_genlist_from_eina(ad);
 
-}
-
-void _init_pthread(void)
-{
-	pthread_mutex_init(&pm, NULL);
-	pthread_cond_init(&pc, NULL);
-}
-
-void _fini_pthread(void)
-{
-_D("func\n");
-	if (pt) {
-		pthread_cancel(pt);
-	}
 }
 
 void refresh_app_info(struct appdata *ad)
@@ -771,27 +645,11 @@ void taskmanager_free_info(struct _task_info *info)
 	}
 }
 
-void _restart_pthread(struct appdata *ad)
-{
-_D("func\n");
-	pthread_cancel(pt);
-	if (eina_list_count(ad->applist[TS_INUSE]) > 0) {
-
-		pthread_create(&pt, NULL, _update_pthread_cb, ad);
-		pthread_detach(pt);
-		if (ad->update_timer) {
-			ecore_timer_del(ad->update_timer);
-			ad->update_timer = NULL;
-		}
-		ad->update_timer = ecore_timer_add(2.0, _update_list, ad);
-	}
-}
 int response_end_inuse(struct appdata *ad)
 {
 _D("func\n");
 	Eina_List *l, *l_next;
 	struct _task_info *info;
-	Elm_Object_Item *egi;
 	Eina_Bool dead = EINA_FALSE;
 
 	retvm_if(ad == NULL, -1, "Invalid argument: appdata is NULL\n");
@@ -869,7 +727,6 @@ int response_del_history(struct appdata *ad)
 {
 	Eina_List *l, *l_next;
 	struct _task_info *info;
-	Elm_Object_Item *egi;
 
 	retvm_if(ad == NULL, -1, "Invalid argument: appdata is NULL\n");
 
@@ -948,7 +805,6 @@ int response_kill_inuse(struct appdata *ad)
 {
 	Eina_List *l, *l_next;
 	struct _task_info *info;
-	Elm_Object_Item *egi;
 
 	retvm_if(ad == NULL, -1, "Invalid argument: appdata is NULL\n");
 

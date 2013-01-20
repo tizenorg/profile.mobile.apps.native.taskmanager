@@ -6,7 +6,7 @@ SET(SRCS
 	src/_util_efl.c
 	src/_genlist.c
 	src/_logic.c
-	src/_cpu.c
+#	src/_cpu.c
 	src/_eina.c
 #	src/_info.c
 	src/_progressbar.c

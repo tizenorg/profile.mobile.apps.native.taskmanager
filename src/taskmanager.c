@@ -75,38 +75,6 @@ static int _lang_changed(void *data)
 	return 0;
 }
 
-static int rotate(enum appcore_rm m, void *data)
-{
-	struct appdata *ad = data;
-	int r;
-
-	if (ad == NULL || ad->win == NULL)
-		return 0;
-
-	switch (m) {
-	case APPCORE_RM_PORTRAIT_NORMAL:
-		r = 0;
-		break;
-	case APPCORE_RM_PORTRAIT_REVERSE:
-		r = 180;
-		break;
-	case APPCORE_RM_LANDSCAPE_NORMAL:
-		r = 270;
-		break;
-	case APPCORE_RM_LANDSCAPE_REVERSE:
-		r = 90;
-		break;
-	default:
-		r = -1;
-		break;
-	}
-
-	if (r >= 0)
-		elm_win_rotation_with_resize_set(ad->win, r);
-
-	return 0;
-}
-
 int _get_vconf_idlelock(void)
 {
 	int ret = -1;
@@ -122,7 +90,6 @@ int _get_vconf_idlelock(void)
 
 void _exit_cb(void *data)
 {
-	struct appdata *ad = (struct appdata *)data;
 	int lock = IDLELOCK_ON;
 	lock = _get_vconf_idlelock();
 
@@ -232,7 +199,6 @@ int app_create(void *data)
 	appcore_set_event_callback(APPCORE_EVENT_LANG_CHANGE,
 			_lang_changed, ad);
 
-	_restart_pthread(ad);
 	ecore_idler_add(_create_idler_cb, ad);
 
 	return 0;
@@ -240,18 +206,11 @@ int app_create(void *data)
 
 static int app_terminate(void *data)
 {
-_D("func\n");
-	struct appdata *ad = data;
-//	sleep(1);
-//	ecore_timer_add(0.2, _exit_cb, NULL);
-
 	return 0;
 }
 
 static int app_pause(void *data)
 {
-_D("func\n");
-	_fini_pthread();
 	return 0;
 }
 
@@ -261,6 +220,10 @@ _D("func\n");
 	struct appdata *ad = data;
 
 	refresh_app_info(ad);
+	if (ad->killall_timer) {
+		ecore_timer_del(ad->killall_timer);
+		ad->killall_timer = NULL;
+	}
 	if (ad->exit_timer) {
 		ecore_timer_del(ad->exit_timer);
 		ad->exit_timer = NULL;

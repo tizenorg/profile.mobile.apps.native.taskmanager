@@ -53,15 +53,11 @@ int runapp_info_get(const aul_app_info *ainfo, void *data)
 	ail_appinfo_h handle;
 	ail_error_e ret;
 
-	int i;
-	int vali;
 	char *valc;
 	bool valb;
-	char *icn_path;
 	char buf[1024] = { 0, };
 	struct appdata *ad = data;
 	struct _task_info *info;
-	float usr = 0.0, sys = 0.0;
 
 	retvm_if(ainfo == NULL, -1, "Invalid argument: ainfo is NULL\n");
 	retvm_if(data == NULL, -1, "Invalid argument: data is NULL\n");
@@ -131,18 +127,15 @@ int taskmanager_get_history_app_info(void *data)
 	int flag = 0;
 
 	struct rua_rec rec_result = { 0, };
-	char *val;
 	char **table = NULL;
 	char buf[1024] = { 0, };
 	int nrows = 0, ncols = 0;
 	int row = 0;
-	int i, cnt;
 
 	ail_appinfo_h handle;
 	ail_error_e ret;
 	bool valb;
 	char *valc;
-	int vali;
 
 	retvm_if(data == NULL, -1, "Invalid argument: data is NULL\n");
 	retvm_if(rua_init() == -1, -1, "Failed to rua_init\n");
@@ -279,7 +272,7 @@ int _free_einalist_all(struct appdata *ad)
 int _subt_einalist_item(struct appdata *ad, int pid)
 {
 _D("func\n");
-	Eina_List *l, *l_next;
+	Eina_List *l;
 	int ret = -1;
 	struct _task_info *info;
 

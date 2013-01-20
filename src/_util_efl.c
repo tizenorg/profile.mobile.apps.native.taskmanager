@@ -84,8 +84,8 @@ Evas_Object *_add_icon(Evas_Object *parent, const char *png)
 	}
 
 	snprintf(buf, sizeof(buf), "%s/%s", IMAGEDIR, png);
-	elm_icon_file_set(eo, buf, NULL);
-	elm_icon_resizable_set(eo, 1, 1);
+	elm_image_file_set(eo, buf, NULL);
+	elm_image_resizable_set(eo, 1, 1);
 	evas_object_size_hint_aspect_set(eo, EVAS_ASPECT_CONTROL_VERTICAL, 1,
 					 1);
 

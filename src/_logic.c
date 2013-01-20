@@ -19,6 +19,7 @@
 
 
 #include <appcore-common.h>
+#include <ail.h>
 #include <aul.h>
 #include <Ecore_X.h>
 #include <vconf.h>
@@ -40,7 +41,6 @@ _D("func\n");
 
 	int ret = -1;
 
-	_fini_pthread();
 	if (ad->update_timer) {
 		ecore_timer_del(ad->update_timer);
 		ad->update_timer = NULL;
@@ -60,7 +60,7 @@ _D("func\n");
 			_del_popup_timer(ad);
 			_del_progressbar(ad);
 			refresh_app_info(ad);
-			_restart_pthread(ad);
+			//_restart_pthread(ad);
 			break;
 
 		case MODE_END_ALL_INUSE:
@@ -68,10 +68,16 @@ _D("func\n");
 			_D("bb\n");
 			if (ad->endcnt <= 1) {
 				_D("count set 0\n");
+
+				if(ad->killall_timer)
+				{
+					ecore_timer_del(ad->killall_timer);
+					ad->killall_timer = NULL;
+				}
+
 				_del_popup_timer(ad);
 				_del_progressbar(ad);
 				refresh_app_info(ad);
-				_restart_pthread(ad);
 
 			} else {
 				ad->endcnt--;
@@ -85,60 +91,7 @@ _D("func\n");
 
 static void _back_cb(void *data, Evas_Object *obj, void *event_info)
 {
-	struct appdata *ad = (struct appdata *)data;
-	/*
-	_unset_notification_level(ad->win);
-	*/
 	elm_exit();
-
-}
-
-static void _drag_start_cb(void *data, Evas_Object *obj, void *event_info)
-{
-	_D("func\n");
-	struct appdata *ad = (struct appdata *)data;
-	if (ad->update_timer) {
-		ecore_timer_del(ad->update_timer);
-		ad->update_timer = NULL;
-	}
-}
-
-static void _drag_stop_cb(void *data, Evas_Object *obj, void *event_info)
-{
-	_D("func\n");
-	struct appdata *ad = (struct appdata *)data;
-	if (ad->update_timer) {
-		ecore_timer_del(ad->update_timer);
-		ad->update_timer = NULL;
-	}
-	ad->update_timer = ecore_timer_add(2.0, _update_list, ad);
-}
-
-
-static void _anim_start_cb(void *data, Evas_Object *obj, void *event_info)
-{
-	_D("func\n");
-	struct appdata *ad = (struct appdata *)data;
-	if (ad->update_timer) {
-		ecore_timer_del(ad->update_timer);
-		ad->update_timer = NULL;
-	}
-}
-
-static void _anim_stop_cb(void *data, Evas_Object *obj, void *event_info)
-{
-	_D("func\n");
-	struct appdata *ad = (struct appdata *)data;
-	if (ad->update_timer) {
-		ecore_timer_del(ad->update_timer);
-		ad->update_timer = NULL;
-	}
-	ad->update_timer = ecore_timer_add(2.0, _update_list, ad);
-}
-
-static void _moved_cb(void *data, Evas_Object *obj, void *event_info)
-{
-	_D("func\n");
 }
 
 int _app_create(struct appdata *ad)
@@ -169,10 +122,6 @@ int _app_create(struct appdata *ad)
 	elm_genlist_block_count_set(gl, 20);
 	evas_object_data_set(gl, "appdata", ad);
 	elm_object_part_content_set(ly, "list", gl);
-	evas_object_smart_callback_add(gl, "scroll,drag,start", _drag_start_cb, ad);
-	evas_object_smart_callback_add(gl, "scroll,drag,stop", _drag_stop_cb, ad);
-	evas_object_smart_callback_add(gl, "scroll,anim,start", _anim_start_cb, ad);
-	evas_object_smart_callback_add(gl, "scroll,anim,stop", _anim_stop_cb, ad);
 	ad->gl = gl;
 
 	bt = elm_button_add(nv);
@@ -200,6 +149,7 @@ static void _get_win_geometry(struct appdata *ad)
 /* this func is to exit taskmanager after launching application */
 static Eina_Bool __climsg_cb(void *data, int type, void *event)
 {
+_D("%s\n", __func__);
 	static Atom a_deact;
 	pid_t pid_a, pid_d;
 
@@ -232,6 +182,88 @@ static Eina_Bool __climsg_cb(void *data, int type, void *event)
 	return ECORE_CALLBACK_CANCEL;
 }
 
+static int runapp_count = 0;
+
+int _runapp_info_get_count(const aul_app_info *ainfo, void *data)
+{
+	ail_appinfo_h handle;
+	ail_error_e ret;
+	bool is_taskmanage;
+
+	retvm_if(ainfo == NULL, -1, "Invalid argument: ainfo is NULL\n");
+
+	retvm_if(ainfo->pid <= 0, -1, "Invalid pid(%u)\n", ainfo->pid);
+
+	/* filtering */
+	if (ainfo->pid == getpid())
+	{
+		return 0;
+	}
+
+	retvm_if(ainfo->pkg_name == NULL, 0, "Invalid pkg_name(%s)\n", ainfo->pkg_name);
+
+	ret = ail_package_get_appinfo(ainfo->pkg_name, &handle);
+	retvm_if(ret != AIL_ERROR_OK, -1,
+			"Failed to get appinfo, pkg_name:%s\n", ainfo->pkg_name);
+
+	ret = ail_appinfo_get_bool(handle, AIL_PROP_X_SLP_TASKMANAGE_BOOL, &is_taskmanage);
+	if (is_taskmanage == 0) {
+		ret = ail_package_destroy_appinfo(handle);
+		retvm_if(ret != AIL_ERROR_OK, -1, "Failed to destroy appinfo\n");
+		return 0;
+	}
+
+	++runapp_count;
+	_D("running(%s)\n", ainfo->pkg_name);
+	_D("runapp count : %d\n", runapp_count);
+
+	ret = ail_package_destroy_appinfo(handle);
+	retvm_if(ret != AIL_ERROR_OK, -1, "Failed to destroy appinfo\n");
+	return 0;
+}
+
+Eina_Bool _kill_all_timer_cb(void *data)
+{
+	_D("func\n");
+
+	struct appdata *ad = data;
+
+	int ret = AUL_R_ERROR;
+	int retry_cnt = 0;
+	int sleep_value = 500;
+
+	runapp_count = 0;
+
+	while(ret != AUL_R_OK && retry_cnt < 5)
+	{
+		usleep(sleep_value);
+		ret = aul_app_get_running_app_info(_runapp_info_get_count, ad);
+
+		if(ret != AUL_R_OK)
+		{
+			_D("Fail to get running app information\n");
+		}
+
+		retry_cnt++;
+		sleep_value *= 2;
+	}
+	_D("runapp count : %d\n", runapp_count);
+
+	/* count inuse app number */
+	/** if(count == 0) dead_cb */
+	if(runapp_count == 0)
+	{
+		_D("runapp_count == 0\n");
+		_del_popup_timer(ad);
+		_del_progressbar(ad);
+		refresh_app_info(ad);
+		//_restart_pthread(ad);
+		return ECORE_CALLBACK_CANCEL;
+	}
+
+	return ECORE_CALLBACK_RENEW;
+}
+
 void _ok_response_cb(void *data, Evas_Object *obj, void *event_info)
 {
 	struct appdata *ad = (struct appdata *)data;
@@ -248,7 +280,7 @@ void _ok_response_cb(void *data, Evas_Object *obj, void *event_info)
 			_del_popup_timer(ad);
 			_show_progressbar(ad);
 			response_end_inuse(ad);
-			_restart_pthread(ad);
+			//_restart_pthread(ad);
 			break;
 
 		case MODE_END_ALL_INUSE:
@@ -256,6 +288,7 @@ void _ok_response_cb(void *data, Evas_Object *obj, void *event_info)
 			_del_popup_timer(ad);
 			_show_progressbar(ad);
 			response_end_all_inuse(ad);
+			ad->killall_timer = ecore_timer_add(2.0, _kill_all_timer_cb, ad);
 			break;
 
 		case MODE_DEL_HISTORY:
@@ -300,7 +333,6 @@ void _cancel_response_cb(void *data, Evas_Object *obj, void *event_info)
 
 Eina_Bool _create_idler_cb(void *data)
 {
-	Evas_Object *pu, *bt1, *bt2;
 	struct appdata *ad = (struct appdata *)data;
 	retvm_if(ad == NULL, ECORE_CALLBACK_CANCEL, "Invalid argument\n");
 
@@ -308,7 +340,6 @@ Eina_Bool _create_idler_cb(void *data)
 
 	_key_grab(ad);
 
-	_init_pthread();
 	_get_win_geometry(ad);
 	ecore_event_handler_add(ECORE_X_EVENT_CLIENT_MESSAGE, __climsg_cb, ad);
 
