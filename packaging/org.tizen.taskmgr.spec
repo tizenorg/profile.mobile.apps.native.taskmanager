@@ -1,6 +1,6 @@
 Name:       org.tizen.taskmgr
 Summary:    Task Manager
-Version: 0.14.4
+Version: 0.14.5
 Release:    1
 Group:      devel
 License:    Flora Software License
