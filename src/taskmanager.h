@@ -126,7 +126,7 @@ Evas_Object *load_edj(Evas_Object *parent, const char *file, const char *group);
 int _unset_notification_level(Evas_Object *win);
 int _set_notification_level(Evas_Object *win, Utilx_Notification_Level level);
 void _key_grab(struct appdata *ad);
-void _exit_cb(void *data);
+Eina_Bool _exit_cb(void *data);
 
 #endif
 /* __TASKMANAGER_H___ */

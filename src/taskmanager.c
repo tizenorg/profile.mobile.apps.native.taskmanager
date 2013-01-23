@@ -88,7 +88,7 @@ int _get_vconf_idlelock(void)
 	return lock == VCONFKEY_IDLE_LOCK ? IDLELOCK_ON : IDLELOCK_OFF;
 }
 
-void _exit_cb(void *data)
+Eina_Bool _exit_cb(void *data)
 {
 	int lock = IDLELOCK_ON;
 	lock = _get_vconf_idlelock();
@@ -100,7 +100,9 @@ void _exit_cb(void *data)
 	}
 	else{
 		_D("IDLELOCK is set, taskmnager doesn't exit\n");
+		return ECORE_CALLBACK_CANCEL;
 	}
+	return ECORE_CALLBACK_CANCEL;
 }
 
 void _key_grab(struct appdata *ad)

@@ -158,7 +158,7 @@ _D("%s\n", __func__);
 
 	if(ev == NULL) {
 		_E("Invalid argument: event is NULL\n");
-		_exit_cb(ad);
+		ad->exit_timer = ecore_timer_add(0.3, _exit_cb, ad);
 		return ECORE_CALLBACK_CANCEL;
 	}
 
@@ -172,7 +172,7 @@ _D("%s\n", __func__);
 	}
 
 	if (ev->message_type == a_deact) {
-		_exit_cb(ad);
+		ad->exit_timer = ecore_timer_add(0.3, _exit_cb, ad);
 		return ECORE_CALLBACK_CANCEL;
 	} else {
 		_D("messagre is act\n");
