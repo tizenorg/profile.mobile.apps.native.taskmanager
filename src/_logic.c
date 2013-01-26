@@ -336,6 +336,8 @@ Eina_Bool _create_idler_cb(void *data)
 	struct appdata *ad = (struct appdata *)data;
 	retvm_if(ad == NULL, ECORE_CALLBACK_CANCEL, "Invalid argument\n");
 
+	_check_show_state();
+
 	evas_object_show(ad->win);
 
 	_key_grab(ad);

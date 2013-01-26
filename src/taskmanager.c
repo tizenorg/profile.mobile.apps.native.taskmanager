@@ -45,6 +45,12 @@ enum {
 	IDLELOCK_MAX,
 };
 
+enum {
+	LCD_OFF = 0x0,
+	LCD_ON,
+	LCD_MAX,
+};
+
 static struct text_part main_txt[] = {
 };
 
@@ -81,11 +87,22 @@ int _get_vconf_idlelock(void)
 	int lock = IDLELOCK_OFF;
 
 	ret = vconf_get_int(VCONFKEY_IDLE_LOCK_STATE, &lock);
-	retvm_if(ret < 0, -1, "Failed to get vconf %s\n",
-		 VCONFKEY_IDLE_LOCK_STATE);
+	retvm_if(ret < 0, -1, "Failed to get vconf\n");
 	_D("idlelock vconf:%d\n", lock);
 
 	return lock == VCONFKEY_IDLE_LOCK ? IDLELOCK_ON : IDLELOCK_OFF;
+}
+
+int _get_vconf_lcdstate(void)
+{
+	int ret = -1;
+	int lcd = 0;
+
+	ret = vconf_get_int(VCONFKEY_PM_STATE, &lcd);
+	retvm_if(ret < 0, -1, "Failed to get vconf\n");
+	_D("lcd vconf:%d\n", lcd);
+
+	return lcd == VCONFKEY_PM_STATE_LCDOFF ? LCD_OFF : LCD_ON;
 }
 
 Eina_Bool _exit_cb(void *data)
@@ -167,6 +184,17 @@ int _set_notification_level(Evas_Object *win, Utilx_Notification_Level level)
 	ecore_x_netwm_window_type_set(xwin, ECORE_X_WINDOW_TYPE_NOTIFICATION);
 	utilx_set_system_notification_level(ecore_x_display_get(), xwin, level);
 	return 0;
+}
+
+void _check_show_state(void)
+{
+	int lcd = LCD_OFF, idlelock = IDLELOCK_OFF;
+	lcd = _get_vconf_lcdstate();
+	idlelock = _get_vconf_idlelock();
+	if(lcd == LCD_OFF || idlelock == IDLELOCK_ON)
+	{
+		elm_exit();
+	}
 }
 
 int app_create(void *data)

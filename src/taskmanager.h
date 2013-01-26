@@ -127,6 +127,7 @@ int _unset_notification_level(Evas_Object *win);
 int _set_notification_level(Evas_Object *win, Utilx_Notification_Level level);
 void _key_grab(struct appdata *ad);
 Eina_Bool _exit_cb(void *data);
+void _check_show_state(void);
 
 #endif
 /* __TASKMANAGER_H___ */
