@@ -1,0 +1,36 @@
+msgid "IDS_TASKMGR_BUTTON_CLEAR_HISTORY_ABB"
+msgstr "Clear history"
+
+msgid "IDS_TASKMGR_BUTTON_CLOSE_ALL_APPLICATIONS"
+msgstr "Close all applications"
+
+msgid "IDS_TASKMGR_HEADER_RUNNING"
+msgstr "Running"
+
+msgid "IDS_TASKMGR_MBODY_NO_APPS_OPEN"
+msgstr "No apps open"
+
+msgid "IDS_TASKMGR_MBODY_NO_RECENTLY_USED_APPS"
+msgstr "No recently used apps"
+
+msgid "IDS_TASKMGR_MBODY_RECENTLY_USED"
+msgstr "Recently used"
+
+msgid "IDS_TASKMGR_POP_CLEAR_ALL_APP_HISTORY_Q"
+msgstr "Clear all app history?"
+
+msgid "IDS_TASKMGR_POP_CLEAR_PS_HISTORY_Q"
+msgstr "Clear %s history?"
+
+msgid "IDS_TASKMGR_POP_CLOSE_ALL_APPS_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
+msgstr "Close all apps? This may cause data to be lost"
+
+msgid "IDS_TASKMGR_POP_CLOSE_PS_APP_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
+msgstr "Close %s app? This may cause data to be lost"
+
+msgid "IDS_TASKMGR_POP_UNABLE_TO_OPEN_APPLICATION"
+msgstr "Unable to open application"
+
+msgid "IDS_TASKMGR_HEADER_TASK_SWITCHER"
+msgstr "Task switcher"
+

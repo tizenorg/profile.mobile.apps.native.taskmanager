@@ -1,0 +1,36 @@
+msgid "IDS_TASKMGR_BUTTON_CLEAR_HISTORY_ABB"
+msgstr "Effacer historique"
+
+msgid "IDS_TASKMGR_BUTTON_CLOSE_ALL_APPLICATIONS"
+msgstr "Fermer toutes les applications"
+
+msgid "IDS_TASKMGR_HEADER_RUNNING"
+msgstr "Exécution"
+
+msgid "IDS_TASKMGR_MBODY_NO_APPS_OPEN"
+msgstr "Aucune appli ouverte"
+
+msgid "IDS_TASKMGR_MBODY_NO_RECENTLY_USED_APPS"
+msgstr "Auc appli récemment util"
+
+msgid "IDS_TASKMGR_MBODY_RECENTLY_USED"
+msgstr "Récemment utilisée"
+
+msgid "IDS_TASKMGR_POP_CLEAR_ALL_APP_HISTORY_Q"
+msgstr "Effacer l'historique de toutes les applications ?"
+
+msgid "IDS_TASKMGR_POP_CLEAR_PS_HISTORY_Q"
+msgstr "Effacer l'historique %s ?"
+
+msgid "IDS_TASKMGR_POP_CLOSE_ALL_APPS_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
+msgstr "Fermer toutes les applications ? Cela peut entraîner la perte de données"
+
+msgid "IDS_TASKMGR_POP_CLOSE_PS_APP_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
+msgstr "Fermer l'application %s ? Cela peut entraîner la perte de données"
+
+msgid "IDS_TASKMGR_POP_UNABLE_TO_OPEN_APPLICATION"
+msgstr "Impossible d'ouvrir l'application"
+
+msgid "IDS_TASKMGR_HEADER_TASK_SWITCHER"
+msgstr "Gestionnaire de tâches"
+

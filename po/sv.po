@@ -1,0 +1,36 @@
+msgid "IDS_TASKMGR_BUTTON_CLEAR_HISTORY_ABB"
+msgstr "Rensa historik"
+
+msgid "IDS_TASKMGR_BUTTON_CLOSE_ALL_APPLICATIONS"
+msgstr "Stäng alla program"
+
+msgid "IDS_TASKMGR_HEADER_RUNNING"
+msgstr "Körs"
+
+msgid "IDS_TASKMGR_MBODY_NO_APPS_OPEN"
+msgstr "Inga öppna program"
+
+msgid "IDS_TASKMGR_MBODY_NO_RECENTLY_USED_APPS"
+msgstr "Inga nyligen anv. program"
+
+msgid "IDS_TASKMGR_MBODY_RECENTLY_USED"
+msgstr "Nyligen använd"
+
+msgid "IDS_TASKMGR_POP_CLEAR_ALL_APP_HISTORY_Q"
+msgstr "Rensa all programhistorik?"
+
+msgid "IDS_TASKMGR_POP_CLEAR_PS_HISTORY_Q"
+msgstr "Rensa historik för %s?"
+
+msgid "IDS_TASKMGR_POP_CLOSE_ALL_APPS_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
+msgstr "Stäng alla program? Detta kan medföra att data förloras"
+
+msgid "IDS_TASKMGR_POP_CLOSE_PS_APP_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
+msgstr "Stäng %s program? Detta kan medföra att data förloras"
+
+msgid "IDS_TASKMGR_POP_UNABLE_TO_OPEN_APPLICATION"
+msgstr "Det går inte att öppna program"
+
+msgid "IDS_TASKMGR_HEADER_TASK_SWITCHER"
+msgstr "Aktivitetsväxlare"
+

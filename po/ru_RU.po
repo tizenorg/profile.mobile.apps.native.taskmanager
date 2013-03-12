@@ -1,0 +1,36 @@
+msgid "IDS_TASKMGR_BUTTON_CLEAR_HISTORY_ABB"
+msgstr "Очистить журнал"
+
+msgid "IDS_TASKMGR_BUTTON_CLOSE_ALL_APPLICATIONS"
+msgstr "Закрыть все приложения"
+
+msgid "IDS_TASKMGR_HEADER_RUNNING"
+msgstr "Выполнять"
+
+msgid "IDS_TASKMGR_MBODY_NO_APPS_OPEN"
+msgstr "Нет открытых приложений"
+
+msgid "IDS_TASKMGR_MBODY_NO_RECENTLY_USED_APPS"
+msgstr "Нет последних приложений"
+
+msgid "IDS_TASKMGR_MBODY_RECENTLY_USED"
+msgstr "Недавно использовавшийся"
+
+msgid "IDS_TASKMGR_POP_CLEAR_ALL_APP_HISTORY_Q"
+msgstr "Очистить журнал всех приложений?"
+
+msgid "IDS_TASKMGR_POP_CLEAR_PS_HISTORY_Q"
+msgstr "Очистить журнал %s?"
+
+msgid "IDS_TASKMGR_POP_CLOSE_ALL_APPS_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
+msgstr "Закрыть все приложения? Это может привести к потере данных"
+
+msgid "IDS_TASKMGR_POP_CLOSE_PS_APP_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
+msgstr "Закрыть приложение %s? Это может привести к потере данных"
+
+msgid "IDS_TASKMGR_POP_UNABLE_TO_OPEN_APPLICATION"
+msgstr "Не удалось открыть приложение"
+
+msgid "IDS_TASKMGR_HEADER_TASK_SWITCHER"
+msgstr "Диспетчер задач"
+

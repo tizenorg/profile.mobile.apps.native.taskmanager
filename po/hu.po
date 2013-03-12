@@ -1,0 +1,36 @@
+msgid "IDS_TASKMGR_BUTTON_CLEAR_HISTORY_ABB"
+msgstr "Előzmények törlése"
+
+msgid "IDS_TASKMGR_BUTTON_CLOSE_ALL_APPLICATIONS"
+msgstr "Összes alkalmazás bezárása"
+
+msgid "IDS_TASKMGR_HEADER_RUNNING"
+msgstr "Futás"
+
+msgid "IDS_TASKMGR_MBODY_NO_APPS_OPEN"
+msgstr "Nincs megnyitott alk."
+
+msgid "IDS_TASKMGR_MBODY_NO_RECENTLY_USED_APPS"
+msgstr "A legut. alk. list. üres"
+
+msgid "IDS_TASKMGR_MBODY_RECENTLY_USED"
+msgstr "Legutóbb használt"
+
+msgid "IDS_TASKMGR_POP_CLEAR_ALL_APP_HISTORY_Q"
+msgstr "Törli az összes alkalmazás előzményeit?"
+
+msgid "IDS_TASKMGR_POP_CLEAR_PS_HISTORY_Q"
+msgstr "Törli a(z) %s előzményeit?"
+
+msgid "IDS_TASKMGR_POP_CLOSE_ALL_APPS_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
+msgstr "Bezárja az összes alkalmazást? Így adatok veszhetnek el"
+
+msgid "IDS_TASKMGR_POP_CLOSE_PS_APP_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
+msgstr "Bezár %s alkalmazást? Így adatok veszhetnek el"
+
+msgid "IDS_TASKMGR_POP_UNABLE_TO_OPEN_APPLICATION"
+msgstr "Nem lehet megnyitni az alkalmazást"
+
+msgid "IDS_TASKMGR_HEADER_TASK_SWITCHER"
+msgstr "Feladatváltó"
+

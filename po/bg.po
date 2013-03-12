@@ -1,0 +1,36 @@
+msgid "IDS_TASKMGR_BUTTON_CLEAR_HISTORY_ABB"
+msgstr "Изтриване хронол."
+
+msgid "IDS_TASKMGR_BUTTON_CLOSE_ALL_APPLICATIONS"
+msgstr "Затвори всички приложения"
+
+msgid "IDS_TASKMGR_HEADER_RUNNING"
+msgstr "Изпълнява се"
+
+msgid "IDS_TASKMGR_MBODY_NO_APPS_OPEN"
+msgstr "Няма отворени приложения"
+
+msgid "IDS_TASKMGR_MBODY_NO_RECENTLY_USED_APPS"
+msgstr "Няма изп. наскоро прил."
+
+msgid "IDS_TASKMGR_MBODY_RECENTLY_USED"
+msgstr "Последно използван"
+
+msgid "IDS_TASKMGR_POP_CLEAR_ALL_APP_HISTORY_Q"
+msgstr "Изтриване на хронологията на всички приложения?"
+
+msgid "IDS_TASKMGR_POP_CLEAR_PS_HISTORY_Q"
+msgstr "Изтриване на хронологията на %s?"
+
+msgid "IDS_TASKMGR_POP_CLOSE_ALL_APPS_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
+msgstr "Затваряне на всички приложения? Това може да причини загуба на данни"
+
+msgid "IDS_TASKMGR_POP_CLOSE_PS_APP_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
+msgstr "Затваряне на приложението %s? Това може да причини загуба на данни"
+
+msgid "IDS_TASKMGR_POP_UNABLE_TO_OPEN_APPLICATION"
+msgstr "Приложението не може да се отвори"
+
+msgid "IDS_TASKMGR_HEADER_TASK_SWITCHER"
+msgstr "Превключване на задачи"
+

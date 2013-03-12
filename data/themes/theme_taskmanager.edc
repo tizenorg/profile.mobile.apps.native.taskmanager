@@ -1,0 +1,1446 @@
+/*
+ * Copyright 2012  Samsung Electronics Co., Ltd
+ * 
+ * Licensed under the Flora License, Version 1.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     http://floralicense.org/license/
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+collections {
+
+	////////////// BUTTON STYLE1 GROUP START /////////////////////////////////////////////
+	group { name: "elm/button/base/text_only/style1_tm";
+		images {
+			image: "00_button_03_normal.png" COMP;
+			image: "00_button_03_press.png" COMP;
+			image: "00_button_03_focus.png" COMP;
+		}
+		script {
+			public button_state = 0; //0:enabled, 1: disabled
+		}
+		parts {
+			part { name: "base";
+				type: RECT;
+				mouse_events: 1;
+				description { state: "default" 0.0;
+					min: 0 70;
+					color: 0 0 0 0;
+				}
+			}
+			part { name: "button_image";
+				mouse_events: 1;
+				scale: 1;
+				description { state: "default" 0.0;
+					min: 0 50;
+					fixed: 0 1;
+					rel1 {
+						to: "base";
+						relative: 0.0 0.5;
+					}
+					rel2 {
+						to: "base";
+						relative: 1.0 0.5;
+					}
+					image {
+						normal: "00_button_03_normal.png";
+						border: 7 7 7 7;
+						border_scale: 1;
+					}
+				}
+				description { state: "clicked" 0.0;
+					inherit: "default" 0.0;
+					image.normal: "00_button_03_press.png";
+				}
+				description { state: "disabled" 0.0;
+					inherit:  "default" 0.0;
+				}
+				description { state: "focused" 0.0;
+					inherit: "default" 0.0;
+					image.normal: "00_button_03_focus.png";
+				}
+			}
+			part {
+				name: "padding_left";
+				type: RECT;
+				scale: 1;
+				mouse_events: 0;
+				description { state: "default" 0.0;
+					align: 0.0 0.0;
+					rel1.relative: 0.0 0.0;
+					rel2.relative: 0.0 1.0;
+					min: 5 5;
+					fixed: 1 0;
+					color: 0 0 0 0;
+				}
+			}
+			part {
+				name: "padding_right";
+				type: RECT;
+				scale: 1;
+				mouse_events: 0;
+				description { state: "default" 0.0;
+					align: 1.0 0.0;
+					rel1.relative: 1.0 0.0;
+					rel2.relative: 1.0 1.0;
+					min: 5 5;
+					fixed: 1 0;
+					color: 0 0 0 0;
+				}
+			}
+			part {
+				name: "padding_top";
+				type: RECT;
+				scale: 1;
+				mouse_events: 0;
+				description { state: "default" 0.0;
+					align: 0.0 0.0;
+					rel1.relative: 0.0 0.0;
+					rel2.relative: 1.0 0.0;
+					min: 5 5;
+					fixed: 0 1;
+					color: 0 0 0 0;
+				}
+			}
+			part {
+				name: "padding_bottom";
+				type: RECT;
+				scale: 1;
+				mouse_events: 0;
+				description { state: "default" 0.0;
+					align: 1.0 1.0;
+					rel1.relative: 0.0 1.0;
+					rel2.relative: 1.0 1.0;
+					min: 5 5;
+					fixed: 0 1;
+					color: 0 0 0 0;
+				}
+			}
+			part {
+				name: "icon_rect";
+				type: RECT;
+				scale: 1;
+				mouse_events: 0;
+				description { state: "default" 0.0;
+					visible: 1;
+					min: 0 40;
+					fixed: 1 0;
+					rel1 {relative: 0.0 1.0; to_x: "elm.swallow.content"; to_y: "padding_top"; }
+					rel2 {relative: 1.0 0.0; to_x: "elm.swallow.content"; to_y: "padding_bottom"; }
+					align: 0.0 0.5;
+					color: 0 0 0 0;
+				}
+			} 
+			part {
+				name: "padding_icon_text";
+				type: RECT;
+				scale: 1;
+				mouse_events: 0;
+				description { state: "default" 0.0; //when only icon or no icon is there
+					align: 0.0 0.0;
+					rel1 { relative: 1.0 0.0; to: "icon_rect"; }
+					rel2 { relative: 1.0 1.0; to: "icon_rect"; } 			
+					fixed: 1 0;
+					min: 0 0;
+					color: 0 0 0 0;
+				}
+				description { state: "icononly" 0.0;
+					inherit: "default" 0.0;
+				}
+				description { state: "visible" 0.0; //when icon is visible
+					align: 0.0 0.0;
+					rel1 { relative: 1.0 0.0; to: "icon_rect"; }
+					rel2 { relative: 1.0 1.0; to: "icon_rect"; } 			
+					fixed: 1 0;
+					min: 5 0;
+					color: 0 0 0 0;
+				}
+			}					
+			part { name: "elm.swallow.content";
+				type: SWALLOW;
+				scale: 1;
+				description { state: "default" 0.0;
+					visible: 0;
+					align: 0.0 0.5;
+					rel1 {relative: 1.0 1.0; to_x: "padding_left"; to_y: "padding_top"; }
+					rel2 {relative: 1.0 0.0; to_x: "padding_left"; to_y: "padding_bottom"; }
+					fixed: 1 0;
+				}
+				description { state: "visible" 0.0;
+					fixed: 1 0;
+					visible: 1;
+					align: 0.0 0.5;
+					rel1 {relative: 1.0 1.0; to_x: "padding_left"; to_y: "padding_top"; }
+					rel2 {relative: 1.0 0.0; to_x: "padding_left"; to_y: "padding_bottom"; }
+					aspect: 1.0 1.0;
+					aspect_preference: VERTICAL;
+				}
+				description { state: "icononly" 0.0;;
+					visible: 1;
+					min: 40 40;
+					rel1 {relative: 1.0 1.0; to_x: "padding_left"; to_y: "padding_top"; }
+					rel2 {relative: 0.0 0.0; to_x: "padding_right"; to_y: "padding_bottom"; }
+					align: 0.5 0.5;
+					aspect: 1.0 1.0;
+					aspect_preference: VERTICAL;
+				}
+			}
+			part { name: "elm.text";
+				type:          TEXT;
+//				effect:        SHADOW;
+				mouse_events:  0;
+				scale: 1;
+				description { state: "default" 0.0;
+					visible: 0;
+					rel1 { relative: 1.0 1.0; to_x: "padding_icon_text"; to_y: "padding_top"; }
+					rel2 { relative: 0.0 0.0; to_x: "padding_right"; to_y:"padding_bottom"; }
+					align: 0.5 0.5;
+					color: 90 73 40 255;
+					color2: 255 255 255 255;
+					text {
+						font: "SLP:style=Medium";
+						size: 24;
+						min:  0 0;
+						align: 0.5 0.5;
+						max: 1 0;
+					}
+				}
+				description { state: "visible" 0.0;
+					inherit: "default" 0.0;
+					visible: 1;
+					min: 90 40;
+				}
+				description { state: "clicked" 0.0;
+					inherit: "default" 0.0;
+					visible: 1;
+					min: 0 0;
+					color: 255 255 255 255;
+					color2: 0 0 0 102;
+				}
+				description { state: "disabled" 0.0;
+					inherit: "default" 0.0;
+					color: 0 0 0 128;
+					color3: 0 0 0 0;
+				}
+				description { state: "disabled_visible" 0.0;
+					inherit: "default" 0.0;
+					color: 0 0 0 128;
+					color3: 0 0 0 0;
+					visible: 1;
+				}
+				description { state: "focused" 0.0;
+					inherit: "default" 0.0;
+					visible: 1;
+					min: 0 0;
+					color: 255 255 255 255;
+					color2: 0 0 0 102;
+				}
+			}
+			part { name: "over2";
+				type: RECT;
+				mouse_events: 1;
+				repeat_events: 1;
+				ignore_flags: ON_HOLD;
+				description { state: "default" 0.0;
+					color: 0 0 0 0;
+				}
+				description { state: "disabled" 0.0;
+					inherit:  "default" 0.0;
+					visible: 0;
+				}
+			}
+			part { name: "over3";
+				type: RECT;
+				mouse_events: 1;
+				repeat_events: 1;
+				description { state: "default" 0.0;
+					color: 0 0 0 0;
+				}
+				description { state: "clicked" 0.0;
+					inherit:  "default" 0.0;
+					visible: 1;
+				}
+			}
+			part { name: "disabler";
+				type: RECT;
+				description { state: "default" 0.0;
+					color: 0 0 0 0;
+					visible: 0;
+				}
+				description { state: "disabled" 0.0;
+					inherit: "default" 0.0;
+					visible: 1;
+				}
+			}
+		}
+		programs {
+			program { name: "button_click";
+				signal: "mouse,down,1";
+				source: "over2";
+				action: SIGNAL_EMIT "elm,action,press" "";
+				after: "button_click_anim";
+			}
+			program { name: "button_click_anim";
+				action: STATE_SET "clicked" 0.0;
+				target: "button_image";
+				after: "text_clicked";
+			}
+			program { name: "text_clicked";
+				script {
+					new st[31];
+					new Float:vl;
+					get_state(PART:"elm.text", st, 30, vl);
+					if (!strcmp(st, "visible"))
+						set_state(PART:"elm.text", "clicked", 0.0);
+				}
+			}
+			program { name: "button_unpress";
+				action: SIGNAL_EMIT "elm,action,unpress" "";
+			}
+			program { name: "button_mouseout_clicked";
+				signal: "mouse,up,1";
+				source: "over3";
+				script {
+					new st[31];
+					new Float:vl;
+					get_state(PART:"elm.swallow.content", st, 30, vl);
+					if (strcmp(st, "icononly"))
+					{
+						emit("elm,action,default,text,set", "");
+						set_state(PART:"elm.text", "visible", 0.0);
+					}
+					if(get_int(button_state) !=1)
+						set_state(PART:"button_image", "default", 0.0);
+				}
+				after: button_unpress;
+			}
+			program { name: "button_click2";
+				signal: "mouse,down,1";
+				source: "over3";
+				action: STATE_SET "clicked" 0.0;
+				target: "over3";
+			}
+			program { name: "button_unclick2";
+				signal: "mouse,clicked,1";
+				source: "over3";
+				action: STATE_SET "default" 0.0;
+				target: "over3";
+			}
+			program { name: "button_unclick3";
+				signal: "mouse,clicked,1";
+				source: "over2";
+				action: SIGNAL_EMIT "elm,action,click" "";
+			}
+			program { name: "text_show";
+				signal: "elm,state,text,visible";
+				source: "elm";
+				script {
+					new st[31];
+					new Float:vl;
+					get_state(PART:"elm.swallow.content", st, 30, vl);
+					if (!strcmp(st, "icononly"))
+					{
+						set_state(PART:"elm.swallow.content", "visible", 0.0);
+						set_state(PART:"padding_icon_text", "visible", 0.0);
+					}
+					set_state(PART:"elm.text", "visible", 0.0);
+				}
+			}
+			program { name: "text_hide";
+				signal: "elm,state,text,hidden";
+				source: "elm";
+				script {
+					new st[31];
+					new Float:vl;
+					get_state(PART:"elm.swallow.content", st, 30, vl);
+					if (!strcmp(st, "visible"))
+					{
+						set_state(PART:"elm.swallow.content", "icononly", 0.0);
+						set_state(PART:"padding_icon_text", "icononly", 0.0);
+					}
+					set_state(PART:"elm.text", "default", 0.0);
+				}
+			}
+			program { name: "icon_show";
+				signal: "elm,state,icon,visible";
+				source: "elm";
+				script {
+					new st[31];
+					new Float:vl;
+					get_state(PART:"elm.text", st, 30, vl);
+					if (!strcmp(st, "visible"))
+					{
+						set_state(PART:"elm.swallow.content", "visible", 0.0);
+						set_state(PART:"padding_icon_text", "visible", 0.0);
+					}
+					else
+					{
+						set_state(PART:"elm.swallow.content", "icononly", 0.0);
+						set_state(PART:"padding_icon_text", "icononly", 0.0);
+					}
+				}
+			}
+			program { name: "icon_hide";
+				signal: "elm,state,icon,hidden";
+				source: "elm";
+				action:  STATE_SET "default" 0.0;
+				target: "elm.swallow.content";
+			}
+			program { name: "disable";
+				signal: "elm,state,disabled";
+				source: "elm";
+				action: STATE_SET "disabled" 0.0;
+				target: "button_image";
+				target: "over2";
+				target: "disabler";
+				after: "disable_text";
+			}
+			program { name: "disable_text";
+				script {
+					new st[31];
+					new Float:vl;
+					get_state(PART:"elm.text", st, 30, vl);
+					if (!strcmp(st, "visible"))
+						set_state(PART:"elm.text", "disabled_visible", 0.0);
+					else
+						set_state(PART:"elm.text", "disabled", 0.0);
+					set_int(button_state, 1);
+				}
+			}
+			program { name: "enable";
+				signal: "elm,state,enabled";
+				source: "elm";
+				action: STATE_SET "default" 0.0;
+				target: "button_image";
+				target: "over2";
+				target: "disabler";
+				after: "enable_text";
+			}
+			program { name: "enable_text";
+				script {
+					new st[31];
+					new Float:vl;
+					get_state(PART:"elm.text", st, 30, vl);
+					if (!strcmp(st, "disabled_visible"))
+						set_state(PART:"elm.text", "visible", 0.0);
+					else
+						set_state(PART:"elm.text", "default", 0.0);
+					set_int(button_state, 0);
+				}
+			}
+			program { name: "focused";
+				signal: "elm,action,focus";
+				source: "elm";
+				action: STATE_SET "focused" 0.0;
+				target: "button_image";
+				target: "elm.text";
+			}
+			program { name: "unfocused";
+				signal: "elm,action,unfocus";
+				source: "elm";
+				action: STATE_SET "default" 0.0;
+				target: "button_image";
+				after: "unfocus_text";
+			}
+			program { name: "unfocus_text";
+				action: STATE_SET "visible" 0.0;
+				target: "elm.text";
+			}
+		}
+	}
+
+	////////////// BUTTON STYLE2 GROUP START /////////////////////////////////////////////
+	group { name: "elm/button/base/text_only/style2_tm";
+		images {
+			image: "00_button_03_normal.png" COMP;
+			image: "00_button_03_press.png" COMP;
+			image: "00_button_03_focus.png" COMP;
+		}
+		script {
+			public button_state = 0; //0:enabled, 1: disabled
+		}
+		parts {
+			part { name: "base";
+				type: RECT;
+				mouse_events: 1;
+				description { state: "default" 0.0;
+					min: 0 70;
+					color: 0 0 0 0;
+				}
+			}
+			part { name: "button_image";
+				mouse_events: 1;
+				scale: 1;
+				description { state: "default" 0.0;
+					min: 0 50;
+					fixed: 0 1;
+					rel1 {
+						to: "base";
+						relative: 0.0 0.5;
+					}
+					rel2 {
+						to: "base";
+						relative: 1.0 0.5;
+					}
+					image {
+						normal: "00_button_03_normal.png";
+						border: 7 7 7 7;
+						border_scale: 1;
+					}
+				}
+				description { state: "clicked" 0.0;
+					inherit: "default" 0.0;
+					image.normal: "00_button_03_press.png";
+				}
+				description { state: "disabled" 0.0;
+					inherit:  "default" 0.0;
+				}
+				description { state: "focused" 0.0;
+					inherit: "default" 0.0;
+					image.normal: "00_button_03_focus.png";
+				}
+			}
+			part {
+				name: "padding_left";
+				type: RECT;
+				scale: 1;
+				mouse_events: 0;
+				description { state: "default" 0.0;
+					align: 0.0 0.0;
+					rel1.relative: 0.0 0.0;
+					rel2.relative: 0.0 1.0;
+					min: 5 5;
+					fixed: 1 0;
+					color: 0 0 0 0;
+				}
+			}
+			part {
+				name: "padding_right";
+				type: RECT;
+				scale: 1;
+				mouse_events: 0;
+				description { state: "default" 0.0;
+					align: 1.0 0.0;
+					rel1.relative: 1.0 0.0;
+					rel2.relative: 1.0 1.0;
+					min: 5 5;
+					fixed: 1 0;
+					color: 0 0 0 0;
+				}
+			}
+			part {
+				name: "padding_top";
+				type: RECT;
+				scale: 1;
+				mouse_events: 0;
+				description { state: "default" 0.0;
+					align: 0.0 0.0;
+					rel1.relative: 0.0 0.0;
+					rel2.relative: 1.0 0.0;
+					min: 5 5;
+					fixed: 0 1;
+					color: 0 0 0 0;
+				}
+			}
+			part {
+				name: "padding_bottom";
+				type: RECT;
+				scale: 1;
+				mouse_events: 0;
+				description { state: "default" 0.0;
+					align: 1.0 1.0;
+					rel1.relative: 0.0 1.0;
+					rel2.relative: 1.0 1.0;
+					min: 5 5;
+					fixed: 0 1;
+					color: 0 0 0 0;
+				}
+			}
+			part {
+				name: "icon_rect";
+				type: RECT;
+				scale: 1;
+				mouse_events: 0;
+				description { state: "default" 0.0;
+					visible: 1;
+					min: 0 40;
+					fixed: 1 0;
+					rel1 {relative: 0.0 1.0; to_x: "elm.swallow.content"; to_y: "padding_top"; }
+					rel2 {relative: 1.0 0.0; to_x: "elm.swallow.content"; to_y: "padding_bottom"; }
+					align: 0.0 0.5;
+					color: 0 0 0 0;
+				}
+			} 
+			part {
+				name: "padding_icon_text";
+				type: RECT;
+				scale: 1;
+				mouse_events: 0;
+				description { state: "default" 0.0; //when only icon or no icon is there
+					align: 0.0 0.0;
+					rel1 { relative: 1.0 0.0; to: "icon_rect"; }
+					rel2 { relative: 1.0 1.0; to: "icon_rect"; } 			
+					fixed: 1 0;
+					min: 0 0;
+					color: 0 0 0 0;
+				}
+				description { state: "icononly" 0.0;
+					inherit: "default" 0.0;
+				}
+				description { state: "visible" 0.0; //when icon is visible
+					align: 0.0 0.0;
+					rel1 { relative: 1.0 0.0; to: "icon_rect"; }
+					rel2 { relative: 1.0 1.0; to: "icon_rect"; } 			
+					fixed: 1 0;
+					min: 5 0;
+					color: 0 0 0 0;
+				}
+			}					
+			part { name: "elm.swallow.content";
+				type: SWALLOW;
+				scale: 1;
+				description { state: "default" 0.0;
+					visible: 0;
+					align: 0.0 0.5;
+					rel1 {relative: 1.0 1.0; to_x: "padding_left"; to_y: "padding_top"; }
+					rel2 {relative: 1.0 0.0; to_x: "padding_left"; to_y: "padding_bottom"; }
+					fixed: 1 0;
+				}
+				description { state: "visible" 0.0;
+					fixed: 1 0;
+					visible: 1;
+					align: 0.0 0.5;
+					rel1 {relative: 1.0 1.0; to_x: "padding_left"; to_y: "padding_top"; }
+					rel2 {relative: 1.0 0.0; to_x: "padding_left"; to_y: "padding_bottom"; }
+					aspect: 1.0 1.0;
+					aspect_preference: VERTICAL;
+				}
+				description { state: "icononly" 0.0;;
+					visible: 1;
+					min: 40 40;
+					rel1 {relative: 1.0 1.0; to_x: "padding_left"; to_y: "padding_top"; }
+					rel2 {relative: 0.0 0.0; to_x: "padding_right"; to_y: "padding_bottom"; }
+					align: 0.5 0.5;
+					aspect: 1.0 1.0;
+					aspect_preference: VERTICAL;
+				}
+			}
+			part { name: "elm.text";
+				type:          TEXT;
+//				effect:        SHADOW;
+				mouse_events:  0;
+				scale: 1;
+				description { state: "default" 0.0;
+					visible: 0;
+					rel1 { relative: 1.0 1.0; to_x: "padding_icon_text"; to_y: "padding_top"; }
+					rel2 { relative: 0.0 0.0; to_x: "padding_right"; to_y:"padding_bottom"; }
+					align: 0.5 0.5;
+					color: 90 73 40 255;
+					color2: 255 255 255 255;
+					text {
+						font: "SLP:style=Medium";
+						size: 20;
+						min:  0 0;
+						align: 0.5 0.5;
+						max: 1 0;
+					}
+				}
+				description { state: "visible" 0.0;
+					inherit: "default" 0.0;
+					visible: 1;
+					min: 90 40;
+				}
+				description { state: "clicked" 0.0;
+					inherit: "default" 0.0;
+					visible: 1;
+					min: 0 0;
+					color: 255 255 255 255;
+					color2: 0 0 0 102;
+				}
+				description { state: "disabled" 0.0;
+					inherit: "default" 0.0;
+					color: 0 0 0 128;
+					color3: 0 0 0 0;
+				}
+				description { state: "disabled_visible" 0.0;
+					inherit: "default" 0.0;
+					color: 0 0 0 128;
+					color3: 0 0 0 0;
+					visible: 1;
+				}
+				description { state: "focused" 0.0;
+					inherit: "default" 0.0;
+					visible: 1;
+					min: 0 0;
+					color: 255 255 255 255;
+					color2: 0 0 0 102;
+				}
+			}
+			part { name: "over2";
+				type: RECT;
+				mouse_events: 1;
+				repeat_events: 1;
+				ignore_flags: ON_HOLD;
+				description { state: "default" 0.0;
+					color: 0 0 0 0;
+				}
+				description { state: "disabled" 0.0;
+					inherit:  "default" 0.0;
+					visible: 0;
+				}
+			}
+			part { name: "over3";
+				type: RECT;
+				mouse_events: 1;
+				repeat_events: 1;
+				description { state: "default" 0.0;
+					color: 0 0 0 0;
+				}
+				description { state: "clicked" 0.0;
+					inherit:  "default" 0.0;
+					visible: 1;
+				}
+			}
+			part { name: "disabler";
+				type: RECT;
+				description { state: "default" 0.0;
+					color: 0 0 0 0;
+					visible: 0;
+				}
+				description { state: "disabled" 0.0;
+					inherit: "default" 0.0;
+					visible: 1;
+				}
+			}
+		}
+		programs {
+			program { name: "button_click";
+				signal: "mouse,down,1";
+				source: "over2";
+				action: SIGNAL_EMIT "elm,action,press" "";
+				after: "button_click_anim";
+			}
+			program { name: "button_click_anim";
+				action: STATE_SET "clicked" 0.0;
+				target: "button_image";
+				after: "text_clicked";
+			}
+			program { name: "text_clicked";
+				script {
+					new st[31];
+					new Float:vl;
+					get_state(PART:"elm.text", st, 30, vl);
+					if (!strcmp(st, "visible"))
+						set_state(PART:"elm.text", "clicked", 0.0);
+				}
+			}
+			program { name: "button_unpress";
+				action: SIGNAL_EMIT "elm,action,unpress" "";
+			}
+			program { name: "button_mouseout_clicked";
+				signal: "mouse,up,1";
+				source: "over3";
+				script {
+					new st[31];
+					new Float:vl;
+					get_state(PART:"elm.swallow.content", st, 30, vl);
+					if (strcmp(st, "icononly"))
+					{
+						emit("elm,action,default,text,set", "");
+						set_state(PART:"elm.text", "visible", 0.0);
+					}
+					if(get_int(button_state) !=1)
+						set_state(PART:"button_image", "default", 0.0);
+				}
+				after: button_unpress;
+			}
+			program { name: "button_click2";
+				signal: "mouse,down,1";
+				source: "over3";
+				action: STATE_SET "clicked" 0.0;
+				target: "over3";
+			}
+			program { name: "button_unclick2";
+				signal: "mouse,clicked,1";
+				source: "over3";
+				action: STATE_SET "default" 0.0;
+				target: "over3";
+			}
+			program { name: "button_unclick3";
+				signal: "mouse,clicked,1";
+				source: "over2";
+				action: SIGNAL_EMIT "elm,action,click" "";
+			}
+			program { name: "text_show";
+				signal: "elm,state,text,visible";
+				source: "elm";
+				script {
+					new st[31];
+					new Float:vl;
+					get_state(PART:"elm.swallow.content", st, 30, vl);
+					if (!strcmp(st, "icononly"))
+					{
+						set_state(PART:"elm.swallow.content", "visible", 0.0);
+						set_state(PART:"padding_icon_text", "visible", 0.0);
+					}
+					set_state(PART:"elm.text", "visible", 0.0);
+				}
+			}
+			program { name: "text_hide";
+				signal: "elm,state,text,hidden";
+				source: "elm";
+				script {
+					new st[31];
+					new Float:vl;
+					get_state(PART:"elm.swallow.content", st, 30, vl);
+					if (!strcmp(st, "visible"))
+					{
+						set_state(PART:"elm.swallow.content", "icononly", 0.0);
+						set_state(PART:"padding_icon_text", "icononly", 0.0);
+					}
+					set_state(PART:"elm.text", "default", 0.0);
+				}
+			}
+			program { name: "icon_show";
+				signal: "elm,state,icon,visible";
+				source: "elm";
+				script {
+					new st[31];
+					new Float:vl;
+					get_state(PART:"elm.text", st, 30, vl);
+					if (!strcmp(st, "visible"))
+					{
+						set_state(PART:"elm.swallow.content", "visible", 0.0);
+						set_state(PART:"padding_icon_text", "visible", 0.0);
+					}
+					else
+					{
+						set_state(PART:"elm.swallow.content", "icononly", 0.0);
+						set_state(PART:"padding_icon_text", "icononly", 0.0);
+					}
+				}
+			}
+			program { name: "icon_hide";
+				signal: "elm,state,icon,hidden";
+				source: "elm";
+				action:  STATE_SET "default" 0.0;
+				target: "elm.swallow.content";
+			}
+			program { name: "disable";
+				signal: "elm,state,disabled";
+				source: "elm";
+				action: STATE_SET "disabled" 0.0;
+				target: "button_image";
+				target: "over2";
+				target: "disabler";
+				after: "disable_text";
+			}
+			program { name: "disable_text";
+				script {
+					new st[31];
+					new Float:vl;
+					get_state(PART:"elm.text", st, 30, vl);
+					if (!strcmp(st, "visible"))
+						set_state(PART:"elm.text", "disabled_visible", 0.0);
+					else
+						set_state(PART:"elm.text", "disabled", 0.0);
+					set_int(button_state, 1);
+				}
+			}
+			program { name: "enable";
+				signal: "elm,state,enabled";
+				source: "elm";
+				action: STATE_SET "default" 0.0;
+				target: "button_image";
+				target: "over2";
+				target: "disabler";
+				after: "enable_text";
+			}
+			program { name: "enable_text";
+				script {
+					new st[31];
+					new Float:vl;
+					get_state(PART:"elm.text", st, 30, vl);
+					if (!strcmp(st, "disabled_visible"))
+						set_state(PART:"elm.text", "visible", 0.0);
+					else
+						set_state(PART:"elm.text", "default", 0.0);
+					set_int(button_state, 0);
+				}
+			}
+			program { name: "focused";
+				signal: "elm,action,focus";
+				source: "elm";
+				action: STATE_SET "focused" 0.0;
+				target: "button_image";
+				target: "elm.text";
+			}
+			program { name: "unfocused";
+				signal: "elm,action,unfocus";
+				source: "elm";
+				action: STATE_SET "default" 0.0;
+				target: "button_image";
+				after: "unfocus_text";
+			}
+			program { name: "unfocus_text";
+				action: STATE_SET "visible" 0.0;
+				target: "elm.text";
+			}
+		}
+	}
+
+
+	////////////// GENLIST GROUP START /////////////////////////////////////////////
+
+#define BEAT_GENLIST_PART_BASE( param_item_height ) \
+         part { name: "base"; \
+            type: RECT; \
+            repeat_events: 1; \
+            scale: 1; \
+            description { state: "default" 0.0; \
+               min: 0 param_item_height; \
+               color: 246 245 237 255; \
+            } \
+         }
+
+#define BEAT_GENLIST_PART_BG \
+         part { name: "bg"; \
+            type: RECT; \
+            clip_to: "disclip"; \
+            mouse_events: 0; \
+            description { state: "default" 0.0; \
+               color: 246 245 237 255; \
+            } \
+            description { state: "hide" 0.0; \
+               inherit: "default" 0.0; \
+               rel1 { relative: -0.025 0.0; } \
+               rel2 { relative: 0.975 1.0; } \
+            } \
+            description { state: "hide" 0.1;  \
+               inherit: "default" 0.0; \
+               rel1 { relative: -0.13 0.0; } \
+               rel2 { relative: 0.87 1.0; } \
+            } \
+            description { state: "hide" 0.2; \
+               inherit: "default" 0.0; \
+               rel1 { relative: -0.5 0.0; } \
+               rel2 { relative: 0.5 1.0; } \
+            } \
+            description { state: "hide" 0.3; \
+               inherit: "default" 0.0; \
+               rel1 { relative: -1.0 0.0; } \
+               rel2 { relative: 0.0 1.0; } \
+            } \
+         }
+
+#define BEAT_GENLIST_PART_BG_IMAGE \
+         part { name: "bg_image"; \
+            clip_to: "disclip"; \
+            mouse_events: 0; \
+            description { state: "default" 0.0; \
+               visible: 0; \
+               image.normal: "00_list_bar_press_1x80.png"; \
+            } \
+            description { state: "selected" 0.0; \
+               inherit: "default" 0.0; \
+               visible: 1; \
+            } \
+         }
+
+#define BEAT_GENLIST_PART_BOTTOM_LINE \
+         part { name: "bottom_line"; \
+            type: RECT; \
+            clip_to: "disclip"; \
+            mouse_events: 0; \
+            description { state: "default" 0.0; \
+               min: 0 1; \
+               fixed: 0 1; \
+               visible: 1; \
+               color: 212 212 212 255; \
+               rel1 { \
+                  relative: 0.0 1.0; \
+                  offset: 0 -1; \
+               } \
+            } \
+         }
+
+#define BEAT_GENLIST_PART_PADDING_TOP( param_padding_size ) \
+         part { name: "elm.padding.top"; \
+            type: RECT; \
+            scale: 1; \
+            description { \
+               state: "default" 0.0; \
+               min: 0 param_padding_size; \
+               fixed: 0 1; \
+               visible: 0; \
+               rel2.relative: 0.0 0.0; \
+               align: 0.0 0.0; \
+            } \
+         }
+
+#define BEAT_GENLIST_PART_PADDING_BOTTOM( param_padding_size ) \
+         part { name: "elm.padding.bottom"; \
+            type: RECT; \
+            scale: 1; \
+            description { \
+               state: "default" 0.0; \
+               min: 0 param_padding_size; \
+               fixed: 0 1; \
+               visible: 0; \
+               rel1.relative: 0.0 1.0; \
+               align: 0.0 1.0; \
+            } \
+         }
+
+
+#define BEAT_GENLIST_PART_PADDING_LEFT( param_padding_size ) \
+         part { name: "elm.padding.left"; \
+            type: RECT; \
+            scale: 1; \
+            description { \
+               state: "default" 0.0; \
+               min: param_padding_size 0; \
+               fixed: 1 0; \
+               visible: 0; \
+               rel2.relative: 0.0 1.0; \
+               align: 0.0 0.0; \
+            } \
+         }
+
+
+
+#define BEAT_GENLIST_PART_PADDING_RIGHT( param_padding_size ) \
+       part { name: "elm.padding.right"; \
+            type: RECT; \
+            scale: 1; \
+            description { state: "default" 0.0; \
+               min: param_padding_size 0; \
+               fixed: 1 0; \
+               visible: 0; \
+               rel1.relative: 1.0  0.0; \
+               align: 1.0 0.0; \
+            } \
+         }
+
+#define BEAT_GENLIST_PART_DISCLIP \
+        part { name: "disclip"; \
+            type: RECT; \
+            description { state: "default" 0.0; \
+               rel1.to: "bg"; \
+               rel2.to: "bg"; \
+            } \
+            description { state: "disabled" 0.0; \
+               inherit: "default" 0.0; \
+               color: 255 255 255 64; \
+            } \
+         }
+
+
+	group { name: "elm/genlist/item_compress/taskswitcher/default";
+		alias: "elm/genlist/item_compress_odd/taskswitcher/default";
+
+	       data.item: "stacking" "above";
+	       data.item: "selectraise" "on";
+	       data.item: "texts" "elm.text elm.text.right elm.text.button";
+	       data.item: "contents" "elm.swallow.icon elm.swallow.end";
+	       data.item: "treesize" "20";
+	       images {
+			image: "00_list_bar_press_1x80.png" COMP;
+			image: "39_mini_controller_button_nor.png" COMP;
+			image: "39_mini_controller_button_press.png" COMP;
+	       }
+	       parts {
+		       BEAT_GENLIST_PART_BASE( 70 )
+		       BEAT_GENLIST_PART_BG
+		       BEAT_GENLIST_PART_BG_IMAGE
+		       BEAT_GENLIST_PART_BOTTOM_LINE
+		       BEAT_GENLIST_PART_PADDING_TOP( 10 )
+		       BEAT_GENLIST_PART_PADDING_BOTTOM( 10 )
+		       BEAT_GENLIST_PART_PADDING_LEFT( 15 )
+		       BEAT_GENLIST_PART_PADDING_RIGHT( 15 )
+
+				part {
+					name: "end.bg";
+					type: RECT;
+					scale: 1;
+					clip_to: "disclip";
+					description {
+						state: "default" 0.0;
+						min: 110 70;
+						fixed: 1 0;
+						align: 1.0 0.5;
+						visible: 0;
+						rel1 { 
+							relative: 0.0 0.0;
+							to_x: "elm.padding.right";
+						}
+						rel2 {
+							relative: 0.0 1.0;
+							to_x: "elm.padding.right";
+						}
+					}
+				}
+				part {
+					name: "end.padding.left";
+					type: RECT;
+					scale: 1;
+					clip_to: "disclip";
+					description {
+						state: "default" 0.0;
+						min: 10 10;
+						fixed: 1 1;
+						align: 0.0 0.0;
+						visible: 0;
+						rel1 { 
+							relative: 0.0 0.0;
+							to: "end.bg";
+						}
+						rel2 {
+							relative: 0.0 0.0;
+							to: "end.bg";
+						}
+					}
+				}
+				part {
+					name: "end.padding.right";
+					type: RECT;
+					scale: 1;
+					clip_to: "disclip";
+					description {
+						state: "default" 0.0;
+						min: 10 10;
+						fixed: 1 1;
+						align: 1.0 1.0;
+						visible: 0;
+						rel1 { 
+							relative: 1.0 1.0;
+							to: "end.bg";
+						}
+						rel2 {
+							relative: 1.0 1.0;
+							to: "end.bg";
+						}
+					}
+				}
+				part {
+					name: "elm.swallow.end";
+					type: SWALLOW;
+					scale: 1;
+					clip_to: "disclip";
+					description { 
+						state: "default" 0.0;
+						align: 0.5 0.5;
+						rel1 { 
+							relative: 1.0 1.0;
+							to: "end.padding.left"; 
+						}
+						rel2 { 
+							relative: 0.0 0.0;
+							to: "end.padding.right"; 
+						}
+					}
+				}
+
+				part { 
+					name: "elm.text";
+					clip_to: "disclip";
+					type: TEXT;
+					mouse_events: 0;
+					scale: 1;
+					description { 
+						state: "default" 0.0;
+				      	rel1 {
+							relative: 1.0  0.0;
+							offset: 0 0;
+							to_x: "elm.swallow.icon";
+				       }
+				       rel2 {
+							to_x: "elm.text.right";
+							relative: 0.0  1.0;
+							offset:   0   0;
+						}
+						color: 0 0 0 255;
+						text {
+							font: "SLP:style=Roman";
+							size: 32;
+							min: 0 1;
+							align: 0.0 0.5;
+						}
+					}
+					description { 
+						state: "selected" 0.0;
+						inherit: "default" 0.0;
+						color: 225 225 225 255;
+					}
+				}
+				part { 
+					name: "elm.text.right";
+					clip_to: "disclip";
+					type: TEXT;
+					mouse_events: 0;
+					scale: 1;
+		      		description { 
+						state: "default" 0.0;
+						visible: 1;
+						min: 70 50;
+			      		max: 70 50;
+						fixed: 1 0;
+						align: 1.0 0.5;
+						rel1 { 
+							to_x: "end.bg";
+						}
+						rel2 {
+							relative: 0.0  1.0;
+							to_x: "end.bg";
+						}
+						color: 213 129 31 255;
+						text {
+							font: "SLP:style=Medium";
+							size: 24;
+							min: 0 1;
+							align: 0.5 0.5;
+						}
+			 		}
+					description { 
+						state: "hide" 0.0;
+						inherit: "default" 0.0;
+						min: 0 0;
+						max: 0 0;
+						visible: 0;
+					}
+			 		description { 
+			 			state: "selected" 0.0;
+						inherit: "default" 0.0;
+						color: 225 225 225 255;
+					}
+				}
+
+				part { 
+					name: "elm.text.button";
+					clip_to: "disclip";
+					type: TEXT;
+					mouse_events: 0;
+					scale: 1;
+					description { 
+						state: "default" 0.0;
+						rel1 { to: "elm.swallow.end"; }
+						rel2 { to: "elm.swallow.end"; }
+						color: 0 0 0 255;
+						text {
+							font: "SLP:style=Roman";
+							size: 22;
+							min: 0 1;
+							align: 0.5 0.5;
+						}
+					}
+					description { 
+						state: "selected" 0.0;
+						inherit: "default" 0.0;
+						color: 225 225 225 255;
+					}
+				}
+
+				part { 
+					name: "elm.swallow.icon";
+					clip_to: "disclip";
+					type: SWALLOW;
+					description { 
+						state: "default" 0.0;
+						fixed: 1 0;
+						align: 0.0 0.5;
+						rel1 {
+							relative: 1.0 0.0;
+							to_x: "elm.padding.left";
+						}
+					    rel2.to_x: "elm.padding.left";
+					}		
+				}
+				BEAT_GENLIST_PART_DISCLIP
+			}
+
+	       programs {
+		       program { name: "go_active";
+				signal: "elm,state,selected";
+				source: "elm";
+				action: STATE_SET "selected" 0.0;
+				target: "bg_image";
+				target: "elm.text";
+		       }
+		       program { name: "go_passive";
+				signal: "elm,state,unselected";
+				source: "elm";
+				action: STATE_SET "default" 0.0;
+				target: "bg_image";
+				target: "elm.text";
+				transition: LINEAR 0.1;
+		       }
+		       program { name: "go_disabled";
+				signal: "elm,state,disabled";
+				source: "elm";
+				action: STATE_SET "disabled" 0.0;
+				target: "disclip";
+		       }
+		       program { name: "go_enabled";
+				signal: "elm,state,enabled";
+				source: "elm";
+				action: STATE_SET "default" 0.0;
+				target: "disclip";
+		       }
+
+				 program {
+				 	name: "hide/mem";
+					signal: "prog.hide.mem";
+					source: "taskmanager";
+					action: STATE_SET "hide" 0.0;
+					target: "elm.text.right";
+				}
+				 program {
+				 	name: "show/mem";
+					signal: "prog.show.mem";
+					source: "taskmanager";
+					action: STATE_SET "default" 0.0;
+					target: "elm.text.right";
+				}
+
+		}
+	}
+	group { name: "elm/genlist/item_compress/taskswitcher_btn/default";
+		alias: "elm/genlist/item_compress_odd/taskswitcher_btn/default";
+
+		images {
+			image: "39_mini_controller_button_nor.png" COMP;
+			image: "39_mini_controller_button_press.png" COMP;
+		}
+
+	       data.item: "stacking" "above";
+	       data.item: "selectraise" "on";
+	       data.item: "texts" "elm.text";
+	       data.item: "contents" "elm.swallow.icon";
+	       data.item: "treesize" "20";
+	       parts {
+		       BEAT_GENLIST_PART_BASE( 70 )
+		       BEAT_GENLIST_PART_BG
+		       BEAT_GENLIST_PART_BG_IMAGE
+		       BEAT_GENLIST_PART_BOTTOM_LINE
+		       BEAT_GENLIST_PART_PADDING_TOP( 10 )
+		       BEAT_GENLIST_PART_PADDING_BOTTOM( 10 )
+		       BEAT_GENLIST_PART_PADDING_LEFT( 10 )
+		       BEAT_GENLIST_PART_PADDING_RIGHT( 10 )
+
+
+			part { name: "label.bg";
+				clip_to: "disclip";
+				type: IMAGE;
+				description { state: "default" 0.0;
+						align: 0.5 0.5;
+				       	rel1 {
+							relative: 1.0 1.0;
+							 to_x: "elm.padding.left";
+							 to_y: "elm.padding.top";
+						}
+						rel2 {
+							relative: 0.0 0.0;
+							to_x: "elm.padding.right";
+							to_y: "elm.padding.bottom";
+						}
+					image {
+						normal: "39_mini_controller_button_nor.png";
+						border: 5 5 5 5;
+						border_scale: 1;
+					}		
+		       }
+				description {
+					state: "selected" 0.0;
+					inherit: "default" 0.0;
+					image {
+						normal: "39_mini_controller_button_press.png";
+						border: 5 5 5 5;
+						border_scale: 1;
+					}		
+				}
+			}
+
+		       part { name: "elm.text";
+				clip_to: "disclip";
+				type: TEXT;
+				mouse_events: 0;
+				scale: 1;
+			       description { 
+					 	state: "default" 0.0;
+				      rel1 {
+							to: "label.bg";
+				       }
+				       rel2 {
+							to: "label.bg";
+				       }
+					color: 0 0 0 255;
+				       text {
+						font: "SLP:style=Roman";
+						size: 28;
+						min: 0 1;
+						align: 0.5 0.5;
+				       }
+				}
+			       description { state: "selected" 0.0;
+					inherit: "default" 0.0;
+					color: 225 225 225 255;
+			       }
+			}
+
+			part { name: "elm.swallow.icon";
+				clip_to: "disclip";
+				type: SWALLOW;
+				description { state: "default" 0.0;
+						fixed: 1 0;
+						align: 0.5 0.5;
+				       	rel1.to_x: "elm.padding.left";
+					rel2.to_x: "elm.padding.right";
+				}		
+		       }
+		       BEAT_GENLIST_PART_DISCLIP
+	       }
+	       programs {
+		       program { name: "go_disabled";
+				signal: "elm,state,disabled";
+				source: "elm";
+				action: STATE_SET "disabled" 0.0;
+				target: "disclip";
+		       }
+		       program { name: "go_enabled";
+				signal: "elm,state,enabled";
+				source: "elm";
+				action: STATE_SET "default" 0.0;
+				target: "disclip";
+		       }
+		       program { name: "selected";
+				signal: "mouse,down,1";
+				source: "label.bg";
+				action: STATE_SET "selected" 0.0;
+				target: "label.bg";
+				target: "elm.text";
+				transition: LINEAR 0.1;
+		       }
+		       program { name: "released";
+				signal: "mouse,up,1";
+				source: "label.bg";
+				action: STATE_SET "default" 0.0;
+				target: "label.bg";
+				target: "elm.text";
+				transition: LINEAR 0.1;
+		       }
+		       program { name: "clicked";
+				signal: "mouse,clicked,1";
+				source: "label.bg";
+				action: SIGNAL_EMIT "clicked" "label";
+			}
+		}
+	}
+}
+	////////////// GENLIST GROUP END /////////////////////////////////////////////

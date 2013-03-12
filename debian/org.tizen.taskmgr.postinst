@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if [ x"${USER}" == x"root" ]
+then
+	#5000 is inhouse user id
+	#do not use relative path
+	chown -R 5000:5000 /usr/apps/org.tizen.taskmgr/data
+fi

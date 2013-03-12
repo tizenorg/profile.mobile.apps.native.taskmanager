@@ -1,0 +1,36 @@
+msgid "IDS_TASKMGR_BUTTON_CLEAR_HISTORY_ABB"
+msgstr "Εκκαθ. ιστορικού"
+
+msgid "IDS_TASKMGR_BUTTON_CLOSE_ALL_APPLICATIONS"
+msgstr "Κλείσιμο όλων των εφαρμογών"
+
+msgid "IDS_TASKMGR_HEADER_RUNNING"
+msgstr "Σε εκτέλεση"
+
+msgid "IDS_TASKMGR_MBODY_NO_APPS_OPEN"
+msgstr "Καμία ανοιχτή εφαρμογή"
+
+msgid "IDS_TASKMGR_MBODY_NO_RECENTLY_USED_APPS"
+msgstr "Καμία πρόσφ. χρησ. εφαρ."
+
+msgid "IDS_TASKMGR_MBODY_RECENTLY_USED"
+msgstr "Χρησιμοποιήθηκε πρόσφατα"
+
+msgid "IDS_TASKMGR_POP_CLEAR_ALL_APP_HISTORY_Q"
+msgstr "Εκκαθάριση ιστορικού όλων των εφαρμογών;"
+
+msgid "IDS_TASKMGR_POP_CLEAR_PS_HISTORY_Q"
+msgstr "Εκκαθάριση ιστορικού %s;"
+
+msgid "IDS_TASKMGR_POP_CLOSE_ALL_APPS_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
+msgstr "Να κλείσουν όλες οι εφαρμογές; Αυτό ενδέχεται να προκαλέσει την απώλεια δεδομένων"
+
+msgid "IDS_TASKMGR_POP_CLOSE_PS_APP_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
+msgstr "Να κλείσει η εφαρμογή %s; Αυτό ενδέχεται να προκαλέσει την απώλεια δεδομένων"
+
+msgid "IDS_TASKMGR_POP_UNABLE_TO_OPEN_APPLICATION"
+msgstr "Δεν είναι δυνατό το άνοιγμα της εφαρμογής"
+
+msgid "IDS_TASKMGR_HEADER_TASK_SWITCHER"
+msgstr "Εφαρμογή εναλλαγής εργασιών"
+

@@ -1,0 +1,36 @@
+msgid "IDS_TASKMGR_BUTTON_CLEAR_HISTORY_ABB"
+msgstr "履歴を消去"
+
+msgid "IDS_TASKMGR_BUTTON_CLOSE_ALL_APPLICATIONS"
+msgstr "全アプリを終了します。"
+
+msgid "IDS_TASKMGR_HEADER_RUNNING"
+msgstr "実行中"
+
+msgid "IDS_TASKMGR_MBODY_NO_APPS_OPEN"
+msgstr "起動アプリはありません。"
+
+msgid "IDS_TASKMGR_MBODY_NO_RECENTLY_USED_APPS"
+msgstr "最近使ったアプリはありません。"
+
+msgid "IDS_TASKMGR_MBODY_RECENTLY_USED"
+msgstr "最近​使用​された​言語"
+
+msgid "IDS_TASKMGR_POP_CLEAR_ALL_APP_HISTORY_Q"
+msgstr "全てのアプリ履歴を消去しますか？"
+
+msgid "IDS_TASKMGR_POP_CLEAR_PS_HISTORY_Q"
+msgstr "%sの履歴を消去しますか？"
+
+msgid "IDS_TASKMGR_POP_CLOSE_ALL_APPS_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
+msgstr "全てのアプリを終了しますか？この操作で、データが失われる可能性があります。"
+
+msgid "IDS_TASKMGR_POP_CLOSE_PS_APP_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
+msgstr "%sアプリを終了しますか？この操作で、データが失われる可能性があります。"
+
+msgid "IDS_TASKMGR_POP_UNABLE_TO_OPEN_APPLICATION"
+msgstr "アプリケーションを起動できません。"
+
+msgid "IDS_TASKMGR_HEADER_TASK_SWITCHER"
+msgstr "タスク切替"
+
