@@ -97,12 +97,24 @@ static void _back_cb(void *data, Evas_Object *obj, void *event_info)
 int _app_create(struct appdata *ad)
 {
 	Evas_Object *ly, *bg, *nv, *bt, *gl;
+	Evas_Object *conform = NULL;
+	int w, h;
+
+	ecore_x_window_size_get(ecore_x_window_root_first_get(), &w, &h);
 
 	retvm_if(ad == NULL, -1, "Invalid argument: appdata is NULL\n");
 	ad->ending = EINA_FALSE;
 
-	ly = _add_layout_main(ad->win, EINA_TRUE, EINA_FALSE);
+	conform = elm_conformant_add(ad->win);
+	retvm_if(conform == NULL, -1, "Failed to add conformant \n");
+	evas_object_size_hint_weight_set(conform, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
+	elm_win_resize_object_add(ad->win, conform);
+	evas_object_show(conform);
+
+	ly = _add_layout_main(conform, EINA_TRUE, EINA_FALSE);
 	retvm_if(ly == NULL, -1, "Failed to add layout main\n");
+	elm_object_content_set(conform, ly);
+	evas_object_resize(ly, w, h);
 
 	bg = _add_bg(ad->win, "group_list");
 	retvm_if(bg == NULL, -1, "Failed to add bg\n");
@@ -135,7 +147,6 @@ int _app_create(struct appdata *ad)
 
 	return 0;
 }
-
 static void _get_win_geometry(struct appdata *ad)
 {
 	Ecore_X_Window focus_win;
