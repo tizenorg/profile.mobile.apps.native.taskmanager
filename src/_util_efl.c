@@ -164,6 +164,26 @@ static Eina_Bool _disappear_popup(void *data)
 	return ECORE_CALLBACK_CANCEL;
 }
 
+void _diable_popup(void *data)
+{
+	Evas_Object *btn = NULL;
+	Evas_Object *eo = (Evas_Object *)data;
+	if(eo == NULL) {
+		printf("[Error] Invalid argument: popup is NULL\n");
+		return;
+	}
+
+	btn = elm_object_part_content_get(eo, "button1");
+	if(btn)	{
+		elm_object_disabled_set(btn, EINA_TRUE);
+	}
+
+	btn = elm_object_part_content_get(eo, "button2");
+	if(btn)	{
+		elm_object_disabled_set(btn, EINA_TRUE);
+	}
+}
+
 Evas_Object *_add_popup_ask(Evas_Object *parent, char *text, void *data)
 {
 	Evas_Object *pu, *bt1, *bt2;

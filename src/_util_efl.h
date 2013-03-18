@@ -35,6 +35,7 @@ Evas_Object *_add_layout_main(Evas_Object *parent,
 		Eina_Bool content, Eina_Bool transparent);
 Evas_Object *_add_progressbar(Evas_Object *parent, const char *style,
 		Evas_Coord w, Evas_Coord h);
+void _diable_popup(void *data);
 Evas_Object *_add_popup_ask(Evas_Object *parent, char *text, void *data);
 void util_show_popup_with_message(Evas_Object *parent, double in, const char *msg);
 
