@@ -280,10 +280,10 @@ _D("func\n");
 				/* exception : Because dialer doesn't need bundle
 				 * since being unifyed dialer, voice call and video call
 				 */
-				ret = aul_launch_app(info->pkg_name, NULL);
+				ret = aul_open_app(info->pkg_name);
 				selected = 0;
 			} else {
-				ret = aul_launch_app(info->pkg_name, info->b);
+				ret = aul_open_app(info->pkg_name);
 				selected = 0;
 			}
 		}

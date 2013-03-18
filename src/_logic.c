@@ -77,6 +77,10 @@ _D("func\n");
 
 				_del_popup_timer(ad);
 				_del_progressbar(ad);
+				if (ad->popup_ask) {
+					evas_object_del(ad->popup_ask);
+					ad->popup_ask = NULL;
+				}
 				refresh_app_info(ad);
 
 			} else {
@@ -267,6 +271,10 @@ Eina_Bool _kill_all_timer_cb(void *data)
 		_D("runapp_count == 0\n");
 		_del_popup_timer(ad);
 		_del_progressbar(ad);
+		if (ad->popup_ask) {
+			evas_object_del(ad->popup_ask);
+			ad->popup_ask = NULL;
+		}
 		refresh_app_info(ad);
 		//_restart_pthread(ad);
 		return ECORE_CALLBACK_CANCEL;
@@ -280,13 +288,13 @@ void _ok_response_cb(void *data, Evas_Object *obj, void *event_info)
 	struct appdata *ad = (struct appdata *)data;
 
 	retm_if(data == NULL, "Invalid argument: appdata is NULL\n");
-	if (ad->popup_ask) {
-		evas_object_del(ad->popup_ask);
-		ad->popup_ask = NULL;
-	}
 
 	switch (ad->mode) {
 		case MODE_END_INUSE:
+			if (ad->popup_ask) {
+				evas_object_del(ad->popup_ask);
+				ad->popup_ask = NULL;
+			}
 			_D("end inuse\n");
 			_del_popup_timer(ad);
 			_show_progressbar(ad);
@@ -298,33 +306,54 @@ void _ok_response_cb(void *data, Evas_Object *obj, void *event_info)
 			_D("end all inuse\n");
 			_del_popup_timer(ad);
 			_show_progressbar(ad);
+			_diable_popup(ad->popup_ask);
 			response_end_all_inuse(ad);
 			ad->killall_timer = ecore_timer_add(2.0, _kill_all_timer_cb, ad);
 			break;
 
 		case MODE_DEL_HISTORY:
+			if (ad->popup_ask) {
+				evas_object_del(ad->popup_ask);
+				ad->popup_ask = NULL;
+			}
 			_D("del inuse\n");
 			_del_popup_timer(ad);
 			response_del_history(ad);
 			break;
 
 		case MODE_DEL_ALL_HISTORY:
+			if (ad->popup_ask) {
+				evas_object_del(ad->popup_ask);
+				ad->popup_ask = NULL;
+			}
 			_D("del all inuse\n");
 			_del_popup_timer(ad);
 			response_del_all_history(ad);
 			break;
 
 		case MODE_KILL_INUSE:
+			if (ad->popup_ask) {
+				evas_object_del(ad->popup_ask);
+				ad->popup_ask = NULL;
+			}
 			_D("kill all inuse\n");
 			response_kill_inuse(ad);
 			break;
 
 		case MODE_KILL_ALL_INUSE:
+			if (ad->popup_ask) {
+				evas_object_del(ad->popup_ask);
+				ad->popup_ask = NULL;
+			}
 			_D("kill all inuse\n");
 			response_kill_all_inuse(ad);
 			break;
 
 		default:
+			if (ad->popup_ask) {
+				evas_object_del(ad->popup_ask);
+				ad->popup_ask = NULL;
+			}
 			printf("[Wanning] taskmanager: check mode [%d]\n",
 					ad->mode);
 			break;
