@@ -172,6 +172,7 @@ int taskmanager_get_history_app_info(void *data)
 
 		ret = ail_appinfo_get_bool(handle, AIL_PROP_X_SLP_TASKMANAGE_BOOL, &valb);
 		if(valb == 0) {
+			_D("ail_appinfo_get_bool(handle, AIL_PROP_X_SLP_TASKMANAGE_BOOL, &valb) => valb is 0");
 			goto cont;
 		}
 
@@ -197,6 +198,7 @@ int taskmanager_get_history_app_info(void *data)
 				valc = "Unknown";
 			}
 			info->app_name = strdup(valc);
+			_D("%s\n", info->app_name);
 
 			ret = ail_appinfo_get_str(handle, AIL_PROP_ICON_STR, &valc);
 			if (valc == NULL || (ecore_file_exists(valc) == EINA_FALSE)) {
