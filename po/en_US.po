@@ -17,7 +17,7 @@ msgid "IDS_TASKMGR_MBODY_RECENTLY_USED"
 msgstr "Recently used"
 
 msgid "IDS_TASKMGR_POP_CLEAR_ALL_APP_HISTORY_Q"
-msgstr "Clear all app history?"
+msgstr "Clear all apps history?"
 
 msgid "IDS_TASKMGR_POP_CLEAR_PS_HISTORY_Q"
 msgstr "Clear %s history?"
