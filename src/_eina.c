@@ -187,7 +187,13 @@ int taskmanager_get_history_app_info(void *data)
 
 		if (flag == 0) {
 			info = calloc(1, sizeof(struct _task_info));
-			retvm_if(info == NULL, -1, "Failed to calloc _task_info\n");
+			if(info == NULL) {
+				_E("Failed to calloc _task_info\n");
+				if(handle) {
+					ret = ail_package_destroy_appinfo(handle);
+				}
+				return -1;
+			}
 
 			info->pkg_name = strdup(rec_result.pkg_name);
 
