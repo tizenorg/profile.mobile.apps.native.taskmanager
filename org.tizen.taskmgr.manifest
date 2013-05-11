@@ -4,7 +4,7 @@
         </define>
 	<assign>
 		<filesystem path="/usr/share/icons/default/small/org.tizen.taskmgr.png" label="_" />
-	<assign/>
+	</assign>
         <request>
                 <domain name="org.tizen.taskmgr"/>
         </request>
