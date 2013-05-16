@@ -10,4 +10,4 @@ org.tizen.taskmgr rua::db rw
 org.tizen.taskmgr dbug w
 org.tizen.taskmgr isf r
 aul org.tizen.taskmgr rx
-e17 org.tizen.taskmgr w
+e17 org.tizen.taskmgr rwx
