@@ -5,6 +5,7 @@ Release:    1
 Group:      devel
 License:    Flora Software License
 Source0:    %{name}-%{version}.tar.gz
+Source1001: 	org.tizen.taskmgr.manifest
 BuildRequires:  pkgconfig(appcore-efl)
 BuildRequires:  pkgconfig(elementary)
 BuildRequires:  pkgconfig(aul)
@@ -23,6 +24,7 @@ Task Manager.
 
 %prep
 %setup -q
+cp %{SOURCE1001} .
 
 %build
 %define PREFIX    "/usr/apps/org.tizen.taskmgr"
@@ -38,7 +40,7 @@ rm -rf %{buildroot}
 %make_install
 
 %files
-%manifest org.tizen.taskmgr.manifest
+%manifest %{name}.manifest
 %defattr(-,root,root,-)
 /usr/apps/org.tizen.taskmgr/bin/*
 /usr/apps/org.tizen.taskmgr/res/*
