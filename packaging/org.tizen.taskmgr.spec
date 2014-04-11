@@ -48,4 +48,3 @@ rm -rf %{buildroot}
 /opt/usr/apps/org.tizen.taskmgr/data
 /usr/share/packages/*
 /usr/share/icons/default/small/org.tizen.taskmgr.png
-/opt/etc/smack/accesses.d/org.tizen.taskmgr.rule
