@@ -1,0 +1,9 @@
+msgid "IDS_TASKMGR_NPBODY_NO_APPLICATIONS_ABB2"
+msgstr "Ծրագրեր չկան"
+
+msgid "IDS_TASKMGR_BUTTON_TASK_MGR_ABB"
+msgstr "Առջ. կռվչ"
+
+msgid "IDS_TASKMGR_BUTTON_CLEAR_ALL"
+msgstr "Մաքրել բոլորը"
+

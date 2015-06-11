@@ -1,0 +1,36 @@
+msgid "IDS_TASKMGR_BUTTON_CLEAR_HISTORY_ABB"
+msgstr "پاک کردن تاریخچه"
+
+msgid "IDS_TASKMGR_BUTTON_CLOSE_ALL_APPLICATIONS"
+msgstr "بستن همه برنامه ها"
+
+msgid "IDS_TASKMGR_HEADER_RUNNING"
+msgstr "اجرا"
+
+msgid "IDS_TASKMGR_MBODY_NO_APPS_OPEN"
+msgstr "برنامه ای باز نیست"
+
+msgid "IDS_TASKMGR_MBODY_NO_RECENTLY_USED_APPS"
+msgstr "بدون برنامه استفاده اخیر"
+
+msgid "IDS_TASKMGR_MBODY_RECENTLY_USED"
+msgstr "استفاده شده اخیر"
+
+msgid "IDS_TASKMGR_POP_CLEAR_ALL_APP_HISTORY_Q"
+msgstr "پاک کردن همه سابقه برنامه؟"
+
+msgid "IDS_TASKMGR_POP_CLEAR_PS_HISTORY_Q"
+msgstr "پاک کردن تاریخچه %s؟"
+
+msgid "IDS_TASKMGR_POP_CLOSE_ALL_APPS_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
+msgstr "بستن همه برنامه ها؟ اینکار موجب از دست رفتن داده ها می شود"
+
+msgid "IDS_TASKMGR_POP_CLOSE_PS_APP_Q_THIS_MAY_CAUSE_DATA_TO_BE_LOST"
+msgstr "بستن برنامه %s؟ اینکار موجب از دست رفتن داده ها می شود"
+
+msgid "IDS_TASKMGR_POP_UNABLE_TO_OPEN_APPLICATION"
+msgstr "نمی تواند برنامه را باز کند"
+
+msgid "IDS_TASKMGR_HEADER_TASK_SWITCHER"
+msgstr "تغییر دهنده کار"
+

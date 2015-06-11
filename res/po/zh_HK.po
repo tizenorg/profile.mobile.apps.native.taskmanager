@@ -1,0 +1,9 @@
+msgid "IDS_TASKMGR_NPBODY_NO_APPLICATIONS_ABB2"
+msgstr "無應用程式"
+
+msgid "IDS_TASKMGR_BUTTON_TASK_MGR_ABB"
+msgstr "工作管理員"
+
+msgid "IDS_TASKMGR_BUTTON_CLEAR_ALL"
+msgstr "全部清除"
+

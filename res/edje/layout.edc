@@ -1,0 +1,101 @@
+/*
+ *  Task Manager
+ *
+ * Copyright (c) 2000 - 2015 Samsung Electronics Co., Ltd. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+ #include "conf.h"
+
+styles {
+	style {
+		name: "no_item_style";
+		base: "font=Tizen:style=Bold font_size=30 color=#ffffff align=center style=shadow shadow_color=#000000bf wrap=mixed";
+		tag:  "br" "\n";
+		tag:  "hilight" "+ font_weight=Bold";
+		tag:  "b" "+ font_weight=Bold";
+		tag:  "tab" "\t";
+	}
+}
+
+collections {
+	base_scale: 2.1;
+	group {
+		name: "layout";
+		parts {
+			part {
+				name: "bg";
+				type: RECT;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					color: 0 0 0 BG_COLOR;
+					rel1 { relative: 0.0 0.0; }
+					rel2 { relative: 1.0 1.0; }
+					min: BASE_WIDTH BASE_HEIGHT;
+					visible: 1;
+				}
+			}
+			part {
+				name: "scroller";
+				type: SWALLOW;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					rel1 { relative: 0.0 0.0; to: "bg"; }
+					rel2 { relative: 1.0 1.0; to: "bg"; }
+					align: 0.5 1.0;
+					visible: 1;
+				}
+			}
+			part {
+				name: "no,apps,txt";
+				type: TEXTBLOCK;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					color: 255 255 255 255;
+					rel1 { relative: 0.15 0.4; to: "bg"; }
+					rel2 { relative: 0.85 0.5; to: "bg"; }
+					text {
+						text: " ";
+						style: "no_item_style";
+						align: 0.5 0.5;
+					}
+					visible: 0;
+				}
+				description {
+					state: "show" 0.0;
+					inherit: "default" 0.0;
+					visible: 1;
+				}
+			}
+		} //parts
+		programs {
+			program {
+				signal: "no,apps,txt,show";
+				source: "no,apps,txt";
+				action: STATE_SET "show" 0.0;
+				target: "no,apps,txt";
+			}
+			program {
+				signal: "no,apps,txt,hide";
+				source: "no,apps,txt";
+				action: STATE_SET "default" 0.0;
+				target: "no,apps,txt";
+			}
+		}
+	} //group
+} //collections

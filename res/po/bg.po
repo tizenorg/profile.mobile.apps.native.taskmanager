@@ -1,0 +1,9 @@
+msgid "IDS_TASKMGR_NPBODY_NO_APPLICATIONS_ABB2"
+msgstr "Няма приложения"
+
+msgid "IDS_TASKMGR_BUTTON_TASK_MGR_ABB"
+msgstr "Задачи"
+
+msgid "IDS_TASKMGR_BUTTON_CLEAR_ALL"
+msgstr "Изтр. всч"
+

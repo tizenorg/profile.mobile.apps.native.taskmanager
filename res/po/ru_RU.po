@@ -1,0 +1,9 @@
+msgid "IDS_TASKMGR_NPBODY_NO_APPLICATIONS_ABB2"
+msgstr "Нет приложений"
+
+msgid "IDS_TASKMGR_BUTTON_TASK_MGR_ABB"
+msgstr "Диспетчер"
+
+msgid "IDS_TASKMGR_BUTTON_CLEAR_ALL"
+msgstr "Очистить все"
+

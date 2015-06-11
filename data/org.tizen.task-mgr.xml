@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" package="org.tizen.task-mgr" version="0.1.0" install-location="internal-only" api-version="2.3.1">
+	<label>task-mgr</label>
+	<author email="k.maskanka@samsung.com" href="www.samsung.com">Kamil Maslanka</author>
+	<author email="m.skorupinsk@samsung.com" href="www.samsung.com">Michal Skorupinski</author>
+	<description>TASK MANAGER APPLICATION</description>
+	<ui-application appid="org.tizen.task-mgr" exec="/usr/apps/org.tizen.task-mgr/bin/task-mgr" nodisplay="true" multiple="false" type="capp" taskmanage="false" hw-acceleration="use-GL">
+		<label>task-mgr</label>
+		<label xml:lang="en-us">task-mgr</label>
+	</ui-application>
+</manifest>

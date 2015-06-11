@@ -1,0 +1,6 @@
+msgid "IDS_TASKMGR_BUTTON_CLEAR_ALL"
+msgstr "Hps semua"
+
+msgid "IDS_TASKMGR_NPBODY_NO_APPLICATIONS_ABB2"
+msgstr "Tidak ada aplikasi"
+

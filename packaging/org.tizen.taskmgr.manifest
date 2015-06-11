@@ -1,8 +1,0 @@
-<manifest>
- <request>
-    <domain name="_"/>
- </request>
- <assign>
-	<filesystem path="/opt/usr/apps/org.tizen.taskmgr/data" label="User" />	
- </assign>
-</manifest>

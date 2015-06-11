@@ -1,0 +1,9 @@
+msgid "IDS_TASKMGR_NPBODY_NO_APPLICATIONS_ABB2"
+msgstr "Žiadne aplikácie"
+
+msgid "IDS_TASKMGR_BUTTON_TASK_MGR_ABB"
+msgstr "Spr. úloh"
+
+msgid "IDS_TASKMGR_BUTTON_CLEAR_ALL"
+msgstr "Vymazať všetko"
+

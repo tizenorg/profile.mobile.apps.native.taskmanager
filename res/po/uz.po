@@ -1,0 +1,9 @@
+msgid "IDS_TASKMGR_NPBODY_NO_APPLICATIONS_ABB2"
+msgstr "Ilovalar yo‘q"
+
+msgid "IDS_TASKMGR_BUTTON_TASK_MGR_ABB"
+msgstr "Vaz. mnjr"
+
+msgid "IDS_TASKMGR_BUTTON_CLEAR_ALL"
+msgstr "Barini tozala"
+

@@ -1,0 +1,6 @@
+msgid "IDS_TASKMGR_BUTTON_CLEAR_ALL"
+msgstr "அனைத்தும் துடை"
+
+msgid "IDS_TASKMGR_NPBODY_NO_APPLICATIONS_ABB2"
+msgstr "பயன்பாடுகள் ஏதுமில்லை"
+

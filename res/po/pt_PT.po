@@ -1,0 +1,9 @@
+msgid "IDS_TASKMGR_NPBODY_NO_APPLICATIONS_ABB2"
+msgstr "Sem aplicações"
+
+msgid "IDS_TASKMGR_BUTTON_TASK_MGR_ABB"
+msgstr "Ges. tar."
+
+msgid "IDS_TASKMGR_BUTTON_CLEAR_ALL"
+msgstr "Limpar tudo"
+

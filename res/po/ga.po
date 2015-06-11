@@ -1,0 +1,9 @@
+msgid "IDS_TASKMGR_NPBODY_NO_APPLICATIONS_ABB2"
+msgstr "Níl feidhmchláir ann"
+
+msgid "IDS_TASKMGR_BUTTON_TASK_MGR_ABB"
+msgstr "Bain. tasc"
+
+msgid "IDS_TASKMGR_BUTTON_CLEAR_ALL"
+msgstr "Glan gach"
+

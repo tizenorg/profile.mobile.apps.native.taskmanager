@@ -1,104 +1,72 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
-PROJECT(taskmgr C)
+PROJECT(task-mgr)
+# FIND ALL SOURCE IN A SOURCE DIRECTORY
+AUX_SOURCE_DIRECTORY(${CMAKE_SOURCE_DIR}/src SRCS)
 
-SET(SRCS
-	src/taskmanager.c
-	src/_util_efl.c
-	src/_genlist.c
-	src/_logic.c
-#	src/_cpu.c
-	src/_eina.c
-#	src/_info.c
-	src/_progressbar.c
-)
-
-SET(VENDOR tizen)
-SET(PACKAGE ${PROJECT_NAME})
-SET(PKGNAME "org.${VENDOR}.${PACKAGE}")
-SET(PREFIX ${CMAKE_INSTALL_PREFIX})
-SET(BINDIR "${PREFIX}/bin")
-SET(RESDIR "${PREFIX}/res")
-SET(DATADIR "/opt/usr/apps/org.${VENDOR}.${PACKAGE}/data")
-SET(LOCALEDIR "${RESDIR}/locale")
-SET(ICONDIR "/usr/share/icons/default/small")
-SET(IMAGEDIR "${RESDIR}/images/${PACKAGE}")
-SET(EDJDIR "${RESDIR}/edje/${PACKAGE}")
-
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/src)
-
-IF("${CMAKE_BUILD_TYPE}" STREQUAL "")
-	SET(CMAKE_BUILD_TYPE "Release")
-ENDIF("${CMAKE_BUILD_TYPE}" STREQUAL "")
-MESSAGE("Build type: ${CMAKE_BUILD_TYPE}")
-
-INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR})
+#INCLUDE FILE
+INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/include)
+SET(PACKAGE "${PROJECT_NAME}")
+SET(RESOURCE_DIR "${CMAKE_SOURCE_DIR}/res")
+SET(EDJDIR "${RESOURCE_DIR}/edje/${PACKAGE}")
 
 INCLUDE(FindPkgConfig)
 pkg_check_modules(pkgs REQUIRED
-	ecore
-	ecore-file
-	ecore-input
-	ecore-x
-	edje
-	eina
-	evas
 	appcore-efl
+	evas
+	edje
 	elementary
-	aul
-	utilX
-	rua
-	vconf
-	sysman
-	ail
+	ecore
+	eina
+	capi-appfw-application
+	capi-system-info
+	capi-appfw-package-manager
+	capi-appfw-app-manager
 	dlog
+	pkgmgr-info
+	rua
+	feedback
 )
+
+SET(PREFIX ${CMAKE_INSTALL_PREFIX})
+SET(RESDIR "${PREFIX}/res")
+SET(EDJEDIR "${RESDIR}/edje")
+SET(LOCALEDIR "${RESDIR}/locale")
 
 FOREACH(flag ${pkgs_CFLAGS})
 	SET(EXTRA_CFLAGS "${EXTRA_CFLAGS} ${flag}")
 ENDFOREACH(flag)
 
-SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${EXTRA_CFLAGS} -fPIC")
-SET(CMAKE_C_FLAGS_DEBUG "-O0 -g")
-SET(CMAKE_C_FLAGS_RELEASE "-O2")
+SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${EXTRA_CFLAGS} -fPIE")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${EXTRA_CFLAGS} -fPIE")
 
-FIND_PROGRAM(UNAME NAMES uname)
-EXEC_PROGRAM("${UNAME}" ARGS "-m" OUTPUT_VARIABLE "ARCH")
-IF("${ARCH}" STREQUAL "arm")
-	ADD_DEFINITIONS("-DTARGET")
-	MESSAGE("add -DTARGET")
-ENDIF("${ARCH}" STREQUAL "arm")
+SET(CMAKE_C_FLAGS_PROFILING    "-O0 -g -pg -fPIE")
+SET(CMAKE_CXX_FLAGS_PROFILING  "-O0 -std=c++0x -g -pg -fPIE")
+SET(CMAKE_C_FLAGS_DEBUG        "-O0 -g -fPIE")
+SET(CMAKE_CXX_FLAGS_DEBUG      "-O0 -std=c++0x -g -fPIE")
+SET(CMAKE_C_FLAGS_RELEASE      "-O2 -g -fPIE")
+SET(CMAKE_CXX_FLAGS_RELEASE    "-O2 -std=c++0x -g -fPIE")
+SET(CMAKE_C_FLAGS_CCOV         "-O2 -g --coverage -fPIE")
+SET(CMAKE_CXX_FLAGS_CCOV       "-O2 -std=c++0x -g --coverage -fPIE")
 
-ADD_DEFINITIONS("-fpie")
+SET(CMAKE_EXE_LINKER_FLAGS "-Wl,--as-needed -pie")
 
-ADD_DEFINITIONS("-DVENDOR=\"${VENDOR}\"")
-ADD_DEFINITIONS("-DPACKAGE=\"${PACKAGE}\"")
-ADD_DEFINITIONS("-DPACKAGE_NAME=\"${PKGNAME}\"")
-ADD_DEFINITIONS("-DPREFIX=\"${PREFIX}\"")
-ADD_DEFINITIONS("-DRESDIR=\"${RESDIR}\"")
-ADD_DEFINITIONS("-DDATADIR=\"${DATADIR}\"")
+MESSAGE(${CMAKE_C_FLAGS})
+
+ADD_DEFINITIONS("-DEDJEDIR=\"${EDJEDIR}\"")
 ADD_DEFINITIONS("-DLOCALEDIR=\"${LOCALEDIR}\"")
-ADD_DEFINITIONS("-DICONDIR=\"${ICONDIR}\"")
-ADD_DEFINITIONS("-DIMAGEDIR=\"${IMAGEDIR}\"")
-ADD_DEFINITIONS("-DEDJDIR=\"${EDJDIR}\"")
-
-SET(CMAKE_EXE_LINKER_FLAGS "-Wl,--as-needed")
 
 ADD_EXECUTABLE(${PROJECT_NAME} ${SRCS})
-TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${pkgs_LDFLAGS} "-pie")
 
-# install binary
-INSTALL(TARGETS ${PROJECT_NAME} DESTINATION ${BINDIR})
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${pkgs_LDFLAGS})
 
-# install desktop file & icon
-#CONFIGURE_FILE(${PKGNAME}.desktop.in ${CMAKE_BINARY_DIR}/${PKGNAME}.desktop)
-INSTALL(FILES ${CMAKE_BINARY_DIR}/${PKGNAME}.xml DESTINATION /usr/share/packages)
-INSTALL(FILES ${CMAKE_SOURCE_DIR}/${PKGNAME}.png DESTINATION ${ICONDIR})
+# Install
+INSTALL(TARGETS ${PROJECT_NAME} DESTINATION bin)
 
-#install application HOME directory
-INSTALL(DIRECTORY DESTINATION ${DATADIR})
+#Install images
+INSTALL(DIRECTORY res/images/ DESTINATION res/images)
 
-#install etc
-ADD_SUBDIRECTORY(data)
-
-# i18n
-ADD_SUBDIRECTORY(po)
+# Install Manifest File
+INSTALL(FILES data/org.tizen.task-mgr.xml DESTINATION /usr/share/packages)
+INSTALL(FILES data/org.tizen.task-mgr.efl DESTINATION /etc/smack/accesses.d)
+# End of a file
+ADD_SUBDIRECTORY(res)
