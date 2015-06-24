@@ -79,17 +79,6 @@ static task_mgr_error_e _create_layout(Evas_Object *parent)
 	Evas_Object *layout = NULL;
 	Eina_Bool ret = EINA_FALSE;
 
-	// create bg
-	main_info.bg = elm_bg_add(main_info.win);
-	if (!main_info.bg) {
-		_E("cannot create bg");
-		evas_object_del(main_info.win);
-	}
-
-	elm_win_resize_object_add(main_info.win, main_info.bg);
-	evas_object_color_set(main_info.bg, 0, 0, 0, BG_COLOR);
-	evas_object_show(main_info.bg);
-
 	// create layout
 	layout = elm_layout_add(parent);
 	goto_if (!layout, ERROR);
@@ -112,7 +101,6 @@ static task_mgr_error_e _create_layout(Evas_Object *parent)
 
 ERROR:
 	if (layout) evas_object_del(layout);
-	if (main_info.bg) evas_object_del(main_info.bg);
 	evas_object_del(main_info.win);
 	return TASK_MGR_ERROR_FAIL;
 }
@@ -175,7 +163,6 @@ static bool _create_cb(void *data)
 	main_info.win = elm_win_add(NULL, "Task-mgr", ELM_WIN_BASIC);
 	retv_if(!main_info.win, false);
 
-	//elm_app_base_scale_set(2.2);
 	elm_win_screen_size_get(main_info.win, NULL, NULL, &main_info.root_w, &main_info.root_h);
 	_D("screen size is (%d, %d)", main_info.root_w, main_info.root_h);
 

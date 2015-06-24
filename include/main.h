@@ -23,7 +23,6 @@
 typedef struct {
 	Evas		*e;
 	Evas_Object *win;
-	Evas_Object *bg;
 	Evas_Object *layout;
 	Evas_Object *scroller;
 	Evas_Object *box;
