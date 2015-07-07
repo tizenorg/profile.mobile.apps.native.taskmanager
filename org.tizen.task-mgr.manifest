@@ -1,11 +1,5 @@
 <manifest>
-	<define>
-		<domain name="org.tizen.task-mgr" />
-	</define>
 	<request>
-		<domain name="org.tizen.task-mgr" />
+		<domain name="_" />
 	</request>
-	<assign>
-		<filesystem path="/usr/apps/org.tizen.task-mgr/bin/task-mgr" label="org.tizen.task-mgr" exec_label="org.tizen.task-mgr" />
-	</assign>
 </manifest>

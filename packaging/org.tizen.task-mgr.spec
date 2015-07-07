@@ -63,5 +63,4 @@ rm -rf %{buildroot}
 %{AppInstallPath}/bin/task-mgr
 %{AppInstallPath}/res/*
 %{_datarootdir}/packages/%{name}.xml
-/etc/smack/accesses.d/%{name}.efl
 %{AppInstallPath}/res/locale/*/LC_MESSAGES/*

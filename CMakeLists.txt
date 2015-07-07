@@ -67,6 +67,5 @@ INSTALL(DIRECTORY res/images/ DESTINATION res/images)
 
 # Install Manifest File
 INSTALL(FILES data/org.tizen.task-mgr.xml DESTINATION /usr/share/packages)
-INSTALL(FILES data/org.tizen.task-mgr.efl DESTINATION /etc/smack/accesses.d)
 # End of a file
 ADD_SUBDIRECTORY(res)
