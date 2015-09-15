@@ -236,7 +236,7 @@ static task_mgr_error_e _create_pkginfo_table(void)
 		return TASK_MGR_ERROR_FAIL;
 	}
 
-	ret = pkgmgrinfo_appinfo_filter_foreach_appinfo(handle, _get_pkginfo_cb, NULL);
+	ret = pkgmgrinfo_appinfo_usr_filter_foreach_appinfo(handle, _get_pkginfo_cb, NULL, getuid());
 	if (ret != PMINFO_R_OK) {
 		pkgmgrinfo_appinfo_filter_destroy(handle);
 		return TASK_MGR_ERROR_FAIL;
