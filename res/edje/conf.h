@@ -1,1 +1,1 @@
-../../include/conf.h
+../../inc/conf.h

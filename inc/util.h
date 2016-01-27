@@ -33,7 +33,6 @@
 #endif
 
 
-
 /* Enum */
 typedef enum {
 	TASK_MGR_ERROR_NONE = 0,
@@ -44,9 +43,21 @@ typedef enum {
 	TASK_MGR_ERROR_NO_DATA = -5,
 } task_mgr_error_e;
 
+typedef enum {
+	APP_DIR_DATA = 0,
+	APP_DIR_CACHE,
+	APP_DIR_RESOURCE,
+	APP_DIR_SHARED_DATA,
+	APP_DIR_SHARED_RESOURCE,
+	APP_DIR_SHARED_TRUSTED,
+	APP_DIR_EXTERNAL_DATA,
+	APP_DIR_EXTERNAL_CACHE,
+	APP_DIR_EXTERNAL_SHARED_DATA,
+} app_subdir;
+
 extern Eina_Bool util_kill_app(const char *appid);
 extern Eina_Bool util_launch_app(const char *appid);
-
+extern const char *util_get_file_path(app_subdir dir, const char *relative);
 
 
 #endif //__TASK_MGR_UTIL_H__

@@ -16,11 +16,11 @@
  * limitations under the License.
  *
  */
-
 #include <Elementary.h>
 #include <app_manager.h>
-//#include <app_manager_extension.h>
+#include <app_manager_extension.h>
 #include <app_control.h>
+#include <app_common.h>
 #include <stdbool.h>
 
 #include "log.h"
@@ -28,7 +28,7 @@
 
 
 
-extern Eina_Bool util_kill_app(const char *appid)
+Eina_Bool util_kill_app(const char *appid)
 {
 	app_context_h context = NULL;
 	Eina_Bool ret = EINA_TRUE;
@@ -56,7 +56,7 @@ extern Eina_Bool util_kill_app(const char *appid)
 
 
 
-extern Eina_Bool util_launch_app(const char *appid)
+Eina_Bool util_launch_app(const char *appid)
 {
 	int ret;
 	bool running = false;
@@ -105,6 +105,51 @@ extern Eina_Bool util_launch_app(const char *appid)
 	return EINA_TRUE;
 }
 
+const char *util_get_file_path(app_subdir dir, const char *relative)
+{
+	static char buf[PATH_MAX];
+	char *prefix;
 
+	switch (dir) {
+	case APP_DIR_DATA:
+		prefix = app_get_data_path();
+		break;
+	case APP_DIR_CACHE:
+		prefix = app_get_cache_path();
+		break;
+	case APP_DIR_RESOURCE:
+		prefix = app_get_resource_path();
+		break;
+	case APP_DIR_SHARED_DATA:
+		prefix = app_get_shared_data_path();
+		break;
+	case APP_DIR_SHARED_RESOURCE:
+		prefix = app_get_shared_resource_path();
+		break;
+	case APP_DIR_SHARED_TRUSTED:
+		prefix = app_get_shared_trusted_path();
+		break;
+	case APP_DIR_EXTERNAL_DATA:
+		prefix = app_get_external_data_path();
+		break;
+	case APP_DIR_EXTERNAL_CACHE:
+		prefix = app_get_external_cache_path();
+		break;
+	case APP_DIR_EXTERNAL_SHARED_DATA:
+		prefix = app_get_external_shared_data_path();
+		break;
+	default:
+		LOGE("Not handled directory type.");
+		return NULL;
+	}
+	size_t res = eina_file_path_join(buf, sizeof(buf), prefix, relative);
+	free(prefix);
+	if (res > sizeof(buf)) {
+		LOGE("Path exceeded PATH_MAX");
+		return NULL;
+	}
+
+	return &buf[0];
+}
 
 //End of file

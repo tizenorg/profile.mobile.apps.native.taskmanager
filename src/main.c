@@ -18,9 +18,7 @@
  */
 
 #include <app.h>
-#include <appcore-efl.h>
 #include <Elementary.h>
-#include <aul.h>
 #include <malloc.h>
 
 #include "conf.h"
@@ -49,7 +47,7 @@ static main_s main_info = {
 
 
 
-extern main_h main_get_info(void)
+main_h main_get_info(void)
 {
 	return &main_info;
 }
@@ -83,7 +81,7 @@ static task_mgr_error_e _create_layout(Evas_Object *parent)
 	layout = elm_layout_add(parent);
 	goto_if (!layout, ERROR);
 
-	ret = elm_layout_file_set(layout, LAYOUT, "layout");
+	ret = elm_layout_file_set(layout, util_get_file_path(APP_DIR_RESOURCE, LAYOUT_EDJ), "layout");
 	goto_if(EINA_FALSE == ret, ERROR);
 
 	evas_object_size_hint_weight_set(layout, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
@@ -136,7 +134,8 @@ static Eina_Bool _list_timer_cb(void *data)
 	scroller_push_item(main_info.scroller, clear_item);
 
 	ret = list_create(&main_info.pkg_list);
-		elm_object_part_text_set(main_info.layout, "no,apps,txt", _("IDS_TASKMGR_NPBODY_NO_APPLICATIONS_ABB2"));
+	elm_object_part_text_set(main_info.layout, "no,apps,txt", _("IDS_TASKMGR_NPBODY_NO_APPLICATIONS_ABB2"));
+
 	if (TASK_MGR_ERROR_NO_DATA == ret) {
 		_D("There is no application");
 		item_clear_set_disable(main_info.scroller);
@@ -210,7 +209,6 @@ static void _terminate_cb(void *data)
 
 	elm_cache_all_flush();
 	malloc_trim(0);
-	appcore_flush_memory();
 
 	scroller_destroy(main_info.layout);
 	_destroy_layout();

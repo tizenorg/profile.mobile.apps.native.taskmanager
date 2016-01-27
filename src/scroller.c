@@ -35,7 +35,7 @@
 
 
 
-extern task_mgr_error_e scroller_push_item(Evas_Object *scroller, Evas_Object *item)
+task_mgr_error_e scroller_push_item(Evas_Object *scroller, Evas_Object *item)
 {
 	_D("");
 	retv_if(!scroller, TASK_MGR_ERROR_INVALID_PARAMETER);
@@ -57,7 +57,7 @@ extern task_mgr_error_e scroller_push_item(Evas_Object *scroller, Evas_Object *i
 
 
 
-extern void scroller_pop_item(Evas_Object *scroller, Evas_Object *item, int terminate)
+void scroller_pop_item(Evas_Object *scroller, Evas_Object *item, int terminate)
 {
 	ret_if(!scroller);
 	ret_if(!item);
@@ -92,7 +92,7 @@ extern void scroller_pop_item(Evas_Object *scroller, Evas_Object *item, int term
 
 
 
-extern task_mgr_error_e scroller_push_all_item(Evas_Object *scroller, Eina_List *list)
+task_mgr_error_e scroller_push_all_item(Evas_Object *scroller, Eina_List *list)
 {
 	const Eina_List *l = NULL;
 	const Eina_List *ln = NULL;
@@ -152,7 +152,7 @@ END:
 
 
 
-extern void scroller_pop_all_item(Evas_Object *scroller, int terminate)
+void scroller_pop_all_item(Evas_Object *scroller, int terminate)
 {
 	Evas_Object *box_layout = NULL;
 	Evas_Object *box = NULL;
@@ -202,7 +202,7 @@ extern void scroller_pop_all_item(Evas_Object *scroller, int terminate)
 
 
 
-extern int scroller_count(Evas_Object *scroller)
+int scroller_count(Evas_Object *scroller)
 {
 	Evas_Object *box_layout = NULL;
 	Evas_Object *box = NULL;
@@ -227,14 +227,14 @@ extern int scroller_count(Evas_Object *scroller)
 
 
 
-extern Eina_Bool scroller_is_scrolling(Evas_Object *scroller)
+Eina_Bool scroller_is_scrolling(Evas_Object *scroller)
 {
 	return evas_object_data_get(scroller, DATA_KEY_IS_SCROLLING)? EINA_TRUE:EINA_FALSE;
 }
 
 
 
-extern void scroller_freeze(Evas_Object *scroller)
+void scroller_freeze(Evas_Object *scroller)
 {
 	Evas_Object *box_layout = NULL;
 	Evas_Object *box = NULL;
@@ -252,7 +252,7 @@ extern void scroller_freeze(Evas_Object *scroller)
 
 
 
-extern void scroller_unfreeze(Evas_Object *scroller)
+void scroller_unfreeze(Evas_Object *scroller)
 {
 	Evas_Object *box_layout = NULL;
 	Evas_Object *box = NULL;
@@ -330,7 +330,7 @@ static void _scroll_cb(void *data, Evas_Object *scroller, void *event_info)
 
 
 
-extern Evas_Object *scroller_create(Evas_Object *layout)
+Evas_Object *scroller_create(Evas_Object *layout)
 {
 	retv_if(!layout, NULL);
 
@@ -363,7 +363,7 @@ extern Evas_Object *scroller_create(Evas_Object *layout)
 		evas_object_del(scroller);
 		return NULL;
 	}
-	elm_layout_file_set(box_layout, BOX_LAYOUT, BOX_GROUP_NAME);
+	elm_layout_file_set(box_layout, util_get_file_path(APP_DIR_RESOURCE, BOX_LAYOUT_EDJ), BOX_GROUP_NAME);
 	evas_object_size_hint_align_set(box_layout, 0.5, 1.0);
 	evas_object_size_hint_weight_set(box_layout, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
 	evas_object_show(box_layout);
