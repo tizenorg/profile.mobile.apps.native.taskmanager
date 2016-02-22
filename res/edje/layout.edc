@@ -22,7 +22,7 @@
 styles {
 	style {
 		name: "no_item_style";
-		base: "font=Tizen:style=Bold font_size=30 color=#ffffff align=center style=shadow shadow_color=#000000bf wrap=mixed";
+		base: "font=Tizen:style=Bold font_size=32 color=#ffffff align=center style=shadow shadow_color=#000000bf wrap=mixed";
 		tag:  "br" "\n";
 		tag:  "hilight" "+ font_weight=Bold";
 		tag:  "b" "+ font_weight=Bold";
@@ -31,20 +31,18 @@ styles {
 }
 
 collections {
-	base_scale: 2.1;
+	base_scale: 2.6;
 	group {
 		name: "layout";
 		parts {
 			part {
 				name: "bg";
-				type: RECT;
+				type: SWALLOW;
 				scale: 1;
 				description {
 					state: "default" 0.0;
-					color: 0 0 0 BG_COLOR;
 					rel1 { relative: 0.0 0.0; }
 					rel2 { relative: 1.0 1.0; }
-					min: BASE_WIDTH BASE_HEIGHT;
 					visible: 1;
 				}
 			}

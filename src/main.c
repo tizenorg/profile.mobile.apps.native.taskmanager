@@ -77,6 +77,7 @@ static task_mgr_error_e _create_layout(Evas_Object *parent)
 {
 	_D("");
 	Evas_Object *layout = NULL;
+	Evas_Object *rect = NULL;
 	Eina_Bool ret = EINA_FALSE;
 
 	// create layout
@@ -92,6 +93,15 @@ static task_mgr_error_e _create_layout(Evas_Object *parent)
 	evas_object_show(layout);
 
 	main_info.layout = layout;
+
+	// create layout bg
+	rect = evas_object_rectangle_add(evas_object_evas_get(layout));
+	evas_object_size_hint_min_set(rect, main_info.root_w, main_info.root_h);
+	evas_object_size_hint_weight_set(rect, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
+	evas_object_resize(rect, main_info.root_w, main_info.root_h);
+	evas_object_color_set(rect, 0, 0, 0, BG_COLOR);
+	evas_object_show(rect);
+	elm_object_part_content_set(layout, BG_PART_NAME, rect);
 
 	// create scroller
 	main_info.scroller = scroller_create(layout);
@@ -109,7 +119,13 @@ ERROR:
 
 static void _destroy_layout(void)
 {
+	Evas_Object *rect = NULL;
+
 	if (main_info.layout) {
+		rect = elm_object_part_content_unset(main_info.layout, BG_PART_NAME);
+		if (rect) {
+			evas_object_del(rect);
+		}
 		evas_object_del(main_info.layout);
 		main_info.layout = NULL;
 	}
@@ -163,16 +179,17 @@ static bool _create_cb(void *data)
 	main_info.win = elm_win_add(NULL, "Task-mgr", ELM_WIN_BASIC);
 	retv_if(!main_info.win, false);
 
+	elm_app_base_scale_set(2.6);
 	elm_win_screen_size_get(main_info.win, NULL, NULL, &main_info.root_w, &main_info.root_h);
 	_D("screen size is (%d, %d)", main_info.root_w, main_info.root_h);
 
 	elm_object_event_callback_add(main_info.win, _back_key_pressed, NULL);
 
+	elm_win_alpha_set(main_info.win, EINA_TRUE);
 	elm_win_indicator_mode_set(main_info.win, ELM_WIN_INDICATOR_SHOW);
 	elm_win_indicator_opacity_set(main_info.win, ELM_WIN_INDICATOR_TRANSPARENT);
 
 	elm_win_borderless_set(main_info.win, EINA_TRUE);
-	elm_win_alpha_set(main_info.win, EINA_TRUE);
 	evas_object_show(main_info.win);
 
 	main_info.e = evas_object_evas_get(main_info.win);
@@ -212,7 +229,7 @@ static void _terminate_cb(void *data)
 	malloc_trim(0);
 	appcore_flush_memory();
 
-	scroller_destroy(main_info.layout);
+	scroller_destroy(main_info.scroller);
 	_destroy_layout();
 
 	/**

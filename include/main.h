@@ -21,8 +21,9 @@
 #define __TASK_MGR_H__
 
 typedef struct {
-	Evas		*e;
+	Evas *e;
 	Evas_Object *win;
+	Evas_Object *bg;
 	Evas_Object *layout;
 	Evas_Object *scroller;
 	Evas_Object *box;

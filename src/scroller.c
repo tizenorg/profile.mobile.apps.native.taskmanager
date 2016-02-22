@@ -43,12 +43,18 @@ extern task_mgr_error_e scroller_push_item(Evas_Object *scroller, Evas_Object *i
 
 	Evas_Object *box_layout = NULL;
 	Evas_Object *box = NULL;
+	Eina_List *list = NULL;
 
 	box_layout = elm_object_content_get(scroller);
 	retv_if(!box_layout, TASK_MGR_ERROR_FAIL);
 
-	box = elm_object_part_content_get(box_layout, BOX_GROUP_NAME);
+	list = elm_box_children_get(box_layout);
+	retv_if(!list, TASK_MGR_ERROR_FAIL);
+
+	box = eina_list_nth(list, 0);
 	retv_if(!box, TASK_MGR_ERROR_FAIL);
+
+	eina_list_free(list);
 
 	elm_box_pack_end(box, item);
 
@@ -64,30 +70,25 @@ extern void scroller_pop_item(Evas_Object *scroller, Evas_Object *item, int term
 
 	Evas_Object *box_layout = NULL;
 	Evas_Object *box = NULL;
-	Evas_Object *tmp_item = NULL;
 
+	Eina_List *box_list = NULL;
 	Eina_List *list = NULL;
-	const Eina_List *l = NULL;
-	const Eina_List *ln = NULL;
 
 	box_layout = elm_object_content_get(scroller);
 	ret_if(!box_layout);
 
-	box = elm_object_part_content_get(box_layout, BOX_GROUP_NAME);
+	box_list = elm_box_children_get(box_layout);
+	ret_if(!box_list);
+
+	box = eina_list_nth(box_list, 0);
 	ret_if(!box);
 
-	list = elm_box_children_get(box);
-	ret_if(!list);
+	eina_list_free(box_list);
 
-	EINA_LIST_FOREACH_SAFE(list, l, ln, tmp_item) {
-		if (item != tmp_item) continue;
-		if (terminate) item_terminate(item);
+	if (terminate) item_terminate(item);
 
-		elm_box_unpack(box, item);
-		item_destroy(item);
-		break;
-	}
-	eina_list_free(list);
+	elm_box_unpack(box, item);
+	item_destroy(item);
 }
 
 
@@ -156,6 +157,7 @@ extern void scroller_pop_all_item(Evas_Object *scroller, int terminate)
 {
 	Evas_Object *box_layout = NULL;
 	Evas_Object *box = NULL;
+	Eina_List *box_list = NULL;
 	Eina_List *list = NULL;
 	Eina_List *reverse_list = NULL;
 	Ecore_Timer *timer = NULL;
@@ -165,7 +167,7 @@ extern void scroller_pop_all_item(Evas_Object *scroller, int terminate)
 	timer = evas_object_data_del(scroller, PRIVATE_DATA_KEY_POP_ALL_TIMER);
 	if (timer) {
 		_D("There is already a timer for popping all items.");
-		ecore_timer_del(timer);
+		return;
 	}
 
 	/* An user tap the end all button, all items have to be terminated even if paused. */
@@ -176,8 +178,13 @@ extern void scroller_pop_all_item(Evas_Object *scroller, int terminate)
 	box_layout = elm_object_content_get(scroller);
 	ret_if(!box_layout);
 
-	box = elm_object_part_content_get(box_layout, BOX_GROUP_NAME);
+	box_list = elm_box_children_get(box_layout);
+	ret_if(!box_list);
+
+	box = eina_list_nth(box_list, 0);
 	ret_if(!box);
+
+	eina_list_free(box_list);
 
 	list = elm_box_children_get(box);
 	if (!list) return;
@@ -206,6 +213,7 @@ extern int scroller_count(Evas_Object *scroller)
 {
 	Evas_Object *box_layout = NULL;
 	Evas_Object *box = NULL;
+	Eina_List *box_list = NULL;
 	Eina_List *list = NULL;
 
 	retv_if(!scroller, 0);
@@ -213,8 +221,13 @@ extern int scroller_count(Evas_Object *scroller)
 	box_layout = elm_object_content_get(scroller);
 	retv_if(!box_layout, 0);
 
-	box = elm_object_part_content_get(box_layout, BOX_GROUP_NAME);
+	box_list = elm_box_children_get(box_layout);
+	retv_if(!box_list, 0);
+
+	box = eina_list_nth(box_list, 0);
 	retv_if(!box, 0);
+
+	eina_list_free(box_list);
 
 	list = elm_box_children_get(box);
 	if (!list) {
@@ -238,14 +251,20 @@ extern void scroller_freeze(Evas_Object *scroller)
 {
 	Evas_Object *box_layout = NULL;
 	Evas_Object *box = NULL;
+	Eina_List *list = NULL;
 
 	ret_if(!scroller);
 
 	box_layout = elm_object_content_get(scroller);
 	ret_if(!box_layout);
 
-	box = elm_object_part_content_get(box_layout, BOX_GROUP_NAME);
+	list = elm_box_children_get(box_layout);
+	ret_if(!list);
+
+	box = eina_list_nth(list, 0);
 	ret_if(!box);
+
+	eina_list_free(list);
 
 	elm_object_scroll_freeze_push(box);
 }
@@ -256,14 +275,20 @@ extern void scroller_unfreeze(Evas_Object *scroller)
 {
 	Evas_Object *box_layout = NULL;
 	Evas_Object *box = NULL;
+	Eina_List *list = NULL;
 
 	ret_if(!scroller);
 
 	box_layout = elm_object_content_get(scroller);
 	ret_if(!box_layout);
 
-	box = elm_object_part_content_get(box_layout, BOX_GROUP_NAME);
+	list = elm_box_children_get(box_layout);
+	ret_if(!list);
+
+	box = eina_list_nth(list, 0);
 	ret_if(!box);
+
+	eina_list_free(list);
 
 	while (elm_object_scroll_freeze_get(box)) {
 		elm_object_scroll_freeze_pop(box);
@@ -330,12 +355,27 @@ static void _scroll_cb(void *data, Evas_Object *scroller, void *event_info)
 
 
 
+static void __resize_cb(void *data, Evas *e, Evas_Object *obj, void *event_info)
+{
+	Evas_Object *scroller = obj;
+
+	int x, y, w, h;
+
+	ret_if(!scroller);
+
+	evas_object_geometry_get(scroller, &x, &y, &w, &h);
+	_D("%s resize(%d, %d, %d, %d)", data, x, y, w, h);
+}
+
+
+
 extern Evas_Object *scroller_create(Evas_Object *layout)
 {
 	retv_if(!layout, NULL);
 
 	Evas_Object *box = NULL;
 	Evas_Object *box_layout = NULL;
+	Evas_Object *rect = NULL;
 	Evas_Object *scroller = NULL;
 
 	scroller = elm_scroller_add(layout);
@@ -343,10 +383,11 @@ extern Evas_Object *scroller_create(Evas_Object *layout)
 
 	elm_scroller_bounce_set(scroller, EINA_FALSE, EINA_FALSE);
 	elm_scroller_policy_set(scroller, ELM_SCROLLER_POLICY_OFF, ELM_SCROLLER_POLICY_OFF);
-	//elm_object_style_set(scroller, "list_effect");
-	elm_object_focus_allow_set(scroller, EINA_FALSE);
+	elm_object_style_set(scroller, "effect");
+
 	elm_object_part_content_set(layout, "scroller", scroller);
 	evas_object_show(scroller);
+	evas_object_size_hint_align_set(scroller, 0.5, 1.0);
 
 	evas_object_event_callback_add(scroller, EVAS_CALLBACK_MOUSE_DOWN, _mouse_down_cb, NULL);
 	evas_object_event_callback_add(scroller, EVAS_CALLBACK_MOUSE_UP, _mouse_up_cb, NULL);
@@ -355,19 +396,20 @@ extern Evas_Object *scroller_create(Evas_Object *layout)
 	evas_object_smart_callback_add(scroller, "scroll,drag,start", _drag_start_cb, NULL);
 	evas_object_smart_callback_add(scroller, "scroll,drag,stop", _drag_stop_cb, NULL);
 	evas_object_smart_callback_add(scroller, "scroll", _scroll_cb, NULL);
-	/* Because change an align in box, use the layout betweein box and scroller. */
 
-	box_layout = elm_layout_add(scroller);
+	/* Because change an align in box, use the another box betweein box and scroller. */
+	box_layout = elm_box_add(scroller);
 	if (!box_layout) {
 		_E("Fail to create box layout");
 		evas_object_del(scroller);
 		return NULL;
 	}
-	elm_layout_file_set(box_layout, BOX_LAYOUT, BOX_GROUP_NAME);
+	elm_box_horizontal_set(box_layout, EINA_FALSE);
+	elm_box_align_set(box_layout, 0.5, 1.0);
 	evas_object_size_hint_align_set(box_layout, 0.5, 1.0);
 	evas_object_size_hint_weight_set(box_layout, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
-	evas_object_show(box_layout);
 	elm_object_content_set(scroller, box_layout);
+	evas_object_show(box_layout);
 
 	box = elm_box_add(scroller);
 	if (!box) {
@@ -377,11 +419,16 @@ extern Evas_Object *scroller_create(Evas_Object *layout)
 		return NULL;
 	}
 	elm_box_horizontal_set(box, EINA_FALSE);
+	elm_box_align_set(box, 0.5, 1.0);
 	evas_object_size_hint_align_set(box, 0.5, 1.0);
 	evas_object_size_hint_weight_set(box, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
-	elm_object_part_content_set(box_layout, BOX_GROUP_NAME, box);
+	elm_box_pack_end(box_layout, box);
 	evas_object_show(box);
 	main_get_info()->box = box;
+
+	evas_object_event_callback_add(scroller, EVAS_CALLBACK_RESIZE, __resize_cb, "scroller");
+	evas_object_event_callback_add(box_layout, EVAS_CALLBACK_RESIZE, __resize_cb, "box_layout");
+	evas_object_event_callback_add(box, EVAS_CALLBACK_RESIZE, __resize_cb, "box");
 
 	return scroller;
 }
@@ -395,16 +442,21 @@ void scroller_destroy(Evas_Object *scroller)
 	Evas_Object *item = NULL;
 	Evas_Object *box_layout = NULL;
 	Evas_Object *box = NULL;
+	Evas_Object *rect = NULL;
+	Eina_List *box_list = NULL;
 	Eina_List *list = NULL;
 
 	ret_if(!scroller);
-	scroller_pop_all_item(scroller, 0);
 
-	box_layout = elm_object_content_unset(scroller);
+	box_layout = elm_object_content_get(scroller);
 	ret_if(!box_layout);
 
-	box = elm_object_part_content_unset(box_layout, BOX_GROUP_NAME);
+	box_list = elm_box_children_get(box_layout);
+	ret_if(!box_list);
+
+	box = eina_list_nth(box_list, 0);
 	ret_if(!box);
+	eina_list_free(box_list);
 
 	list = elm_box_children_get(box);
 	if (!list) {
@@ -414,9 +466,9 @@ void scroller_destroy(Evas_Object *scroller)
 
 	EINA_LIST_FREE(list, item) {
 		if (!item) break;
+		elm_box_unpack(box, item);
 		item_destroy(item);
 	}
-	free(list);
 
 	evas_object_del(box);
 	evas_object_del(box_layout);

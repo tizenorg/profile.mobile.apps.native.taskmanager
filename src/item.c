@@ -47,7 +47,6 @@
 
 #define PRIVATE_MOVE_THRESHOLD 30
 #define PRIVATE_FLICK_TIME 100
-#define PRIVATE_ITEM_TERMINATE_THRESHOLD 2.0
 #define PRIVATE_ITEM_ALPHA 0.8
 #define PRIVATE_ITEM_ALPHA_MAX 100
 
@@ -83,7 +82,7 @@ static void _clear_all_clicked_cb(void *data, Evas_Object *obj, const char *emis
 {
 	Evas_Object *scroller = data;
 	ret_if(!scroller);
-	_D("");
+	_D("clear all item is clicked");
 	scroller_pop_all_item(scroller, 1);
 }
 
@@ -106,7 +105,7 @@ extern Evas_Object *item_clear_all_create(Evas_Object *scroller)
 
 	elm_object_part_text_set(clear_item, "name", _("IDS_TASKMGR_BUTTON_CLEAR_ALL"));
 
-	elm_object_signal_callback_add(clear_item, "click", "clear_item", _clear_all_clicked_cb, scroller);
+	elm_object_signal_callback_add(clear_item, "mouse,clicked,1", "event", _clear_all_clicked_cb, scroller);
 	evas_object_data_set(scroller, PRIVATE_DATA_KEY_CLEAR, clear_item);
 
 	evas_object_size_hint_weight_set(clear_item, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
@@ -282,7 +281,7 @@ static Eina_Bool _anim_slipped_item(void *data)
 	item_outer_h = (int)evas_object_data_get(item_outer, PRIVATE_DATA_KEY_ITEM_H);
 
 	item_outer_h -= SLIPPED_LENGTH;
-	evas_object_size_hint_min_set(item_outer, item_outer_w, item_outer_h);
+	evas_object_size_hint_min_set(item_outer, ELM_SCALE_SIZE(item_outer_w), ELM_SCALE_SIZE(item_outer_h));
 	evas_object_data_set(item_outer, PRIVATE_DATA_KEY_ITEM_H, (void *)item_outer_h);
 
 	if (item_outer_h <= 0) {
@@ -543,9 +542,9 @@ static void _up_cb(void *data, Evas *e, Evas_Object *obj, void *event_info)
 	init_pos = (int) evas_object_data_del(item_outer, PRIVATE_DATA_KEY_ITEM_X);
 	evas_object_data_del(item_outer, PRIVATE_DATA_KEY_ITEM_Y);
 	evas_object_geometry_get(item_inner, &item_pos, NULL, &item_size, NULL);
-	tm_threshold = item_size * PRIVATE_ITEM_TERMINATE_THRESHOLD;
+	tm_threshold = main_get_info()->root_w - 100;
 
-	if (abs(item_pos - init_pos) > tm_threshold || (up_time - down_time < PRIVATE_FLICK_TIME && abs(item_pos - init_pos) > 0)) {
+	if (item_pos > tm_threshold || item_pos < 10 || (up_time - down_time < PRIVATE_FLICK_TIME && abs(item_pos - init_pos) > 0)) {
 		_item_terminate_anim(item_outer);
 
 	} else if (item_pos != init_pos) {
@@ -565,7 +564,7 @@ static void _up_cb(void *data, Evas *e, Evas_Object *obj, void *event_info)
 
 
 
-static void _clicked_cb(void *data, Evas_Object *obj, void *event_info)
+static void _clicked_cb(void *data, Evas_Object *obj, const char *emission, const char *source)
 {
 	_D("Clicked");
 
@@ -586,6 +585,8 @@ static void _clicked_cb(void *data, Evas_Object *obj, void *event_info)
 	appid = info->appid;
 	ret_if(!appid);
 
+	elm_object_signal_emit(item_inner, "clicked", "event");
+
 	util_launch_app(appid);
 	//layout_hide_with_timer();
 }
@@ -597,7 +598,6 @@ extern Evas_Object *item_create(Evas_Object *scroller, list_type_default_s *info
 	retv_if(NULL == scroller, NULL);
 	retv_if(NULL == info, NULL);
 
-	Evas_Object *focus = NULL;
 	Evas_Object *icon = NULL;
 	Evas_Object *item = NULL;
 	Evas_Object *item_inner = NULL;
@@ -626,11 +626,7 @@ extern Evas_Object *item_create(Evas_Object *scroller, list_type_default_s *info
 	elm_object_part_content_set(item_inner, "icon", icon);
 	elm_object_part_text_set(item_inner, "name", info->name);
 
-	focus = elm_button_add(scroller);
-	goto_if(NULL == focus, ERROR);
-	elm_object_style_set(focus, "focus");
-	elm_object_part_content_set(item, "focus", focus);
-	evas_object_smart_callback_add(focus, "clicked", _clicked_cb, item);
+	elm_object_signal_callback_add(item_inner, "mouse,clicked,1", "event", _clicked_cb, item);
 
 	evas_object_data_set(item, DATA_KEY_ITEM_INFO, info);
 
@@ -647,14 +643,8 @@ extern void item_destroy(Evas_Object *item)
 {
 	ret_if(!item);
 
-	Evas_Object *focus = NULL;
 	Evas_Object *icon = NULL;
 	Evas_Object *item_inner = NULL;
-
-	focus = elm_object_part_content_unset(item, "focus");
-	if (focus) {
-		evas_object_del(focus);
-	}
 
 	item_inner = elm_object_part_content_unset(item, "inner");
 	if (!item_inner) {
@@ -697,8 +687,8 @@ extern void item_terminate(Evas_Object *item)
 		util_kill_app(appid);
 	}
 
-	if (0 != rua_delete_history_with_pkgname(appid)) {		
-		_E("Cannot delete history for package(%s)", appid);		
+	if (0 != rua_delete_history_with_pkgname(appid)) {
+		_E("Cannot delete history for package(%s)", appid);
 	}
 }
 
