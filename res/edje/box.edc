@@ -19,7 +19,7 @@
 
 
 
-#include "conf.h"
+#include "conf.edc"
 
 collections {
 	base_scale: 2.1;
