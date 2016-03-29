@@ -118,7 +118,11 @@ const char *util_get_file_path(app_subdir dir, const char *relative)
 		prefix = app_get_cache_path();
 		break;
 	case APP_DIR_RESOURCE:
+#ifdef INSTALL_RESDIR
+		prefix = strdup(INSTALL_RESDIR);
+#else
 		prefix = app_get_resource_path();
+#endif
 		break;
 	case APP_DIR_SHARED_DATA:
 		prefix = app_get_shared_data_path();

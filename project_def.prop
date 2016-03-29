@@ -1,6 +1,6 @@
 
 # Project Name
-APPNAME = taskmanager
+APPNAME = task-mgr
 
 # Project Type
 type = app
