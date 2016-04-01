@@ -63,7 +63,7 @@ cd -
 
 %define tizen_sign 1
 %define tizen_sign_base %{_pkg_dir}
-%define tizen_sign_level public
+%define tizen_sign_level platform
 %define tizen_author_sign 1
 %define tizen_dist_sign 1
 %find_lang task-mgr
