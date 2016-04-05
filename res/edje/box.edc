@@ -50,7 +50,36 @@ collections {
 					fixed: 0 1;
 					visible: 1;
 				}
+				description {
+					state: "hidden" 1.0;
+					rel1 { relative: 0.0 1.0; }
+					rel2 { relative: 1.0 2.0; }
+					align: 0.5 1.0;
+					fixed: 0 1;
+					visible: 1;
+				}
 			}
 		} //parts
+		programs {
+			program {
+				signal: "all,apps,hide";
+				source: "task-mgr";
+				action: STATE_SET "hidden" 1.0;
+				target: "box";
+				transition: DECEL 0.5;
+				after: "all,apps,hidden,emit";
+			}
+			program {
+				signal: "all,apps,show";
+				source: "task-mgr";
+				action: STATE_SET "default" 0.0;
+				target: "box";
+				transition: DECEL 0.5;
+			}
+			program {
+				name: "all,apps,hidden,emit";
+				action: SIGNAL_EMIT "all,apps,hidden" "box";
+			}
+		}
 	} //group
 } //collections

@@ -18,6 +18,7 @@
  */
 
  #include <Elementary.h>
+ #include <app.h>
 
  #include "conf.h"
  #include "item.h"
@@ -114,90 +115,29 @@ task_mgr_error_e scroller_push_all_item(Evas_Object *scroller, Eina_List *list)
 	return TASK_MGR_ERROR_NONE;
 }
 
-
-
-static Eina_Bool _pop_all_item_cb(void *data)
+static void _terminate_all_app_and_exit(void *data, Evas_Object *obj, const char *emission, const char *source)
 {
-	Evas_Object *scroller = data;
-	Evas_Object *item = NULL;
-	Eina_List *list = NULL;
-	static int i = 0;
-	int count = 0;
-	int terminate = (int) evas_object_data_get(scroller, PRIVATE_DATA_KEY_TERMINATE);
+	Eina_List *list, *l;
+	Evas_Object *box = data, *item;
 
-	list = evas_object_data_get(scroller, PRIVATE_DATA_KEY_REVERSE_LIST);
-	goto_if(!list, END);
+	list = elm_box_children_get(box);
+	EINA_LIST_FOREACH(list, l, item)
+		item_terminate(item);
 
-	count = eina_list_count(list);
-	_D("remove list count(include clear button) : %d", count);
-	if (i >= count-1) goto END;
-
-	item = eina_list_nth(list, i);
-	i++;
-	goto_if(!item, END);
-
-	scroller_pop_item(scroller, item, terminate);
-	return ECORE_CALLBACK_RENEW;
-
-END:
-	i = 0;
-	eina_list_free(list);
-	evas_object_data_del(scroller, PRIVATE_DATA_KEY_REVERSE_LIST);
-	evas_object_data_del(scroller, PRIVATE_DATA_KEY_TERMINATE);
-	evas_object_data_del(scroller, PRIVATE_DATA_KEY_POP_ALL_TIMER);
-	item_clear_set_disable(scroller);
-
-	return ECORE_CALLBACK_CANCEL;
+	ui_app_exit();
 }
-
 
 
 void scroller_pop_all_item(Evas_Object *scroller, int terminate)
 {
 	Evas_Object *box_layout = NULL;
 	Evas_Object *box = NULL;
-	Eina_List *list = NULL;
-	Eina_List *reverse_list = NULL;
-	Ecore_Timer *timer = NULL;
-
-	ret_if(!scroller);
-
-	timer = evas_object_data_del(scroller, PRIVATE_DATA_KEY_POP_ALL_TIMER);
-	if (timer) {
-		_D("There is already a timer for popping all items.");
-		ecore_timer_del(timer);
-	}
-
-	/* An user tap the end all button, all items have to be terminated even if paused. */
-	if (!evas_object_data_get(scroller, PRIVATE_DATA_KEY_TERMINATE)) {
-		evas_object_data_set(scroller, PRIVATE_DATA_KEY_TERMINATE, (void *) terminate);
-	}
 
 	box_layout = elm_object_content_get(scroller);
-	ret_if(!box_layout);
-
 	box = elm_object_part_content_get(box_layout, BOX_GROUP_NAME);
-	ret_if(!box);
 
-	list = elm_box_children_get(box);
-	if (!list) return;
-
-	/* This reverse list should be freed in the timer */
-	reverse_list = eina_list_reverse_clone(list);
-	eina_list_free(list);
-	ret_if(!reverse_list);
-	evas_object_data_set(scroller, PRIVATE_DATA_KEY_REVERSE_LIST, reverse_list);
-
-	timer = ecore_timer_add(0.01f, _pop_all_item_cb, scroller);
-	if (!timer) {
-		_E("Cannot add a timer");
-		evas_object_data_del(scroller, PRIVATE_DATA_KEY_REVERSE_LIST);
-		evas_object_data_del(scroller, PRIVATE_DATA_KEY_TERMINATE);
-		eina_list_free(reverse_list);
-		return;
-	}
-
-	evas_object_data_set(scroller, PRIVATE_DATA_KEY_POP_ALL_TIMER, timer);
+	elm_object_signal_callback_add(box_layout, "all,apps,hidden", "box", _terminate_all_app_and_exit, box);
+	elm_object_signal_emit(box_layout, "all,apps,hide", "task-mgr");
 }
 
 
