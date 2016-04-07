@@ -17,24 +17,40 @@
  *
  */
 
-#ifndef __TASK_MGR_H__
-#define __TASK_MGR_H__
-
-typedef struct {
-	Evas		*e;
-	Evas_Object *win;
-	Evas_Object *layout;
-	Evas_Object *scroller;
-	Evas_Object *box;
-
-	Eina_List *pkg_list;
-
-	int root_w;
-	int root_h;
-} main_s;
-typedef main_s *main_h;
 
 
-extern main_h main_get_info(void);
+#include "conf.h"
 
-#endif //__TASK_MGR_H__
+collections {
+	base_scale: 2.1;
+	group {
+		name: "box";
+		parts {
+			part {
+				name: "bg";
+				type: RECT;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					rel1 { relative: 0.0 0.0; }
+					rel2 { relative: 1.0 1.0; }
+					min: BASE_WIDTH BASE_HEIGHT;
+					color: 0 0 0 0;
+					visible: 1;
+				}
+			}
+			part {
+				name: "box";
+				type: SWALLOW;
+				description {
+					state: "default" 0.0;
+					rel1 { relative: 0.0 1.0; }
+					rel2 { relative: 1.0 1.0; }
+					align: 0.5 1.0;
+					fixed: 0 1;
+					visible: 1;
+				}
+			}
+		} //parts
+	} //group
+} //collections

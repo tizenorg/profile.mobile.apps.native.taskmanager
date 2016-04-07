@@ -7,6 +7,14 @@ ADD_CUSTOM_TARGET(layout.edj
 ADD_DEPENDENCIES(${PROJECT_NAME} layout.edj)
 INSTALL(FILES layout.edj DESTINATION ${EDJEDIR})
 
+ADD_CUSTOM_TARGET(box.edj
+                COMMAND edje_cc -id ${CMAKE_CURRENT_SOURCE_DIR}/images
+                ${CMAKE_CURRENT_SOURCE_DIR}/box.edc box.edj
+                DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/box.edc
+)
+ADD_DEPENDENCIES(${PROJECT_NAME} box.edj)
+INSTALL(FILES box.edj DESTINATION ${EDJEDIR})
+
 ADD_CUSTOM_TARGET(item.edj
                 COMMAND edje_cc -id ${CMAKE_CURRENT_SOURCE_DIR}/images
                 ${CMAKE_CURRENT_SOURCE_DIR}/item.edc item.edj

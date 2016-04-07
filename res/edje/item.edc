@@ -24,7 +24,7 @@
 styles {
 	style {
 		name: "item_style";
-		base: "font=Tizen:style=Bold font_size=32 color=#ffffff align=left style=shadow shadow_color=#000000bf wrap=mixed";
+		base: "font=Tizen:style=Bold font_size=30 color=#ffffff align=left style=shadow shadow_color=#000000bf wrap=mixed";
 		tag:  "br" "\n";
 		tag:  "hilight" "+ font_weight=Bold";
 		tag:  "b" "+ font_weight=Bold";
@@ -37,19 +37,8 @@ images {
 	image: "clear_all_button_icon_disable.png" COMP;
 }
 
-externals {
-	external: "feedback";
-}
-
 collections {
-	base_scale: 2.6;
-	plugins {
-		plugin {
-			name: "touch_sound";
-			source: "feedback";
-			param: "FEEDBACK_TYPE_SOUND FEEDBACK_PATTERN_TAP";
-		}
-	}
+	base_scale: 2.1;
 	group {
 		name: "item";
 		parts {
@@ -69,7 +58,6 @@ collections {
 			part{
 				name: "line";
 				type: RECT;
-				scale: 1;
 				description {
 					state: "default" 0.0;
 					color: 255 255 255 255;
@@ -90,7 +78,17 @@ collections {
 					rel1.relative: 0.0 0.0;
 					rel2.relative: 1.0 1.0;
 					visible: 1;
-					fixed: 1 1;
+				}
+			}
+			part {
+				name: "focus";
+				type: SWALLOW;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					rel1 { relative: 0.0 0.0; to: "bg"; }
+					rel2 { relative: 1.0 1.0; to: "bg"; }
+					visible: 1;
 				}
 			}
 		}
@@ -114,7 +112,6 @@ collections {
 			part {
 				name: "icon";
 				type: SWALLOW;
-				scale: 1;
 				description {
 					state: "default" 0.0;
 					rel1 { relative: 0.5 0.0; to: "bg"; }
@@ -128,41 +125,21 @@ collections {
 			part {
 				name: "name";
 				type: TEXTBLOCK;
-				scale: 1;
 				description {
 					state: "default" 0.0;
 					color: 255 255 255 255;
 					rel1 { relative: 1.0 0.0; to: "icon"; offset: 20 0; }
-					rel2 { relative: 1.0 1.0; to: "icon"; offset: 220 0; }
+					rel2 { relative: 1.0 1.0; to: "icon"; }
 					text {
 						text: "";
 						style: "item_style";
-						min: 0 0;
+						min: 1 0;
 					}
 					align: 0.0 0.5;
 					visible: 1;
 				}
 			}
-			part {
-				name: "event";
-				type: RECT;
-				description {
-					state: "default" 0.0;
-					color: 0 0 0 0;
-					rel1 { relative: 0.0 0.0; to: "icon"; }
-					rel2 { relative: 1.0 1.0; to: "icon"; }
-					visible: 1;
-				}
-			}
 		} //parts
-		programs {
-			program {
-				name: "click,sound";
-				signal: "clicked";
-				source: "event";
-				action: RUN_PLUGIN "touch_sound";
-			}
-		} //programs
 	} //group
 
 	group {
@@ -181,26 +158,13 @@ collections {
 					visible: 1;
 				}
 			}
-			part {
-				name: "top_pad";
-				type: SPACER;
-				scale: 1;
-				description {
-					state: "default" 0.0;
-					rel1 { relative: 0.0 0.0; to: "bg"; }
-					rel2 { relative: 1.0 0.0; to: "bg"; }
-					min: 0 CLEAR_PAD_HEIGHT;
-					align: 0.5 0.0;
-				}
-			}
 			part{
 				name: "line";
 				type: RECT;
-				scale: 1;
 				description {
 					state: "default" 0.0;
 					color: 255 255 255 255;
-					rel1 { relative: 0.5 0.0; offset: 0 5; to: "clear_img"; }
+					rel1 { relative: 0.5 0.0; to: "bg"; }
 					rel2 { relative: 0.5 1.0; to: "bg"; }
 					min: CLEAR_LINE_WIDTH 0;
 					visible: 1;
@@ -214,8 +178,8 @@ collections {
 				scale: 1;
 				description {
 					state: "default" 0.0;
-					rel1 { relative: 0.5 1.0; to: "top_pad"; }
-					rel2 { relative: 0.5 1.0; to: "top_pad"; }
+					rel1 { relative: 0.5 0.0; to: "bg"; }
+					rel2 { relative: 0.5 0.0; to: "bg"; }
 					image {
 						normal: "clear_all_button_icon.png";
 					}
@@ -235,7 +199,6 @@ collections {
 			part {
 				name: "name";
 				type: TEXTBLOCK;
-				scale: 1;
 				description {
 					state: "default" 0.0;
 					color: 255 255 255 255;
@@ -275,10 +238,10 @@ collections {
 		} //parts
 		programs {
 			program {
-				name: "click,sound";
+				name: "event,click";
 				signal: "mouse,clicked,1";
 				source: "event";
-				action: RUN_PLUGIN "touch_sound";
+				action: SIGNAL_EMIT "click" "clear_item";
 			}
 			program {
 				name: "no,app";
