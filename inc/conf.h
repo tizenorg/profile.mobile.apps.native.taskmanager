@@ -42,9 +42,13 @@
 #define BG_COLOR (255*0.5)
 
 //edc
-#define LAYOUT EDJEDIR"/layout.edj"
-#define BOX_LAYOUT EDJEDIR"/box.edj"
-#define ITEM_LAYOUT EDJEDIR"/item.edj"
+#define EDJE_DIR "edje"
+#define LAYOUT_EDJ EDJE_DIR"/layout.edj"
+#define BOX_LAYOUT_EDJ EDJE_DIR"/box.edj"
+#define ITEM_LAYOUT_EDJ EDJE_DIR"/item.edj"
+
+#define IMAGES_DIR "images"
+#define DEFAULT_ICON IMAGES_DIR"/default.png"
 
 #define BOX_GROUP_NAME "box"
 

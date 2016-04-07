@@ -17,7 +17,7 @@
  *
  */
 
- #include "conf.h"
+ #include "conf.edc"
 
 styles {
 	style {

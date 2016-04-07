@@ -26,18 +26,6 @@
 #undef LOG_TAG
 #define LOG_TAG "TASK_MGR"
 
-#if !defined(_D)
-#define _D(fmt, arg...) LOGD(fmt"\n", ##arg)
-#endif
-
-#if !defined(_W)
-#define _W(fmt, arg...) LOGW(fmt"\n", ##arg)
-#endif
-
-#if !defined(_E)
-#define _E(fmt, arg...) LOGE(fmt"\n", ##arg)
-#endif
-
 #if !defined(_SD)
 #define _SD(fmt, arg...) SECURE_LOGD(fmt"\n", ##arg)
 #endif
@@ -110,6 +98,19 @@
 	} \
 }
 
+#define __FILENAME__ (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
+
+#if !defined(_D)
+#define _D(fmt, arg...) dlog_print(DLOG_DEBUG, LOG_TAG, "%s: %s[%d] " #fmt "\n", __FILENAME__, __func__, __LINE__, ##arg)
+#endif
+
+#if !defined(_W)
+#define _W(fmt, arg...) dlog_print(DLOG_WARN, LOG_TAG, "%s: %s[%d] " #fmt "\n", __FILENAME__, __func__, __LINE__, ##arg)
+#endif
+
+#if !defined(_E)
+#define _E(fmt, arg...) dlog_print(DLOG_ERROR, LOG_TAG, "%s: %s[%d] " #fmt "\n", __FILENAME__, __func__, __LINE__, ##arg)
+#endif
 
 
 #endif //__TASK_MGR_LOG_H__

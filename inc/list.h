@@ -20,6 +20,8 @@
 #ifndef __TASK_MGR_LIST_H__
 #define __TASK_MGR_LIST_H__
 
+#include <stdbool.h>
+#include <Eina.h>
 #include "util.h"
 
 typedef struct {
@@ -31,13 +33,13 @@ typedef struct {
 	char *arg;
 
 	int pid;
-	Eina_Bool nodisplay;
+	bool nodisplay;
 	Eina_Bool taskmanage;
 	Eina_Bool unmounted;
 	Eina_Bool multi_launch;
 	Eina_Bool isAlreadySet;
 
-	time_t launch_time;
+	int launch_time;
 
 } list_type_default_s;
 
@@ -46,6 +48,6 @@ typedef struct {
 extern task_mgr_error_e list_create(Eina_List **pkg_list);
 extern void list_destroy(Eina_List *pkg_list);
 
-extern task_mgr_error_e list_sort(Eina_List *pkg_list, int (*_sort_cb)(const void *d1, const void *d2));
+extern Eina_List *list_sort(Eina_List *pkg_list, int (*_sort_cb)(const void *d1, const void *d2));
 
 #endif //__TASK_MGR_LIST_H__
