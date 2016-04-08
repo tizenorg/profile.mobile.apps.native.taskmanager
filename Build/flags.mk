@@ -9,7 +9,7 @@ COMPILE_FLAGS = $(DEBUG_OP) $(OPTIMIZATION_OP) -Wall -c -fmessage-length=0 -fPIC
 
 CPP_COMPILE_FLAGS = $(CPP_DEBUG_OP) $(CPP_OPTIMIZATION_OP) 
 
-LINK_FLAGS = -shared -Wl,--no-undefined 
+LINK_FLAGS = -shared -Wl,--no-undefined -fpie
 
 AR_FLAGS = 
 
