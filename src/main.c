@@ -30,6 +30,7 @@
 #include "util.h"
 
 #define KEY_BACK "XF86Back"
+#define KEY_HOME "XF86Home"
 #define PRIVATE_DATA_KEY_LIST_TIMER "pri_list_tm"
 
 static main_s main_info = {
@@ -54,12 +55,12 @@ main_h main_get_info(void)
 
 
 
-static Eina_Bool _back_key_pressed(void *data, Evas_Object *obj, Evas_Object *src, Evas_Callback_Type type, void *event_info)
+static Eina_Bool _key_pressed(void *data, Evas_Object *obj, Evas_Object *src, Evas_Callback_Type type, void *event_info)
 {
-	_D("");
 	Evas_Event_Key_Down *ev = event_info;
 
-	if (type == EVAS_CALLBACK_KEY_DOWN && strncmp(KEY_BACK, ev->key, strlen(KEY_BACK)) == 0) {
+	if (type == EVAS_CALLBACK_KEY_DOWN && ((strncmp(KEY_BACK, ev->key, strlen(KEY_BACK)) == 0) ||
+			(strncmp(KEY_HOME, ev->key, strlen(KEY_HOME)) == 0))) {
 		_D("KEY PRESSED: %s", ev->key);
 
 		elm_exit();
@@ -165,7 +166,7 @@ static bool _create_cb(void *data)
 	elm_win_screen_size_get(main_info.win, NULL, NULL, &main_info.root_w, &main_info.root_h);
 	_D("screen size is (%d, %d)", main_info.root_w, main_info.root_h);
 
-	elm_object_event_callback_add(main_info.win, _back_key_pressed, NULL);
+	elm_object_event_callback_add(main_info.win, _key_pressed, NULL);
 
 	elm_win_indicator_mode_set(main_info.win, ELM_WIN_INDICATOR_SHOW);
 	elm_win_indicator_opacity_set(main_info.win, ELM_WIN_INDICATOR_TRANSPARENT);
