@@ -1,10 +1,10 @@
 Name:       org.tizen.task-mgr
 #VCS_FROM:   profile/mobile/apps/native/taskmanager#fa22e8bb732718c685704274dc2ca4627d7083cb
-#RS_Ver:    20160419_1 
-Summary:    Taskmanagerapplication
+#RS_Ver:    20160422_1 
+Summary:    Taskmanager application
 Version:    1.0.0
 Release:    1
-Group:      Applications/CoreApplications
+Group:      Applications/Core Applications
 License:    Apache-2.0
 Source0:    %{name}-%{version}.tar.gz
 
