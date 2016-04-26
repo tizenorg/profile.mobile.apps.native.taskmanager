@@ -165,7 +165,7 @@ collections {
 				description {
 					state: "default" 0.0;
 					color: 255 255 255 255;
-					rel1 { relative: 0.5 0.0; to: "bg"; }
+					rel1 { relative: 0.5 0.5; to: "clear_img"; }
 					rel2 { relative: 0.5 1.0; to: "bg"; }
 					min: CLEAR_LINE_WIDTH 0;
 					visible: 1;
