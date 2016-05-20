@@ -151,5 +151,3 @@ const char *util_get_file_path(app_subdir dir, const char *relative)
 
 	return &buf[0];
 }
-
-//End of file

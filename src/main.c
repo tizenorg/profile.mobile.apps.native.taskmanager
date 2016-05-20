@@ -44,7 +44,7 @@ static main_s main_info = {
 	.root_w = 0,
 	.root_h = 0,
 };
-//main_h main_info_h = &main_info;
+/* main_h main_info_h = &main_info; */
 
 
 
@@ -78,9 +78,9 @@ static task_mgr_error_e _create_layout(Evas_Object *parent)
 	Evas_Object *layout = NULL;
 	Eina_Bool ret = EINA_FALSE;
 
-	// create layout
+	/* create layout */
 	layout = elm_layout_add(parent);
-	goto_if (!layout, ERROR);
+	goto_if(!layout, ERROR);
 
 	ret = elm_layout_file_set(layout, util_get_file_path(APP_DIR_RESOURCE, LAYOUT_EDJ), "layout");
 	goto_if(EINA_FALSE == ret, ERROR);
@@ -92,7 +92,7 @@ static task_mgr_error_e _create_layout(Evas_Object *parent)
 
 	main_info.layout = layout;
 
-	// create scroller
+	/* create scroller */
 	main_info.scroller = scroller_create(layout);
 	goto_if(!main_info.scroller, ERROR);
 
@@ -182,7 +182,7 @@ static bool _create_cb(void *data)
 		return false;
 	}
 
-	//create the list
+	/* create the list */
 	timer = evas_object_data_get(main_info.win, PRIVATE_DATA_KEY_LIST_TIMER);
 	if (timer) {
 		ecore_timer_del(timer);

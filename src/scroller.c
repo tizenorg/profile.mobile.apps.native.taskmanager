@@ -169,7 +169,7 @@ int scroller_count(Evas_Object *scroller)
 
 Eina_Bool scroller_is_scrolling(Evas_Object *scroller)
 {
-	return evas_object_data_get(scroller, DATA_KEY_IS_SCROLLING)? EINA_TRUE:EINA_FALSE;
+	return evas_object_data_get(scroller, DATA_KEY_IS_SCROLLING) ? EINA_TRUE : EINA_FALSE;
 }
 
 
@@ -283,7 +283,7 @@ Evas_Object *scroller_create(Evas_Object *layout)
 
 	elm_scroller_bounce_set(scroller, EINA_FALSE, EINA_FALSE);
 	elm_scroller_policy_set(scroller, ELM_SCROLLER_POLICY_OFF, ELM_SCROLLER_POLICY_OFF);
-	//elm_object_style_set(scroller, "list_effect");
+	/* elm_object_style_set(scroller, "list_effect"); */
 	elm_object_focus_allow_set(scroller, EINA_FALSE);
 	elm_object_part_content_set(layout, "scroller", scroller);
 	evas_object_show(scroller);
@@ -295,7 +295,7 @@ Evas_Object *scroller_create(Evas_Object *layout)
 	evas_object_smart_callback_add(scroller, "scroll,drag,start", _drag_start_cb, NULL);
 	evas_object_smart_callback_add(scroller, "scroll,drag,stop", _drag_stop_cb, NULL);
 	evas_object_smart_callback_add(scroller, "scroll", _scroll_cb, NULL);
-	/* Because change an align in box, use the layout betweein box and scroller. */
+	/* Because change an align in box, use the layout between box and scroller. */
 
 	box_layout = elm_layout_add(scroller);
 	if (!box_layout) {

@@ -219,7 +219,7 @@ static Eina_Bool _anim_move_item(void *data)
 	cur_x += vec_pos;
 	cur_pos = cur_x;
 
-	if ((end_pos - cur_pos) < 0) { // Move : Right -> Left
+	if ((end_pos - cur_pos) < 0) { /* Move : Right -> Left */
 		evas_object_move(item_inner, cur_x, cur_y);
 		int alp = 255 - ((cur_pos - end_pos) * PRIVATE_ITEM_ALPHA) - 1;
 		if (alp < PRIVATE_ITEM_ALPHA_MAX) alp = PRIVATE_ITEM_ALPHA_MAX;
@@ -227,15 +227,14 @@ static Eina_Bool _anim_move_item(void *data)
 
 		if (cur_pos - ANIM_RATE_SPARE <= end_pos) {
 			evas_object_move(item_inner, end_x, end_y);
-			goto_if (! _content_set_item_inner(item_outer), ERROR);
+			goto_if(!_content_set_item_inner(item_outer), ERROR);
 			/* unfreeze the scroller after setting the content */
 			scroller_unfreeze(scroller);
 			evas_object_data_del(item_outer, PRIVATE_DATA_KEY_ITEM_INNER_FOR_MOVING);
 			evas_object_data_del(item_outer, PRIVATE_DATA_KEY_ITEM_ANIM_FOR_MOVING);
 			return ECORE_CALLBACK_CANCEL;
 		}
-	}
-	else { // Move : Left -> Right
+	} else { /* Move : Left -> Right */
 		evas_object_move(item_inner, cur_x, cur_y);
 		int alp = 255 - ((end_pos - cur_pos) * PRIVATE_ITEM_ALPHA) - 1;
 		if (alp < PRIVATE_ITEM_ALPHA_MAX) alp = PRIVATE_ITEM_ALPHA_MAX;
@@ -243,7 +242,7 @@ static Eina_Bool _anim_move_item(void *data)
 
 		if (cur_pos + ANIM_RATE_SPARE >= end_pos) {
 			evas_object_move(item_inner, end_x, end_y);
-			goto_if (NULL == _content_set_item_inner(item_outer), ERROR);
+			goto_if(NULL == _content_set_item_inner(item_outer), ERROR);
 			/* unfreeze the scroller after setting the content */
 			scroller_unfreeze(scroller);
 			evas_object_data_del(item_outer, PRIVATE_DATA_KEY_ITEM_INNER_FOR_MOVING);
@@ -318,7 +317,7 @@ static Eina_Bool _anim_terminate_item(void *data)
 	goto_if(!item_outer, ERROR);
 
 	item_inner = evas_object_data_get(item_outer, PRIVATE_DATA_KEY_ITEM_INNER_FOR_MOVING);
-	if(!item_inner) {
+	if (!item_inner) {
 		item_inner = elm_object_part_content_unset(item_outer, "inner");
 		retv_if(!item_inner, ECORE_CALLBACK_CANCEL);
 		evas_object_data_set(item_outer, PRIVATE_DATA_KEY_ITEM_INNER_FOR_MOVING, item_inner);
@@ -478,7 +477,7 @@ static void _move_cb(void *data, Evas *e, Evas_Object *obj, void *event_info)
 		ret_if(!_content_unset_item_inner(item_outer));
 	}
 
-	alpha = 255 -(abs(vec_x) * PRIVATE_ITEM_ALPHA);
+	alpha = 255 - (abs(vec_x) * PRIVATE_ITEM_ALPHA);
 	if (alpha < PRIVATE_ITEM_ALPHA_MAX) {
 		alpha = PRIVATE_ITEM_ALPHA_MAX;
 	}
@@ -522,7 +521,7 @@ static void _up_cb(void *data, Evas *e, Evas_Object *obj, void *event_info)
 
 	_D("Up (%d, %d)", x, y);
 
-	ret_if (!item_outer);
+	ret_if(!item_outer);
 
 	scroller = main_get_info()->scroller;
 	ret_if(!scroller);
@@ -586,7 +585,7 @@ static void _clicked_cb(void *data, Evas_Object *obj, void *event_info)
 	ret_if(!appid);
 
 	util_launch_app(appid);
-	//layout_hide_with_timer();
+	/* layout_hide_with_timer(); */
 }
 
 
@@ -696,7 +695,3 @@ void item_terminate(Evas_Object *item)
 		util_kill_app(appid);
 	}
 }
-
-
-
-//End of a file
