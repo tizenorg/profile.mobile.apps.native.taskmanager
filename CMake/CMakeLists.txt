@@ -29,7 +29,7 @@ pkg_check_modules(MENU_PKGS REQUIRED
 	dlog
 	pkgmgr-info
 	feedback
-	context
+	rua
 )
 
 FOREACH (flag ${MENU_PKGS_CFLAGS})

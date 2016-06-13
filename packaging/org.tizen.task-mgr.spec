@@ -31,7 +31,7 @@ BuildRequires:  pkgconfig(capi-appfw-package-manager)
 BuildRequires:  pkgconfig(capi-appfw-app-manager)
 BuildRequires:  pkgconfig(pkgmgr-info)
 BuildRequires:  pkgconfig(feedback)
-BuildRequires:  pkgconfig(context)
+BuildRequires:  pkgconfig(rua)
 BuildRequires:  pkgconfig(libtzplatform-config)
 
 %description
