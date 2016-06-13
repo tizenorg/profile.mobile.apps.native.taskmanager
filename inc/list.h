@@ -30,22 +30,13 @@ typedef struct {
 	char *appid;
 	char *name;
 	char *icon;
-	char *arg;
-
-	int pid;
-	bool nodisplay;
-	Eina_Bool taskmanage;
-	Eina_Bool unmounted;
-	Eina_Bool multi_launch;
-	Eina_Bool isAlreadySet;
 
 	int launch_time;
 
 } list_type_default_s;
 
-
-
-extern task_mgr_error_e list_create(Eina_List **pkg_list);
+extern Eina_List *list_pkg_list_get(void);
+extern task_mgr_error_e list_init(void);
 extern void list_destroy(Eina_List *pkg_list);
 
 extern Eina_List *list_sort(Eina_List *pkg_list, int (*_sort_cb)(const void *d1, const void *d2));
