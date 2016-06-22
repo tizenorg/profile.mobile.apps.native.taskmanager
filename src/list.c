@@ -129,13 +129,6 @@ static int _pkglist_filter_create(app_info_filter_h *filter)
 		return TASK_MGR_ERROR_FAIL;
 	}
 
-	ret = app_info_filter_add_bool(*filter, PACKAGE_INFO_PROP_APP_NODISPLAY, false);
-	if (ret != APP_MANAGER_ERROR_NONE) {
-		_E("app_info_filer_add_bool failed[%d]: %s", ret, get_error_message(ret));
-		app_info_filter_destroy(*filter);
-		return TASK_MGR_ERROR_FAIL;;
-	}
-
 	return TASK_MGR_ERROR_NONE;
 }
 
