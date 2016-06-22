@@ -140,13 +140,14 @@ static Eina_Bool _list_timer_cb(void *data)
 		goto END;
 	}
 
+	elm_object_part_text_set(main_info.layout, "no,apps,txt", _("IDS_TASKMGR_NPBODY_NO_APPLICATIONS_ABB2"));
+
 	main_info.pkg_list = list_pkg_list_get();
 	if (!main_info.pkg_list) {
 		_E("pkg_list is empty");
+		elm_layout_signal_emit(main_info.layout, "no,apps,txt,show", "no,apps,txt");
 		goto END;
 	}
-
-	elm_object_part_text_set(main_info.layout, "no,apps,txt", _("IDS_TASKMGR_NPBODY_NO_APPLICATIONS_ABB2"));
 
 	if (TASK_MGR_ERROR_NO_DATA == ret) {
 		_D("There is no application");
