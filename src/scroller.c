@@ -306,8 +306,8 @@ Evas_Object *scroller_create(Evas_Object *layout)
 	elm_layout_file_set(box_layout, util_get_file_path(APP_DIR_RESOURCE, BOX_LAYOUT_EDJ), BOX_GROUP_NAME);
 	evas_object_size_hint_align_set(box_layout, 0.5, 1.0);
 	evas_object_size_hint_weight_set(box_layout, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
-	evas_object_show(box_layout);
 	elm_object_content_set(scroller, box_layout);
+	evas_object_show(box_layout);
 
 	box = elm_box_add(scroller);
 	if (!box) {

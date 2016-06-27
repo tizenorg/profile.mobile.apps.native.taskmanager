@@ -147,19 +147,28 @@ collections {
 		name: "clear_item";
 		parts {
 			part {
+				name: "padding.top";
+				type: SPACER;
+				description {
+					state: "default" 0.0;
+					min: 0 70;
+					max: -1 70;
+				}
+			}
+			part {
 				name: "bg";
 				type: RECT;
 				scale: 1;
 				description {
 					state: "default" 0.0;
-					rel1 { relative: 0.0 0.0; }
+					rel1 { relative: 0.0 1.0; to_y: "padding.top"; }
 					rel2 { relative: 1.0 1.0; }
 					color: 255 255 255 0;
 					min: ITEM_WIDTH CLEAR_ITEM_HEIGHT;
 					visible: 1;
 				}
 			}
-			part{
+			part {
 				name: "line";
 				type: RECT;
 				description {
