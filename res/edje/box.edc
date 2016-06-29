@@ -22,7 +22,7 @@
 #include "conf.edc"
 
 collections {
-	base_scale: 2.1;
+	base_scale: 2.6;
 	group {
 		name: "box";
 		parts {
@@ -36,7 +36,6 @@ collections {
 					rel2 { relative: 1.0 1.0; }
 					min: BASE_WIDTH BASE_HEIGHT;
 					color: 0 0 0 0;
-					visible: 1;
 				}
 			}
 			part {

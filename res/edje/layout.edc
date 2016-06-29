@@ -31,7 +31,7 @@ styles {
 }
 
 collections {
-	base_scale: 2.1;
+	base_scale: 2.6;
 	group {
 		name: "layout";
 		parts {
