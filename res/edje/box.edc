@@ -22,7 +22,7 @@
 #include "conf.edc"
 
 collections {
-	base_scale: 2.1;
+	base_scale: 2.6;
 	group {
 		name: "box";
 		parts {
@@ -36,7 +36,24 @@ collections {
 					rel2 { relative: 1.0 1.0; }
 					min: BASE_WIDTH BASE_HEIGHT;
 					color: 0 0 0 0;
-					visible: 1;
+				}
+			}
+			part {
+				name: "line";
+				type: RECT;
+				description {
+					state: "default" 0.0;
+					color: 255 255 255 255;
+					rel1 {
+						relative: 0.0 0.0;
+						offset: 0 PADDING_TOP+10;
+						to_y: "box";
+					}
+					rel2 { relative: 1.0 1.0; }
+					min: CLEAR_LINE_WIDTH 0;
+					max: CLEAR_LINE_WIDTH -1;
+					align: 0.5 0.5;
+					fixed: 1 0;
 				}
 			}
 			part {
