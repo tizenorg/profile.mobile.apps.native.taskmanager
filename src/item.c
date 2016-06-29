@@ -47,7 +47,6 @@
 
 #define PRIVATE_MOVE_THRESHOLD 30
 #define PRIVATE_FLICK_TIME 100
-#define PRIVATE_ITEM_TERMINATE_THRESHOLD 2.0
 #define PRIVATE_ITEM_ALPHA 0.8
 #define PRIVATE_ITEM_ALPHA_MAX 100
 
@@ -516,9 +515,13 @@ static void _up_cb(void *data, Evas *e, Evas_Object *obj, void *event_info)
 
 	int x = ei->output.x;
 	int y = ei->output.y;
+
 	int up_time = ei->timestamp;
 	int down_time = 0;
-	int init_pos, item_pos, item_size, tm_threshold;
+	int init_pos, item_pos;
+
+	int icon_x, icon_y, icon_w, icon_h;
+	int screen_w;
 
 	_D("Up (%d, %d)", x, y);
 
@@ -541,10 +544,21 @@ static void _up_cb(void *data, Evas *e, Evas_Object *obj, void *event_info)
 
 	init_pos = (int) evas_object_data_del(item_outer, PRIVATE_DATA_KEY_ITEM_X);
 	evas_object_data_del(item_outer, PRIVATE_DATA_KEY_ITEM_Y);
-	evas_object_geometry_get(item_inner, &item_pos, NULL, &item_size, NULL);
-	tm_threshold = item_size * PRIVATE_ITEM_TERMINATE_THRESHOLD;
+	evas_object_geometry_get(item_inner, &item_pos, NULL, NULL, NULL);
 
-	if (abs(item_pos - init_pos) > tm_threshold || (up_time - down_time < PRIVATE_FLICK_TIME && abs(item_pos - init_pos) > 0)) {
+	Evas_Object *item_icon = elm_object_part_content_get(obj, "icon");
+	if (!item_icon)
+		return;
+
+	evas_object_geometry_get(obj, &icon_x, &icon_y, &icon_w, &icon_h);
+	elm_win_screen_size_get(main_get_info()->win, NULL, NULL, &screen_w, NULL);
+
+	_D("icon_x: %d", icon_x);
+	_D("icon_x2: %d", icon_x + icon_w);
+	_D("thresholds: %lf - %lf", SWIPE_LEFT_THRESHOLD, SWIPE_RIGHT_THRESHOLD);
+
+	if (icon_x < screen_w * SWIPE_LEFT_THRESHOLD || icon_x + icon_w > screen_w * SWIPE_RIGHT_THRESHOLD
+			|| (up_time - down_time < PRIVATE_FLICK_TIME && abs(item_pos - init_pos) > 0)) {
 		_item_terminate_anim(item_outer);
 
 	} else if (item_pos != init_pos) {
