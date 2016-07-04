@@ -127,13 +127,6 @@ static Eina_Bool _list_timer_cb(void *data)
 		goto END;
 	}
 
-	clear_item = item_clear_all_create(main_info.scroller);
-	if (!clear_item) {
-		_E("Fail to create clear all button");
-		return ECORE_CALLBACK_CANCEL;
-	}
-	scroller_push_item(main_info.scroller, clear_item);
-
 	ret = list_init();
 	if (ret != TASK_MGR_ERROR_NONE) {
 		_E("Could not initialize list module");
@@ -148,6 +141,13 @@ static Eina_Bool _list_timer_cb(void *data)
 		elm_layout_signal_emit(main_info.layout, "no,apps,txt,show", "no,apps,txt");
 		goto END;
 	}
+
+	clear_item = item_clear_all_create(main_info.scroller);
+	if (!clear_item) {
+		_E("Fail to create clear all button");
+		return ECORE_CALLBACK_CANCEL;
+	}
+	scroller_push_item(main_info.scroller, clear_item);
 
 	if (TASK_MGR_ERROR_NO_DATA == ret) {
 		_D("There is no application");

@@ -39,29 +39,11 @@ collections {
 				}
 			}
 			part {
-				name: "line";
-				type: RECT;
-				description {
-					state: "default" 0.0;
-					color: 255 255 255 255;
-					rel1 {
-						relative: 0.0 0.0;
-						offset: 0 PADDING_TOP+10;
-						to_y: "box";
-					}
-					rel2 { relative: 1.0 1.0; }
-					min: CLEAR_LINE_WIDTH 0;
-					max: CLEAR_LINE_WIDTH -1;
-					align: 0.5 0.5;
-					fixed: 1 0;
-				}
-			}
-			part {
 				name: "box";
 				type: SWALLOW;
 				description {
 					state: "default" 0.0;
-					rel1 { relative: 0.0 1.0; }
+					rel1 { relative: 0.0 0.0; }
 					rel2 { relative: 1.0 1.0; }
 					align: 0.5 1.0;
 				}

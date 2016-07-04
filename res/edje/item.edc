@@ -55,6 +55,18 @@ collections {
 				}
 			}
 			part {
+				name: "line";
+				type: RECT;
+				scale: 1;
+				description {
+					state: "default";
+					color: 255 255 255 255;
+					align: 0.5 1.0;
+					min: CLEAR_LINE_WIDTH 0;
+					max: CLEAR_LINE_WIDTH -1;
+				}
+			}
+			part {
 				name: "inner";
 				type: SWALLOW;
 				scale: 1;
@@ -155,6 +167,19 @@ collections {
 					color: 0 0 0 0;
 					min: ITEM_WIDTH CLEAR_ITEM_HEIGHT;
 					max: ITEM_WIDTH CLEAR_ITEM_HEIGHT;
+				}
+			}
+			part {
+				name: "line";
+				type: RECT;
+				scale: 1;
+				description {
+					state: "default";
+					rel1 { relative: 0.5 0.5; to: "clear_img"; }
+					color: 255 255 255 255;
+					min: CLEAR_LINE_WIDTH 0;
+					max: CLEAR_LINE_WIDTH -1;
+					align: 0.0 1.0;
 				}
 			}
 			part {

@@ -268,8 +268,6 @@ static void _scroll_cb(void *data, Evas_Object *scroller, void *event_info)
 	evas_object_data_set(scroller, DATA_KEY_IS_SCROLLING, (void *) 1);
 }
 
-
-
 Evas_Object *scroller_create(Evas_Object *layout)
 {
 	retv_if(!layout, NULL);
@@ -317,8 +315,7 @@ Evas_Object *scroller_create(Evas_Object *layout)
 		return NULL;
 	}
 	elm_box_horizontal_set(box, EINA_FALSE);
-	evas_object_size_hint_align_set(box, 0.5, 1.0);
-	evas_object_size_hint_weight_set(box, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
+	elm_box_align_set(box, 0.5, 1.0);
 	elm_object_part_content_set(box_layout, BOX_GROUP_NAME, box);
 	evas_object_show(box);
 	main_get_info()->box = box;

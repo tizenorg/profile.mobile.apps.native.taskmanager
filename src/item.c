@@ -108,7 +108,6 @@ Evas_Object *item_clear_all_create(Evas_Object *scroller)
 	elm_object_signal_callback_add(clear_item, "click", "clear_item", _clear_all_clicked_cb, scroller);
 	evas_object_data_set(scroller, PRIVATE_DATA_KEY_CLEAR, clear_item);
 
-	evas_object_size_hint_weight_set(clear_item, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
 	evas_object_show(clear_item);
 
 	return clear_item;
@@ -614,13 +613,11 @@ Evas_Object *item_create(Evas_Object *scroller, list_type_default_s *info)
 	item = elm_layout_add(scroller);
 	retv_if(NULL == item, NULL);
 	elm_layout_file_set(item, util_get_file_path(APP_DIR_RESOURCE, ITEM_LAYOUT_EDJ), "item");
-	evas_object_size_hint_weight_set(item, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
 	evas_object_show(item);
 
 	item_inner = elm_layout_add(scroller);
 	goto_if(NULL == item_inner, ERROR);
 	elm_layout_file_set(item_inner, util_get_file_path(APP_DIR_RESOURCE, ITEM_LAYOUT_EDJ), "item_inner");
-	evas_object_size_hint_weight_set(item_inner, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
 	evas_object_show(item_inner);
 	elm_object_part_content_set(item, "inner", item_inner);
 	evas_object_event_callback_add(item_inner, EVAS_CALLBACK_MOUSE_DOWN, _down_cb, item);
