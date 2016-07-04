@@ -123,6 +123,7 @@ collections {
 						ellipsis: -1;
 					}
 					align: 0.0 0.5;
+					fixed: 1 0;
 				}
 			}
 		} //parts

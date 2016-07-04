@@ -270,6 +270,26 @@ static void _scroll_cb(void *data, Evas_Object *scroller, void *event_info)
 
 
 
+static void
+_track(void *data, Evas *e, Evas_Object *obj, void *event_info)
+{
+	int x, y, w, h;
+	evas_object_geometry_get(obj, &x, &y, &w, &h);
+	evas_object_geometry_set(data, x, y, w, h);
+}
+
+static void _track_add(Evas_Object *obj)
+{
+	Evas_Object *rect = evas_object_rectangle_add(evas_object_evas_get(obj));
+	evas_object_color_set(rect, 64, 0, 0, 64);
+	evas_object_event_callback_add(obj, EVAS_CALLBACK_MOVE, _track, rect);
+	evas_object_event_callback_add(obj, EVAS_CALLBACK_RESIZE, _track, rect);
+	_track(rect, NULL, obj, NULL);
+	evas_object_layer_set(rect, evas_object_layer_get(obj) + 1);
+	evas_object_repeat_events_set(rect, EINA_TRUE);
+	evas_object_show(rect);
+}
+
 Evas_Object *scroller_create(Evas_Object *layout)
 {
 	retv_if(!layout, NULL);
@@ -316,10 +336,12 @@ Evas_Object *scroller_create(Evas_Object *layout)
 		evas_object_del(scroller);
 		return NULL;
 	}
+	_track_add(box);
 	elm_box_horizontal_set(box, EINA_FALSE);
+	elm_box_align_set(box, 0.5, 1.0);
 	evas_object_size_hint_align_set(box, 0.5, 1.0);
-	evas_object_size_hint_weight_set(box, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
-	elm_object_part_content_set(box_layout, BOX_GROUP_NAME, box);
+	evas_object_size_hint_weight_set(box, 0.0, 0.0);
+	elm_object_part_content_set(box_layout, "box", box);
 	evas_object_show(box);
 	main_get_info()->box = box;
 
