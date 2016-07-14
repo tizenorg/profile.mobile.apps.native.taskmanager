@@ -64,7 +64,7 @@ list_type_default_s *item_get_info(Evas_Object *item)
 
 
 
-void item_clear_set_disable(Evas_Object *scroller)
+void item_clear_all_disabled_set(Evas_Object *scroller)
 {
 	Evas_Object *clear_item = NULL;
 	ret_if(!scroller);
@@ -286,7 +286,7 @@ static Eina_Bool _anim_slipped_item(void *data)
 		scroller_pop_item(scroller, item_outer, 1);
 
 		if (scroller_count(scroller) < 2) {
-			item_clear_set_disable(scroller);
+			item_clear_all_disabled_set(scroller);
 		}
 		goto ERROR;
 	}
