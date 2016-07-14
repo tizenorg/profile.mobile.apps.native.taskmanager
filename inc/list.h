@@ -24,8 +24,19 @@
 #include <Eina.h>
 #include "util.h"
 
-typedef struct {
+/**
+ * @defgroup List List
+ */
 
+/**
+ * @addtogroup List
+ * @{
+ */
+
+/**
+ * @brief Structure of the list item info.
+ */
+typedef struct {
 	char *pkgid;
 	char *appid;
 	char *name;
@@ -35,10 +46,30 @@ typedef struct {
 
 } list_type_default_s;
 
+/**
+ * @brief Gets currently running applications list.
+ *
+ * @return List of the currently running applications.
+ */
 extern Eina_List *list_pkg_list_get(void);
+
+/**
+ * @brief Initializes application list.
+ *
+ * @return TASK_MANAGER_ERROR_NONE on success,
+ * 		otherwise a negative error value
+ */
 extern task_mgr_error_e list_init(void);
+
+/**
+ * @brief Destroys application list.
+ *
+ * @param list The list to be destroyed
+ */
 extern void list_destroy(Eina_List *pkg_list);
 
-extern Eina_List *list_sort(Eina_List *pkg_list, int (*_sort_cb)(const void *d1, const void *d2));
+/**
+ * @}
+ */
 
 #endif //__TASK_MGR_LIST_H__

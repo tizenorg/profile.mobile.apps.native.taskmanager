@@ -151,7 +151,7 @@ static Eina_Bool _list_timer_cb(void *data)
 
 	if (TASK_MGR_ERROR_NO_DATA == ret) {
 		_D("There is no application");
-		item_clear_set_disable(main_info.scroller);
+		item_clear_all_disabled_set(main_info.scroller);
 	} else if (TASK_MGR_ERROR_NONE != ret) {
 		_E("Fail to create pkglist");
 		goto END;

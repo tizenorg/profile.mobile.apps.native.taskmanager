@@ -32,8 +32,18 @@
 #define _(str) gettext(str)
 #endif
 
+/**
+ * @defgroup Utils Utilities
+ */
 
-/* Enum */
+/**
+ * @addtogroup Utils
+ * @{
+ */
+
+/**
+ * @brief Enumerations for Task Manager Error.
+ */
 typedef enum {
 	TASK_MGR_ERROR_NONE = 0,
 	TASK_MGR_ERROR_FAIL = -1,
@@ -43,6 +53,9 @@ typedef enum {
 	TASK_MGR_ERROR_NO_DATA = -5,
 } task_mgr_error_e;
 
+/**
+ * @brief Enumerations for resource directories.
+ */
 typedef enum {
 	APP_DIR_DATA = 0,
 	APP_DIR_CACHE,
@@ -55,9 +68,38 @@ typedef enum {
 	APP_DIR_EXTERNAL_SHARED_DATA,
 } app_subdir;
 
+/**
+ * @brief Shutdowns given currently running application.
+ *
+ * @param appid The ID of the application
+ *
+ * @return app_manager_error_e type value or EINA_FALSE on failure
+ */
 extern Eina_Bool util_kill_app(const char *appid);
+
+/**
+ * @brief Resumes the given application.
+ *
+ * @param appid The ID of the application
+ *
+ * @return EINA_TRUE or EINA_FALSE on failure
+ */
 extern Eina_Bool util_launch_app(const char *appid);
+
+/**
+ * @brief Returns absolute path to resource file located in applications directory
+ *
+ * @param dir The type of directory
+ * @param relative The relative path to resource starting from given sub directory
+ *
+ * @return absolute path string
+ *
+ * @note returns statically allocated string
+ */
 extern const char *util_get_file_path(app_subdir dir, const char *relative);
 
+/**
+ * @}
+ */
 
 #endif //__TASK_MGR_UTIL_H__
