@@ -20,8 +20,20 @@
 #ifndef __TASK_MGR_H__
 #define __TASK_MGR_H__
 
+/**
+ * @defgroup Main Main
+ */
+
+/**
+ * @addtogroup Main
+ * @{
+ */
+
+/**
+ * @brief Task Manager main info structure.
+ */
 typedef struct {
-	Evas		*e;
+	Evas        *e;
 	Evas_Object *win;
 	Evas_Object *layout;
 	Evas_Object *scroller;
@@ -34,7 +46,15 @@ typedef struct {
 } main_s;
 typedef main_s *main_h;
 
-
+/**
+ * @brief Gets application main information.
+ *
+ * @return The main application information handle
+ */
 extern main_h main_get_info(void);
+
+/**
+ * @}
+ */
 
 #endif //__TASK_MGR_H__

@@ -23,6 +23,15 @@
 #include <unistd.h>
 #include <dlog.h>
 
+/**
+ * @defgroup Utils Utilities
+ */
+
+/**
+ * @addtogroup Utils
+ * @{
+ */
+
 #undef LOG_TAG
 #define LOG_TAG "TASK_MGR"
 
@@ -112,5 +121,8 @@
 #define _E(fmt, arg...) dlog_print(DLOG_ERROR, LOG_TAG, "%s: %s[%d] " #fmt "\n", __FILENAME__, __func__, __LINE__, ##arg)
 #endif
 
+/**
+ * @}
+ */
 
 #endif //__TASK_MGR_LOG_H__
