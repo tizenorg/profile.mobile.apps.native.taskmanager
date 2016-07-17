@@ -1,6 +1,6 @@
 Name:       org.tizen.task-mgr
-#VCS_FROM:   profile/mobile/apps/native/taskmanager#96bdc398efd2765caeef926a93851185f23641a7
-#RS_Ver:    20160711_2 
+#VCS_FROM:   profile/mobile/apps/native/taskmanager#8ac84836efce74210f3a9279efef57ff59eea0dd
+#RS_Ver:    20160717_2 
 Summary:    Taskmanager application
 Version:    1.0.0
 Release:    1
@@ -28,7 +28,7 @@ Requires(post):  /usr/bin/tpk-backend
 %endif
 
 %description
-profile/mobile/apps/native/taskmanager#96bdc398efd2765caeef926a93851185f23641a7
+profile/mobile/apps/native/taskmanager#8ac84836efce74210f3a9279efef57ff59eea0dd
 This is a container package which have preload TPK files
 
 %prep
