@@ -57,10 +57,18 @@ static list_type_default_s *_pkglist_item_create(app_info_h app_info)
 		return NULL;
 
 	list_type_default_s *list_item = calloc(1, sizeof(list_type_default_s));
+	bool running = false;
 
 	int ret = app_info_get_app_id(app_info, &list_item->appid);
 	if (ret != APP_MANAGER_ERROR_NONE) {
 		_E("app_info_get_app_id failed[%d]: %s", ret, get_error_message(ret));
+		_pkglist_unretrieve_item(list_item);
+		return NULL;
+	}
+
+	ret = app_manager_is_running(list_item->appid, &running);
+	if (ret != APP_MANAGER_ERROR_NONE || !running) {
+		_E("app_manager_is_running failed[%d]: %s", ret, get_error_message(ret));
 		_pkglist_unretrieve_item(list_item);
 		return NULL;
 	}
@@ -85,6 +93,8 @@ static list_type_default_s *_pkglist_item_create(app_info_h app_info)
 		_pkglist_unretrieve_item(list_item);
 		return NULL;
 	}
+
+
 
 	return list_item;
 }
