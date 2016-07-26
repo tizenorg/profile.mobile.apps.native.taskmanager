@@ -64,7 +64,7 @@ extern task_mgr_error_e list_init(void);
 /**
  * @brief Destroys application list.
  *
- * @param list The list to be destroyed
+ * @param pkg_list The list to be destroyed
  */
 extern void list_destroy(Eina_List *pkg_list);
 
